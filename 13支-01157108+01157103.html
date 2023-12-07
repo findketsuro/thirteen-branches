@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>13支</title>
+        <style>
+            body {
+                background-image: url("imgs/牌桌.png");
+                background-repeat:no-repeat;
+                background-size:cover;
+            }
+            #play_buttom{
+                position:relative;
+                top:205px;
+                left:38%;
+            }
+            #introduction_buttom {
+                position: relative;
+                top: 450px;
+                left: 14.45%;
+            }
+        </style>
+    </head >
+    <body>
+        <img src="imgs/開始按鈕.png" id="play_buttom" onclick="play()"/>
+        <img src="imgs/遊戲規則.png" id="introduction_buttom" onclick="introduction()"/>
+        <script>
+            function introduction() {
+                alert("introduction");
+            }
+            function play() {
+                alert("play");
+            }
+        </script>
+    </body>
+</html >
