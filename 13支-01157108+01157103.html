@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>13支</title>
+        <title>13支-主頁</title>
         <style>
             body {
                 background-image: url("imgs/牌桌.png");
@@ -47,6 +47,26 @@
                 left: 78%;
                 top: 160px;
             }
+            #oneplayer {
+                display: none;
+                position: absolute;
+                width: 30%;
+                left: 10%;
+                top: 225px;
+            }
+            #players {
+                display: none;
+                position: absolute;
+                width: 30%;
+                left: 60%;
+                top: 225px;
+            }
+            #gear{
+                position:absolute;
+                width:8%;
+                left:92%;
+                top:610px;
+            }
         </style>
     </head >
     <body>
@@ -55,10 +75,13 @@
         <img id="introduction" src="imgs/說明1.png" />
         <img id="block1" src="imgs/說明方塊1.png" />
         <img id="block2" src="imgs/說明方塊4.png" />
+        <img id="oneplayer" src="imgs/單人遊戲.png" />
+        <img id="players" src="imgs/連線遊戲.png" />
         <img id="X" src="imgs/x.png" />
+        <img id="gear" src="imgs/齒輪.png" onclick="set()"/>
         <script>
-            function introduction() {
-                let block = 1;
+            let block = 1;
+            function introduction() {//當按下遊戲規則(顯示遊戲規則與其按鈕)
                 document.querySelector("#introduction").style.display = "initial";
                 document.querySelector("#block1").style.display = "initial";
                 document.querySelector("#block2").style.display = "initial";
@@ -86,8 +109,23 @@
                     document.querySelector("#X").style.display = "none";
                 })
             }
-            function play() {
-                alert("play");
+            function play() {//當按下開始遊戲(出現選擇按鈕，依選擇跳出新視窗，並關閉原視窗)
+                document.querySelector("#oneplayer").style.display = "initial";
+                document.querySelector("#players").style.display = "initial";
+                document.getElementById("oneplayer").addEventListener("click", function () {
+                    window.open("13支-單人遊戲-01157108+01157103.html");
+                    window.opener = null;
+                    window.close();
+                })
+                document.getElementById("players").addEventListener("click", function () {
+                    window.open("13支-連線遊戲-01157108+01157103.html");
+                    window.opener = null;
+                    window.close();
+                })
+            }
+            function set() {//當按下齒輪按鈕(出現控制選項)
+                //確定:查看成就、查看牌譜、登入帳號
+                //不確定:音樂大小、音效大小
             }
         </script>
     </body>
