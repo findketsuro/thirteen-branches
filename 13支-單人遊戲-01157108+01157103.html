@@ -20,11 +20,12 @@
                 position:absolute;
                 width:6%;
                 top:610px;
+                filter:drop-shadow(red);
             }
         </style>
     </head >
     <body>
-        <img src="imgs/發牌.png" onclick="play()" id="deal" />
+        <img src="imgs/發牌.png" onclick="deal()" id="deal" />
         <img src="imgs/n0.png" id="p1" class="cards"/>
         <img src="imgs/n0.png" id="p2" class="cards"/>
         <img src="imgs/n0.png" id="p3" class="cards"/>
@@ -54,7 +55,7 @@
             function shuffle() {//洗牌
                 poker.sort(() => Math.random() - 0.5);
             }
-            function play() {//洗牌並發牌給玩家
+            function deal() {//洗牌並發牌給玩家
                 shuffle();
                 document.querySelector("#deal").style.display = "none";
                 for (let i = 1; i <= 16; i++) {//玩家有16張牌
@@ -62,12 +63,7 @@
                     temp = Math.floor(poker[i] / 13);
                     switch (temp) {
                         case 0://c
-                            if (poker[i] != 0) {
-                                word = "imgs/c" + poker[i] + ".png";
-                            }
-                            else {
-                                word = "imgs/c" + 13 + ".png";
-                            }
+                            word = "imgs/c" + poker[i] + ".png";
                             document.getElementById("p" + i).src = word;
                             break;
                         case 1://d
@@ -75,7 +71,7 @@
                                 word = "imgs/d" + (poker[i]-13) + ".png";
                             }
                             else {
-                                word = "imgs/d" + 13 + ".png";
+                                word = "imgs/c" + 13 + ".png";
                             }
                             document.getElementById("p" + i).src = word;
                             break;
@@ -84,7 +80,7 @@
                                 word = "imgs/h" + (poker[i] - 26) + ".png";
                             }
                             else {
-                                word = "imgs/h" + 13 + ".png";
+                                word = "imgs/d" + 13 + ".png";
                             }
                             document.getElementById("p" + i).src = word;
                             break;
@@ -93,23 +89,31 @@
                                 word = "imgs/s" + (poker[i] - 39) + ".png";
                             }
                             else {
-                                word = "imgs/s" + 13 + ".png";
+                                word = "imgs/h" + 13 + ".png";
                             }
                             document.getElementById("p" + i).src = word;
                             break;
-                        case 4://s
+                        case 4://s                           
                             if (poker[i] - 52 != 0) {
                                 word = "imgs/s" + (poker[i] - 52) + ".png";
                             }
                             else {
                                 word = "imgs/s" + 13 + ".png";
-                            }
+                            }                          
+                            document.getElementById("p" + i).src = word;
+                            break;
+                        case 5://s
+                            word = "imgs/s" + 13 + ".png";
                             document.getElementById("p" + i).src = word;
                             break;
                     }                    
                     document.querySelector("#p" + i).style.display = "initial";//未來有機會改成用動畫              
                 }
                 console.log(poker);//檢查用，後面要刪除
+                operate();
+            }
+            function operate() {
+
             }
         </script>
     </body>
