@@ -9,11 +9,108 @@
                 background-repeat:no-repeat;
                 background-size:cover;
             }
+            #deal{
+                position:absolute;
+                width:10%;
+                left:45%;
+                top:300px;
+            }
+            .cards{
+                display:none;
+                position:absolute;
+                width:6%;
+                top:610px;
+            }
         </style>
     </head >
-    <body>       
+    <body>
+        <img src="imgs/發牌.png" onclick="play()" id="deal" />
+        <img src="imgs/n0.png" id="p1" class="cards"/>
+        <img src="imgs/n0.png" id="p2" class="cards"/>
+        <img src="imgs/n0.png" id="p3" class="cards"/>
+        <img src="imgs/n0.png" id="p4" class="cards"/>
+        <img src="imgs/n0.png" id="p5" class="cards"/>
+        <img src="imgs/n0.png" id="p6" class="cards"/>
+        <img src="imgs/n0.png" id="p7" class="cards"/>
+        <img src="imgs/n0.png" id="p8" class="cards"/>
+        <img src="imgs/n0.png" id="p9" class="cards"/>
+        <img src="imgs/n0.png" id="p10" class="cards"/>
+        <img src="imgs/n0.png" id="p11" class="cards"/>
+        <img src="imgs/n0.png" id="p12" class="cards"/>
+        <img src="imgs/n0.png" id="p13" class="cards"/>
+        <img src="imgs/n0.png" id="p14" class="cards"/>
+        <img src="imgs/n0.png" id="p15" class="cards"/>
+        <img src="imgs/n0.png" id="p16" class="cards"/>
         <script>
-            
+            //有poker串列用0~64代表牌庫，index[0]是彩金牌，index[1]~[16]是玩家1，index[17]~[32]是玩家2，index[33]~[48]是玩家，index[49]~[64]是玩家3的手牌
+            //牌型:數字1~13是梅花(c)1~13，14~26是方塊(d)1~13，27~39是紅心(h)1~13，40~65是(s)黑桃1~13共兩次
+            let poker = new Array(65);
+            let temp = 0;
+            let word = "";
+            for (let i = 0; i < 65; i++) {//建立牌組
+                poker[i] = i + 1;
+            }
+
+            function shuffle() {//洗牌
+                poker.sort(() => Math.random() - 0.5);
+            }
+            function play() {//洗牌並發牌給玩家
+                shuffle();
+                document.querySelector("#deal").style.display = "none";
+                for (let i = 1; i <= 16; i++) {//玩家有16張牌
+                    document.querySelector("#p" + i).style.left = (i - 1) * 95 + 10 + "px";
+                    temp = Math.floor(poker[i] / 13);
+                    switch (temp) {
+                        case 0://c
+                            if (poker[i] != 0) {
+                                word = "imgs/c" + poker[i] + ".png";
+                            }
+                            else {
+                                word = "imgs/c" + 13 + ".png";
+                            }
+                            document.getElementById("p" + i).src = word;
+                            break;
+                        case 1://d
+                            if (poker[i]-13 != 0) {
+                                word = "imgs/d" + (poker[i]-13) + ".png";
+                            }
+                            else {
+                                word = "imgs/d" + 13 + ".png";
+                            }
+                            document.getElementById("p" + i).src = word;
+                            break;
+                        case 2://h
+                            if (poker[i] - 26 != 0) {
+                                word = "imgs/h" + (poker[i] - 26) + ".png";
+                            }
+                            else {
+                                word = "imgs/h" + 13 + ".png";
+                            }
+                            document.getElementById("p" + i).src = word;
+                            break;
+                        case 3://s
+                            if (poker[i] - 39 != 0) {
+                                word = "imgs/s" + (poker[i] - 39) + ".png";
+                            }
+                            else {
+                                word = "imgs/s" + 13 + ".png";
+                            }
+                            document.getElementById("p" + i).src = word;
+                            break;
+                        case 4://s
+                            if (poker[i] - 52 != 0) {
+                                word = "imgs/s" + (poker[i] - 52) + ".png";
+                            }
+                            else {
+                                word = "imgs/s" + 13 + ".png";
+                            }
+                            document.getElementById("p" + i).src = word;
+                            break;
+                    }                    
+                    document.querySelector("#p" + i).style.display = "initial";//未來有機會改成用動畫              
+                }
+                console.log(poker);//檢查用，後面要刪除
+            }
         </script>
     </body>
 </html >
