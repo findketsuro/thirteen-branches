@@ -22,13 +22,13 @@
                 top:610px;
                 filter:drop-shadow(red);
             }
-            #test1{
+            .test1{
                 position:absolute;
                 width:25%;
                 left:30px;
                 top:260px;
             }
-            #test2 {
+            .test2 {
                 position: absolute;
                 height:45%;
                 left: 75%;
@@ -37,25 +37,28 @@
         </style>
     </head >
     <body>
-        <img src="imgs/發牌.png" onclick="deal()" id="deal" />
-        <img src="imgs/n0.png" id="p1" class="cards" />
-        <img src="imgs/n0.png" id="p2" class="cards" />
-        <img src="imgs/n0.png" id="p3" class="cards" />
-        <img src="imgs/n0.png" id="p4" class="cards" />
-        <img src="imgs/n0.png" id="p5" class="cards" />
-        <img src="imgs/n0.png" id="p6" class="cards" />
-        <img src="imgs/n0.png" id="p7" class="cards" />
-        <img src="imgs/n0.png" id="p8" class="cards" />
-        <img src="imgs/n0.png" id="p9" class="cards" />
-        <img src="imgs/n0.png" id="p10" class="cards" />
-        <img src="imgs/n0.png" id="p11" class="cards" />
-        <img src="imgs/n0.png" id="p12" class="cards" />
-        <img src="imgs/n0.png" id="p13" class="cards" />
-        <img src="imgs/n0.png" id="p14" class="cards" />
-        <img src="imgs/n0.png" id="p15" class="cards" />
-        <img src="imgs/n0.png" id="p16" class="cards" />
-        <img src="imgs/模擬1.png" id="test1" />
-        <img src="imgs/模擬2.png" id="test2" />
+        <div id="all">
+            <img src="imgs/發牌.png" onclick="deal()" id="deal" />
+            <img src="imgs/n0.png" id="p1" class="cards" />
+            <img src="imgs/n0.png" id="p2" class="cards" />
+            <img src="imgs/n0.png" id="p3" class="cards" />
+            <img src="imgs/n0.png" id="p4" class="cards" />
+            <img src="imgs/n0.png" id="p5" class="cards" />
+            <img src="imgs/n0.png" id="p6" class="cards" />
+            <img src="imgs/n0.png" id="p7" class="cards" />
+            <img src="imgs/n0.png" id="p8" class="cards" />
+            <img src="imgs/n0.png" id="p9" class="cards" />
+            <img src="imgs/n0.png" id="p10" class="cards" />
+            <img src="imgs/n0.png" id="p11" class="cards" />
+            <img src="imgs/n0.png" id="p12" class="cards" />
+            <img src="imgs/n0.png" id="p13" class="cards" />
+            <img src="imgs/n0.png" id="p14" class="cards" />
+            <img src="imgs/n0.png" id="p15" class="cards" />
+            <img src="imgs/n0.png" id="p16" class="cards" />
+            <img src="imgs/模擬1.png" id="s1" class="test1"/>
+            <img src="imgs/模擬2.png" id="s2" class="test2"/>
+        </div>
+        
         <script>
             //有poker串列用0~64代表牌庫，index[0]是彩金牌，index[1]~[16]是玩家1，index[17]~[32]是玩家2，index[33]~[48]是玩家，index[49]~[64]是玩家3的手牌
             //牌型:數字1~13是梅花(c)1~13，14~26是方塊(d)1~13，27~39是紅心(h)1~13，40~65是(s)黑桃1~13共兩次
@@ -64,6 +67,7 @@
             let playerB = new Array(16);
             let playerC = new Array(16);
             let playerD = new Array(16);
+            let draw = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
             let temp = 0;
             let word = "";
             let i = 0;
@@ -73,15 +77,7 @@
             function shuffle() {//洗牌
                 poker.sort(() => Math.random() - 0.5);
             }
-            function deal() {//洗牌並發牌給玩家
-                shuffle();
-                document.querySelector("#deal").style.display = "none";
-                for (i = 1; i <= 16; i++) {//發牌(方便使用整理功能而重建)
-                    playerA[i - 1] = poker[i];
-                    playerB[i - 1] = poker[i + 16];
-                    playerC[i - 1] = poker[i + 32];
-                    playerD[i - 1] = poker[i + 48];
-                }
+            function show() {
                 for (i = 0; i < 16; i++) {//顯示手牌
                     document.querySelector("#p" + (i + 1)).style.left = i * 95 + 10 + "px";
                     temp = Math.floor(playerA[i] / 13);
@@ -133,13 +129,102 @@
                     }
                     document.querySelector("#p" + (i + 1)).style.display = "initial";//未來有機會改成用動畫
                 }
+            }
+            function deal() {//洗牌並發牌給玩家
+                shuffle();
+                document.querySelector("#deal").style.display = "none";
+                for (i = 1; i <= 16; i++) {//發牌(方便使用整理功能而重建)//0~15
+                    playerA[i - 1] = poker[i];
+                    playerB[i - 1] = poker[i + 16];
+                    playerC[i - 1] = poker[i + 32];
+                    playerD[i - 1] = poker[i + 48];
+                }
+                show();
                 console.log(poker);//檢查用，後面要刪除
-                console.log(playerA);//檢查用，後面要刪除
-
-                operate();
+                console.log(playerA);//檢查用，後面要刪除                
+                operate();//操作
             }
             function operate() {
+                //顯示按鈕圖片(未實作)
+                i = 0;//draw的張數
+                let test = 0;
+                //let num = 0;
+                document.getElementById("all").addEventListener("click", function (e) {
+                    word = e.target.id;//word用來分辨觸發點擊的物件ID(p:撲克牌 s:系統按鈕 c:牌型按鈕)
+                    if (word[0] == 'p') {//點選撲克牌的場合
+                        if (word.length == 2) {
+                            temp = parseInt(word[1]);//temp是第N張手牌
+                        }
+                        else {
+                            temp = parseInt(word[1]) * 10 + parseInt(word[2]);
+                        }
+                        test = -1;
+                        for (let j = 0; j < 16; j++) {
+                            if (draw[j] == temp) {
+                                test = j;
+                                break;
+                            }
+                        }
+                        if (test == -1) {//不在draw裡就加進draw
+                            document.querySelector("#" + word).style.top = 580 + "px";
+                            for (let j = 0; j < 16; j++) {
+                                if (draw[j] == -1) {
+                                    draw[j] = temp;
+                                    i++;
+                                    break;
+                                }
+                            }
+                            console.log(draw);
+                        }
+                        else {//在draw裡就丟出draw
+                            document.querySelector("#" + word).style.top = 610 + "px";
+                            draw[test] = -1;
+                            i--;
+                            console.log(draw);
+                        }
+                    }
+                    else
+                    if (word[0] == 's') {//點選系統按鈕的場合
+                        temp = parseInt(word[1]);
+                        if (temp == 1) {//依照花色
+                            for (let j = 0; j < 16; j++) {
+                                if (draw[j] != -1) {
+                                    alert(draw[j])
+                                    document.querySelector("#p" + draw[j]).style.top = 610 + "px";
+                                    draw[j] = -1;
+                                }
+                            }
+                            i = 0;
+                            playerA.sort(function (a, b) {
+                                return a - b;
+                            });
+                            show();
+                        }
+                        else {//依照大小
+                            for (let j = 0; j < 16; j++) {
+                                if (draw[j] != -1) {
+                                    document.querySelector("#p" + draw[j]).style.top = 610 + "px";
+                                    draw[j] = -1;
+                                }
+                            }
+                            i = 0;
+                            playerA.sort(function (a, b) {
+                                while (a > 13) {
+                                    a -= 13;
+                                }
+                                while (b > 13) {
+                                    b -= 13;
+                                }
+                                return a - b;
+                            });
+                            show();
+                        }
 
+                    }   
+                    else {//點選牌型的場合
+
+                    }
+                }, false);
             }
         </script>
     </body>
