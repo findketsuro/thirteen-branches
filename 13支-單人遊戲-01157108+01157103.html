@@ -22,20 +22,9 @@
                 top:610px;
                 filter:drop-shadow(red);
             }
-            .test1{
-                position:absolute;
-                width:25%;
-                left:30px;
-                top:260px;
-            }
-            .test2 {
-                position: absolute;
-                height:45%;
-                left: 75%;
-                top: 245px;
-            }
             .system {
                 position: absolute;
+                display:none;
             }
             #s1 {
                 width: 8%;
@@ -72,6 +61,104 @@
                 top: 67%;
                 left: 15.5%;
             }
+            .type {
+                display: none;
+                position: absolute;
+                width: 6.5%;
+            }
+            #c1{
+                top:33.65%;
+                left:75%;
+            }
+            #c2 {
+                top: 33.65%;
+                left: 82%;
+            }
+            #c3 {
+                top: 33%;
+                left: 89%;
+            }
+            #c4 {
+                top: 49%;
+                left: 75%;
+            }
+            #c5 {
+                top: 49%;
+                left: 82%;
+            }
+            #c6 {
+                top: 49%;
+                left: 89%;
+            }
+            #c7 {
+                top: 64%;
+                left: 75%;
+            }
+            #c8 {
+                top: 64%;
+                left: 82%;
+            }
+            #c9 {
+                top: 64%;
+                left: 89%;
+            }
+            .block{
+                position:absolute;
+                width:8%;
+                display:none;
+            }
+            #n1 {
+                left: 29%;
+                top: 55%;
+            }
+            #n2 {
+                left: 38%;
+                top: 55%;
+            }
+            #n3 {
+                left: 47%;
+                top: 55%;
+            }
+            #n4 {
+                left: 56%;
+                top: 55%;
+            }
+            #n5 {
+                left: 65%;
+                top: 55%;
+            }
+            #n6 {
+                left: 29%;
+                top: 31%;
+            }
+            #n7 {
+                left: 38%;
+                top: 31%;
+            }
+            #n8 {
+                left: 47%;
+                top: 31%;
+            }
+            #n9 {
+                left: 56%;
+                top: 31%;
+            }
+            #n10 {
+                left: 65%;
+                top: 31%;
+            }
+            #n11 {
+                left: 38%;
+                top: 7%;
+            }
+            #n12 {
+                left: 47%;
+                top: 7%;
+            }
+            #n13 {
+                left: 56%;
+                top: 7%;
+            }
         </style>
     </head >
     <body>
@@ -93,8 +180,6 @@
             <img src="imgs/n0.png" id="p14" class="cards" />
             <img src="imgs/n0.png" id="p15" class="cards" />
             <img src="imgs/n0.png" id="p16" class="cards" />
-            <img src="imgs/模擬1.png" class="test1" />
-            <img src="imgs/模擬2.png" class="test2" />
             <img src="imgs/系統按鈕1.png" id="s1" class="system" />
             <img src="imgs/系統按鈕2.png" id="s2" class="system" />
             <img src="imgs/系統按鈕3.png" id="s3" class="system" />
@@ -102,6 +187,28 @@
             <img src="imgs/系統按鈕5.png" id="s5" class="system" />
             <img src="imgs/系統按鈕6.png" id="s6" class="system" />
             <img src="imgs/系統按鈕7.png" id="s7" class="system" />
+            <img src="imgs/牌型按鈕1.png" id="c1" class="type" />
+            <img src="imgs/牌型按鈕2.png" id="c2" class="type" />
+            <img src="imgs/牌型按鈕3.png" id="c3" class="type" />
+            <img src="imgs/牌型按鈕4.png" id="c4" class="type" />
+            <img src="imgs/牌型按鈕5.png" id="c5" class="type" />
+            <img src="imgs/牌型按鈕6.png" id="c6" class="type" />
+            <img src="imgs/牌型按鈕7.png" id="c7" class="type" />
+            <img src="imgs/牌型按鈕8.png" id="c8" class="type" />
+            <img src="imgs/牌型按鈕9.png" id="c9" class="type" />
+            <img src="imgs/n0.png" id="n1" class="block" />
+            <img src="imgs/n0.png" id="n2" class="block" />
+            <img src="imgs/n0.png" id="n3" class="block" />
+            <img src="imgs/n0.png" id="n4" class="block" />
+            <img src="imgs/n0.png" id="n5" class="block" />
+            <img src="imgs/n0.png" id="n6" class="block" />
+            <img src="imgs/n0.png" id="n7" class="block" />
+            <img src="imgs/n0.png" id="n8" class="block" />
+            <img src="imgs/n0.png" id="n9" class="block" />
+            <img src="imgs/n0.png" id="n10" class="block" />
+            <img src="imgs/n0.png" id="n11" class="block" />
+            <img src="imgs/n0.png" id="n12" class="block" />
+            <img src="imgs/n0.png" id="n13" class="block" />
         </div>
 
             <script>
@@ -178,7 +285,7 @@
                 function deal() {//洗牌並發牌給玩家
                     shuffle();
                     document.querySelector("#deal").style.display = "none";
-                    for (i = 1; i <= 16; i++) {//發牌(方便使用整理功能而重建)//0~15
+                    for (i = 1; i <= 16; i++) {//發牌
                         playerA[i - 1] = poker[i];
                         playerB[i - 1] = poker[i + 16];
                         playerC[i - 1] = poker[i + 32];
@@ -190,7 +297,15 @@
                     operate();//操作
                 }
                 function operate() {
-                    //顯示按鈕圖片(未實作)
+                    for (i = 1; i <= 7; i++) {//getelementbyclassname不可用改用這個將就一下
+                        document.querySelector("#s" + i).style.display = "initial";
+                    }
+                    for (i = 1; i <= 9; i++) {
+                        document.querySelector("#c" + i).style.display = "initial";
+                    }
+                    for (i = 1; i <= 13; i++) {
+                        document.querySelector("#n" + i).style.display = "initial";
+                    }
                     i = 0;//draw的張數
                     let test = 0;
                     //let num = 0;
@@ -229,44 +344,43 @@
                             }
                         }
                         else
-                        if (word[0] == 's') {//點選系統按鈕的場合                              
-                            temp = parseInt(word[1]);                         
-                            if (temp == 6) {//依照大小
-                                for (let j = 0; j < 16; j++) {
-                                    if (draw[j] != -1) {
-                                        document.querySelector("#p" + draw[j]).style.top = 610 + "px";
-                                        draw[j] = -1;
-                                    }
+                            if (word[0] == 's') {//點選系統按鈕的場合                              
+                                temp = parseInt(word[1]);
+                                switch (temp) {
+                                    case 6:
+                                        for (let j = 0; j < 16; j++) {
+                                            if (draw[j] != -1) {
+                                                document.querySelector("#p" + draw[j]).style.top = 610 + "px";
+                                                draw[j] = -1;
+                                            }
+                                        }
+                                        i = 0;
+                                        playerA.sort(function (a, b) {
+                                            while (a > 13) {
+                                                a -= 13;
+                                            }
+                                            while (b > 13) {
+                                                b -= 13;
+                                            }
+                                            return a - b;
+                                        });
+                                        show();
+                                        break;
+                                    case 7:
+                                        for (let j = 0; j < 16; j++) {
+                                            if (draw[j] != -1) {
+                                                document.querySelector("#p" + draw[j]).style.top = 610 + "px";
+                                                draw[j] = -1;
+                                            }
+                                        }
+                                        i = 0;
+                                        playerA.sort(function (a, b) {
+                                            return a - b;
+                                        });
+                                        show();
+                                        break;
                                 }
-                                i = 0;
-                                playerA.sort(function (a, b) {
-                                    while (a > 13) {
-                                        a -= 13;
-                                    }
-                                    while (b > 13) {
-                                        b -= 13;
-                                    }
-                                    return a - b;                                    
-                                });
-                                show();
                             }
-                            else {//依照花色
-                                for (let j = 0; j < 16; j++) {
-                                    if (draw[j] != -1) {
-                                        document.querySelector("#p" + draw[j]).style.top = 610 + "px";
-                                        draw[j] = -1;
-                                    }
-                                }
-                                i = 0;
-                                playerA.sort(function (a, b) {
-                                        return a - b;
-                                });
-                                show();
-                            }
-                        }
-                        else {//點選牌型的場合
-
-                        }
                     }, false);
                 }
             </script>
