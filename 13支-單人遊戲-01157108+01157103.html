@@ -163,7 +163,14 @@
             position: absolute;
             width: 7%;
             left:2%;
-        }      
+        }    
+        #go {
+            display:none;
+            position:absolute;
+            width:7.5%;
+            left:75%;
+            top:19%;
+        }
     </style>
 </head>
 <body>
@@ -215,6 +222,7 @@
         <img src="imgs/n0.png" id="n12" class="block" />
         <img src="imgs/n0.png" id="n13" class="block" />
         <img src="imgs/b0.png" id="gold" />
+        <img src="imgs/出牌.png" id="go" />
     </div>
 
     <script>
@@ -316,7 +324,7 @@
                         }
                     }
                 }
-                else
+                else {
                     if (word[0] == 's') {//點選系統按鈕的場合
                         temp = parseInt(word[1]);
                         switch (temp) {
@@ -334,13 +342,17 @@
                                 for (let j = 1; j <= 16; j++) {
                                     document.querySelector("#p" + j).style.top = 610 + "px";
                                 }
+                                head = [0, 0, 0];
+                                mid = [0, 0, 0, 0, 0];
+                                tail = [0, 0, 0, 0, 0];
                                 show();
+                                document.querySelector("#go").style.display = "none";
                                 break;
                             case 2://自動(最後再處理)
                                 break;
                             case 3://放入頭墩
                                 draws = 11;
-                                if (i == 3) {
+                                if (put(3)) {
                                     for (let j = 0; j < 16; j++) {
                                         if (draw[j] != -1) {
                                             temp = Math.floor(playerA[draw[j] - 1] / 13);
@@ -353,11 +365,14 @@
                                         }
                                     }
                                     show();
+                                    if (mid[0] > 0 && tail[0] > 0) {
+                                        document.querySelector("#go").style.display = "initial";
+                                    }
                                 }
                                 break;
                             case 4://放入二道
                                 draws = 6;
-                                if (i == 5) {
+                                if (put(5)) {
                                     for (let j = 0; j < 16; j++) {
                                         if (draw[j] != -1) {
                                             temp = Math.floor(playerA[draw[j] - 1] / 13);
@@ -370,11 +385,14 @@
                                         }
                                     }
                                     show();
+                                    if (head[0] > 0 && tail[0] > 0) {
+                                        document.querySelector("#go").style.display = "initial";
+                                    }
                                 }
                                 break;
                             case 5://放入尾墩
                                 draws = 1;
-                                if (i == 5) {
+                                if (put(5)) {
                                     for (let j = 0; j < 16; j++) {
                                         if (draw[j] != -1) {
                                             temp = Math.floor(playerA[draw[j] - 1] / 13);
@@ -387,6 +405,9 @@
                                         }
                                     }
                                     show();
+                                    if (mid[0] > 0 && head[0] > 0) {
+                                        document.querySelector("#go").style.display = "initial";
+                                    }
                                 }
                             case 6://依大小排序
                                 for (let j = 0; j < 16; j++) {
@@ -395,7 +416,6 @@
                                         draw[j] = -1;
                                     }
                                 }
-                                i = 0;
                                 playerA.sort(function (a, b) {
                                     a %= 13;
                                     if (a == 0) a = 13;
@@ -412,7 +432,6 @@
                                         draw[j] = -1;
                                     }
                                 }
-                                i = 0;
                                 playerA.sort(function (a, b) {
                                     return a - b;
                                 });
@@ -421,46 +440,28 @@
                         }
                     }
                     else {//點選牌型按鈕的場合
-                        temp = parseInt(word[1]);
-                        switch (temp) {
-                            case 1://彩金   
-                                for (let j = 0; j < 16; j++) {
-                                    draw[j] = -1;
-                                    document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
-                                }
-                                now = [1, 0];//唯一不需要的牌型按鈕
-                                gold = poker[0] % 13;
-                                for (let j = 0; j < 16; j++) {
-                                    if (playerA[j] % 13 == gold) {
-                                        document.querySelector("#p" + (j+1)).style.top = 580 + "px";
-                                        draw[j] = j + 1;
-                                        i++;
+                        if (word[0] == 'c') {
+                            temp = parseInt(word[1]);
+                            switch (temp) {
+                                case 1://彩金   
+                                    for (let j = 0; j < 16; j++) {
+                                        draw[j] = -1;
+                                        document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
                                     }
-                                }
-                                break;
-                            case 2://五枚
-                                if (now[0] == 2) {
-                                    test = 0;
-                                    for (let j = now[1] + 1; j < 16; j++) {
-                                        if (sys[j] == 5) {
-                                            test = 1;
-                                            for (let j = 0; j < 16; j++) {
-                                                draw[j] = -1;
-                                                document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
-                                            }
-                                            for (let k = 0; k < 16; k++) {
-                                                if (playerA[k] % 13 == j) {
-                                                    document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
-                                                    draw[k] = k + 1;
-                                                }
-                                            }
-                                            now[1] = j;
-                                            i = 5;
-                                            break;
+                                    now = [1, 0];//唯一不需要的牌型按鈕
+                                    gold = poker[0] % 13;
+                                    for (let j = 0; j < 16; j++) {
+                                        if (playerA[j] % 13 == gold) {
+                                            document.querySelector("#p" + (j + 1)).style.top = 580 + "px";
+                                            draw[j] = j + 1;
+                                            i++;
                                         }
                                     }
-                                    if (test == 0) {
-                                        for (let j = 0; j < 16; j++) {
+                                    break;
+                                case 2://五枚
+                                    if (now[0] == 2) {
+                                        test = 0;
+                                        for (let j = now[1] + 1; j < 16; j++) {
                                             if (sys[j] == 5) {
                                                 test = 1;
                                                 for (let j = 0; j < 16; j++) {
@@ -474,63 +475,70 @@
                                                     }
                                                 }
                                                 now[1] = j;
-                                                i = 5;
+                                                break;
+                                            }
+                                        }
+                                        if (test == 0) {
+                                            for (let j = 0; j < 16; j++) {
+                                                if (sys[j] == 5) {
+                                                    test = 1;
+                                                    for (let j = 0; j < 16; j++) {
+                                                        draw[j] = -1;
+                                                        document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                                    }
+                                                    for (let k = 0; k < 16; k++) {
+                                                        if (playerA[k] % 13 == j) {
+                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            draw[k] = k + 1;
+                                                        }
+                                                    }
+                                                    now[1] = j;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        for (let j = 0; j < 16; j++) {
+                                            draw[j] = -1;
+                                            document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                        }
+                                        now[0] = 2;
+                                        sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                                        for (let j = 0; j < 16; j++) {
+                                            sys[playerA[j] % 13] += 1;
+                                        }
+                                        for (let j = 0; j < 13; j++) {
+                                            if (sys[j] == 5) {
+                                                for (let k = 0; k < 16; k++) {
+                                                    if (playerA[k] % 13 == j) {
+                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        draw[k] = k + 1;
+                                                    }
+                                                }
+                                                now[1] = j;
                                                 break;
                                             }
                                         }
                                     }
-                                }
-                                else {
-                                    for (let j = 0; j < 16; j++) {
-                                        draw[j] = -1;
-                                        document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
-                                    }
-                                    now[0] = 2;
-                                    sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                                    for (let j = 0; j < 16; j++) {
-                                        sys[playerA[j] % 13] += 1;
-                                    }
-                                    for (let j = 0; j < 13; j++) {
-                                        if (sys[j] == 5) {
-                                            for (let k = 0; k < 16; k++) {
-                                                if (playerA[k] % 13 == j) {
-                                                    document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
-                                                    draw[k] = k + 1;
-                                                }
-                                            }
-                                            now[1] = j;
-                                            i = 5;
-                                            break;
-                                        }
-                                    }
-                                }                                  
-                                break;
-                            case 3://同花順
+                                    break;
+                                case 3://同花順(未完成)
+                                    if (now[0] == 3) {
 
-                                break;
-                            case 4://鐵支
-                                if (now[0] == 4) {
-                                    test = 0;
-                                    for (let j = now[1] + 1; j < 16; j++) {
-                                        if (sys[j] == 4) {
-                                            test = 1;
-                                            for (let j = 0; j < 16; j++) {
-                                                draw[j] = -1;
-                                                document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
-                                            }
-                                            for (let k = 0; k < 16; k++) {
-                                                if (playerA[k] % 13 == j) {
-                                                    document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
-                                                    draw[k] = k + 1;
-                                                }
-                                            }
-                                            now[1] = j;
-                                            i = 4;
-                                            break;
+                                    }
+                                    else {
+                                        for (let j = 0; j < 16; j++) {
+                                            draw[j] = -1;
+                                            document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
                                         }
                                     }
-                                    if (test == 0) {
-                                        for (let j = 0; j < 16; j++) {
+                                    now[0] = 3;
+                                    sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                                    break;
+                                case 4://鐵支
+                                    if (now[0] == 4) {
+                                        test = 0;
+                                        for (let j = now[1] + 1; j < 16; j++) {
                                             if (sys[j] == 4) {
                                                 test = 1;
                                                 for (let j = 0; j < 16; j++) {
@@ -544,66 +552,170 @@
                                                     }
                                                 }
                                                 now[1] = j;
-                                                i = 4;
+                                                break;
+                                            }
+                                        }
+                                        if (test == 0) {
+                                            for (let j = 0; j < 16; j++) {
+                                                if (sys[j] == 4) {
+                                                    test = 1;
+                                                    for (let j = 0; j < 16; j++) {
+                                                        draw[j] = -1;
+                                                        document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                                    }
+                                                    for (let k = 0; k < 16; k++) {
+                                                        if (playerA[k] % 13 == j) {
+                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            draw[k] = k + 1;
+                                                        }
+                                                    }
+                                                    now[1] = j;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        for (let j = 0; j < 16; j++) {
+                                            draw[j] = -1;
+                                            document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                        }
+                                        now[0] = 4;
+                                        sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                                        for (let j = 0; j < 16; j++) {
+                                            sys[playerA[j] % 13] += 1;
+                                        }
+                                        for (let j = 0; j < 13; j++) {
+                                            if (sys[j] == 4) {
+                                                for (let k = 0; k < 16; k++) {
+                                                    if (playerA[k] % 13 == j) {
+                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        draw[k] = k + 1;
+                                                    }
+                                                }
+                                                now[1] = j;
                                                 break;
                                             }
                                         }
                                     }
-                                }
-                                else {
-                                    for (let j = 0; j < 16; j++) {
-                                        draw[j] = -1;
-                                        document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                    break;
+                                case 5://葫蘆(未完成)
+                                    if (now[0] == 5) {
+
                                     }
-                                    now[0] = 4;
-                                    sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                                    for (let j = 0; j < 16; j++) {
-                                        sys[playerA[j] % 13] += 1;
-                                    }
-                                    for (let j = 0; j < 13; j++) {
-                                        if (sys[j] == 4) {
-                                            for (let k = 0; k < 16; k++) {
-                                                if (playerA[k] % 13 == j) {
-                                                    document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
-                                                    draw[k] = k + 1;
-                                                }
-                                            }
-                                            now[1] = j;
-                                            i = 4;
-                                            break;
-                                        }
-                                    }
-                                }               
-                                break;
-                            case 5://葫蘆
-                                break;
-                            case 6://同花
-                                break;
-                            case 7://順子
-                                break;
-                            case 8://三條
-                                if (now[0] == 8) {
-                                    test = 0;
-                                    for (let j = now[1] + 1; j < 16; j++) {
-                                        if (sys[j] == 3) {
-                                            test = 1;
-                                            for (let j = 0; j < 16; j++) {
-                                                draw[j] = -1;
-                                                document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
-                                            }
-                                            for (let k = 0; k < 16; k++) {
-                                                if (playerA[k] % 13 == j) {
-                                                    document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
-                                                    draw[k] = k + 1;
-                                                }
-                                            }
-                                            now[1] = j;
-                                            i = 3;
-                                            break;
-                                        }
-                                    }
-                                    if (test == 0) {
+                                    else {
                                         for (let j = 0; j < 16; j++) {
+                                            draw[j] = -1;
+                                            document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                        }
+                                    }
+                                    now[0] = 5;
+                                    sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                                    break;
+                                case 6://同花
+                                    if (now[0] == 6) {
+                                        test = 0;
+                                        for (let j = now[1] + 1; j < 4; j++) {
+                                            if (sys[j] >= 5) {
+                                                test = 1;
+                                                for (let k = 0; k < 16; k++) {
+                                                    draw[k] = -1;
+                                                    document.querySelector("#p" + (k + 1)).style.top = 610 + "px";
+                                                }
+                                                for (let k = 0; k < 16; k++) {
+                                                    if (j == 3 && playerA[k] > 39) {
+                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        draw[k] = k + 1;
+                                                    }
+                                                    else if (playerA[k] < (14 + 13 * j) && playerA[k] > (13 * j)) {
+                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        draw[k] = k + 1;
+                                                    }
+                                                }
+                                                now[1] = j;
+                                                break;
+                                            }
+                                        }
+                                        if (test == 0) {
+                                            for (let j = 0; j < 4; j++) {
+                                                if (sys[j] >= 5) {
+                                                    test = 1;
+                                                    for (let k = 0; k < 16; k++) {
+                                                        draw[k] = -1;
+                                                        document.querySelector("#p" + (k + 1)).style.top = 610 + "px";
+                                                    }
+                                                    for (let k = 0; k < 16; k++) {
+                                                        if (j == 3 && playerA[k] > 39) {
+                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            draw[k] = k + 1;
+                                                        }
+                                                        else if (playerA[k] < (14 + 13 * j) && playerA[k] > (13 * j)) {
+                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            draw[k] = k + 1;
+                                                        }
+                                                    }
+                                                    now[1] = j;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        for (let j = 0; j < 16; j++) {
+                                            draw[j] = -1;
+                                            document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                        }
+                                        now[0] = 6;
+                                        sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                                        for (let j = 0; j < 16; j++) {
+                                            if (playerA[j] < 14) {
+                                                sys[0]++;
+                                            }
+                                            else if (playerA[j] < 27) {
+                                                sys[1]++;
+                                            }
+                                            else if (playerA[j] < 40) {
+                                                sys[2]++;
+                                            }
+                                            else {
+                                                sys[3]++;
+                                            }
+                                        }
+                                        for (let j = 0; j < 4; j++) {
+                                            if (sys[j] >= 5) {
+                                                for (let k = 0; k < 16; k++) {
+                                                    if (j == 3 && playerA[k] > 39) {
+                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        draw[k] = k + 1;
+                                                    }
+                                                    else if (playerA[k] < (14 + 13 * j) && playerA[k] > (13 * j)) {
+                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        draw[k] = k + 1;
+                                                    }
+                                                }
+                                                now[1] = j;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    break;
+                                case 7://順子(未完成)
+                                    if (now[0] == 7) {
+
+                                    }
+                                    else {
+                                        for (let j = 0; j < 16; j++) {
+                                            draw[j] = -1;
+                                            document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                        }
+                                        now[0] = 7;
+                                        sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                                    }
+                                    break;
+                                case 8://三條
+                                    if (now[0] == 8) {
+                                        test = 0;
+                                        for (let j = now[1] + 1; j < 16; j++) {
                                             if (sys[j] == 3) {
                                                 test = 1;
                                                 for (let j = 0; j < 16; j++) {
@@ -617,60 +729,57 @@
                                                     }
                                                 }
                                                 now[1] = j;
-                                                i = 3;
+                                                break;
+                                            }
+                                        }
+                                        if (test == 0) {
+                                            for (let j = 0; j < 16; j++) {
+                                                if (sys[j] == 3) {
+                                                    test = 1;
+                                                    for (let j = 0; j < 16; j++) {
+                                                        draw[j] = -1;
+                                                        document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                                    }
+                                                    for (let k = 0; k < 16; k++) {
+                                                        if (playerA[k] % 13 == j) {
+                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            draw[k] = k + 1;
+                                                        }
+                                                    }
+                                                    now[1] = j;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        for (let j = 0; j < 16; j++) {
+                                            draw[j] = -1;
+                                            document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                        }
+                                        now[0] = 8;
+                                        sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                                        for (let j = 0; j < 16; j++) {
+                                            sys[playerA[j] % 13] += 1;
+                                        }
+                                        for (let j = 0; j < 13; j++) {
+                                            if (sys[j] == 3) {
+                                                for (let k = 0; k < 16; k++) {
+                                                    if (playerA[k] % 13 == j) {
+                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        draw[k] = k + 1;
+                                                    }
+                                                }
+                                                now[1] = j;
                                                 break;
                                             }
                                         }
                                     }
-                                }
-                                else {
-                                    for (let j = 0; j < 16; j++) {
-                                        draw[j] = -1;
-                                        document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
-                                    }
-                                    now[0] = 8;
-                                    sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                                    for (let j = 0; j < 16; j++) {
-                                        sys[playerA[j] % 13] += 1;
-                                    }
-                                    for (let j = 0; j < 13; j++) {
-                                        if (sys[j] == 3) {
-                                            for (let k = 0; k < 16; k++) {
-                                                if (playerA[k] % 13 == j) {
-                                                    document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
-                                                    draw[k] = k + 1;
-                                                }
-                                            }
-                                            now[1] = j;
-                                            i = 3;
-                                            break;
-                                        }
-                                    }
-                                }               
-                                break;
-                            case 9://對子
-                                if (now[0] == 9) {
-                                    test = 0;
-                                    for (let j = now[1] + 1; j < 16; j++) {
-                                        if (sys[j] == 2) {
-                                            test = 1;
-                                            for (let j = 0; j < 16; j++) {
-                                                draw[j] = -1;
-                                                document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
-                                            }
-                                            for (let k = 0; k < 16; k++) {
-                                                if (playerA[k] % 13 == j) {
-                                                    document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
-                                                    draw[k] = k + 1;
-                                                }
-                                            }
-                                            now[1] = j;
-                                            i = 2;
-                                            break;
-                                        }
-                                    }
-                                    if (test == 0) {
-                                        for (let j = 0; j < 16; j++) {
+                                    break;
+                                case 9://對子
+                                    if (now[0] == 9) {
+                                        test = 0;
+                                        for (let j = now[1] + 1; j < 16; j++) {
                                             if (sys[j] == 2) {
                                                 test = 1;
                                                 for (let j = 0; j < 16; j++) {
@@ -684,40 +793,72 @@
                                                     }
                                                 }
                                                 now[1] = j;
-                                                i = 2;
+                                                break;
+                                            }
+                                        }
+                                        if (test == 0) {
+                                            for (let j = 0; j < 16; j++) {
+                                                if (sys[j] == 2) {
+                                                    test = 1;
+                                                    for (let j = 0; j < 16; j++) {
+                                                        draw[j] = -1;
+                                                        document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                                    }
+                                                    for (let k = 0; k < 16; k++) {
+                                                        if (playerA[k] % 13 == j) {
+                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            draw[k] = k + 1;
+                                                        }
+                                                    }
+                                                    now[1] = j;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        for (let j = 0; j < 16; j++) {
+                                            draw[j] = -1;
+                                            document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                        }
+                                        now[0] = 9;
+                                        sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                                        for (let j = 0; j < 16; j++) {
+                                            sys[playerA[j] % 13] += 1;
+                                        }
+                                        for (let j = 0; j < 13; j++) {
+                                            if (sys[j] == 2) {
+                                                for (let k = 0; k < 16; k++) {
+                                                    if (playerA[k] % 13 == j) {
+                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        draw[k] = k + 1;
+                                                    }
+                                                }
+                                                now[1] = j;
                                                 break;
                                             }
                                         }
                                     }
-                                }
-                                else {
-                                    for (let j = 0; j < 16; j++) {
-                                        draw[j] = -1;
-                                        document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
-                                    }
-                                    now[0] = 9;
-                                    sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                                    for (let j = 0; j < 16; j++) {
-                                        sys[playerA[j] % 13] += 1;
-                                    }
-                                    for (let j = 0; j < 13; j++) {
-                                        if (sys[j] == 2) {
-                                            for (let k = 0; k < 16; k++) {
-                                                if (playerA[k] % 13 == j) {
-                                                    document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
-                                                    draw[k] = k + 1;
-                                                }
-                                            }
-                                            now[1] = j;
-                                            i = 2;
-                                            break;
-                                        }
-                                    }
-                                }  
-                                break;
-                        }
+                                    break;
+                            }
+                        }                                           
                     }
+                }                    
             }, false);
+        }
+        function put(a) {//方便放入按鈕的判斷
+            let qwer = 0;
+            for (let j = 0; j < 16; j++) {
+                if (draw[j] != -1) {
+                    qwer++;
+                }
+            }
+            if (qwer == a) {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
         function easyswitch(t, array, index) {//用來處理重複出現的switch(其功能是展示牌所需要的)
             let w = "";
