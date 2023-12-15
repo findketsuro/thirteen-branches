@@ -1,0 +1,72 @@
+body {
+    background-image: url("imgs/µP®à.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#play_buttom {
+    position: absolute;
+    top: 205px;
+    left: 38%;
+}
+
+#introduction_buttom {
+    position: absolute;
+    top: 450px;
+    left: 38%;
+}
+
+#introduction {
+    display: none;
+    position: absolute;
+    width: 50%;
+    left: 35%;
+    top: 150px;
+}
+
+#block1 {
+    display: none;
+    position: absolute;
+    width: 15%;
+    left: 20%;
+    top: 160px;
+}
+
+#block2 {
+    display: none;
+    position: absolute;
+    width: 15%;
+    left: 20%;
+    top: 390px;
+}
+
+#X {
+    display: none;
+    position: absolute;
+    width: 3%;
+    left: 78%;
+    top: 160px;
+}
+
+#oneplayer {
+    display: none;
+    position: absolute;
+    width: 30%;
+    left: 10%;
+    top: 225px;
+}
+
+#players {
+    display: none;
+    position: absolute;
+    width: 30%;
+    left: 60%;
+    top: 225px;
+}
+
+#gear {
+    position: absolute;
+    width: 8%;
+    left: 92%;
+    top: 610px;
+}
