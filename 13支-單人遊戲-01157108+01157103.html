@@ -219,29 +219,68 @@
                 let playerB = new Array(16);
                 let playerC = new Array(16);
                 let playerD = new Array(16);
-                let draw = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];//手牌
-                let head = [-1, -1, -1];//頭墩
-                let mid = [-1, -1, -1, -1, -1];//二道
-                let tail = [-1, -1, -1, -1, -1];//尾墩
+                let draw = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
                 let temp = 0;
                 let word = "";
                 let i = 0;
-                let test = 0;
-                let draws = 0;
                 for (let i = 0; i < 65; i++) {//建立牌組
                     poker[i] = i + 1;
                 }
                 function shuffle() {//洗牌
                     poker.sort(() => Math.random() - 0.5);
                 }
-                function show() {//展示手牌(如果缺牌還沒做)
+                function show() {
                     for (i = 0; i < 16; i++) {//顯示手牌
                         document.querySelector("#p" + (i + 1)).style.left = i * 95 + 10 + "px";
                         temp = Math.floor(playerA[i] / 13);
-                        document.getElementById("p" + (i + 1)).src = easyswitch(temp, playerA, i);
+                        switch (temp) {
+                            case 0://c
+                                word = "imgs/c" + playerA[i] + ".png";
+                                document.getElementById("p" + (i + 1)).src = word;
+                                break;
+                            case 1://d
+                                if (playerA[i] - 13 != 0) {
+                                    word = "imgs/d" + (playerA[i] - 13) + ".png";
+                                }
+                                else {
+                                    word = "imgs/c" + 13 + ".png";
+                                }
+                                document.getElementById("p" + (i + 1)).src = word;
+                                break;
+                            case 2://h
+                                if (playerA[i] - 26 != 0) {
+                                    word = "imgs/h" + (playerA[i] - 26) + ".png";
+                                }
+                                else {
+                                    word = "imgs/d" + 13 + ".png";
+                                }
+                                document.getElementById("p" + (i + 1)).src = word;
+                                break;
+                            case 3://s
+                                if (playerA[i] - 39 != 0) {
+                                    word = "imgs/s" + (playerA[i] - 39) + ".png";
+                                }
+                                else {
+                                    word = "imgs/h" + 13 + ".png";
+                                }
+                                document.getElementById("p" + (i + 1)).src = word;
+                                break;
+                            case 4://s
+                                if (playerA[i] - 52 != 0) {
+                                    word = "imgs/s" + (playerA[i] - 52) + ".png";
+                                }
+                                else {
+                                    word = "imgs/s" + 13 + ".png";
+                                }
+                                document.getElementById("p" + (i + 1)).src = word;
+                                break;
+                            case 5://s
+                                word = "imgs/s" + 13 + ".png";
+                                document.getElementById("p" + (i + 1)).src = word;
+                                break;
+                        }
                         document.querySelector("#p" + (i + 1)).style.display = "initial";//未來有機會改成用動畫
                     }
-                    i = 0;
                 }
                 function deal() {//洗牌並發牌給玩家
                     shuffle();
@@ -252,11 +291,12 @@
                         playerC[i - 1] = poker[i + 32];
                         playerD[i - 1] = poker[i + 48];
                     }
-                    i = 0;
                     show();
-                    operate();
+                    console.log(poker);//檢查用，後面要刪除
+                    console.log(playerA);//檢查用，後面要刪除
+                    operate();//操作
                 }
-                function operate() {//操作(顯示按鈕跟實現操作)
+                function operate() {
                     for (i = 1; i <= 7; i++) {//getelementbyclassname不可用改用這個將就一下
                         document.querySelector("#s" + i).style.display = "initial";
                     }
@@ -266,8 +306,9 @@
                     for (i = 1; i <= 13; i++) {
                         document.querySelector("#n" + i).style.display = "initial";
                     }
-                    i = 0;//draw的張數(執行與draw無關者勿用)
-                    
+                    i = 0;//draw的張數
+                    let test = 0;
+                    //let num = 0;
                     document.getElementById("all").addEventListener("click", function (e) {
                         word = e.target.id;//word用來分辨觸發點擊的物件ID(p:撲克牌 s:系統按鈕 c:牌型按鈕)
                         if (word[0] == 'p') {//點選撲克牌的場合
@@ -277,108 +318,36 @@
                             else {
                                 temp = parseInt(word[1]) * 10 + parseInt(word[2]);
                             }
-                            let searchField = 'b0';
-                            if (document.getElementById("p"+temp).src.indexOf(searchField) !== -1) {
-                                //控制背面的牌不能選
+                            test = -1;
+                            for (let j = 0; j < 16; j++) {
+                                if (draw[j] == temp) {
+                                    test = j;
+                                    break;
+                                }
                             }
-                            else {
-                                test = -1;
+                            if (test == -1) {//不在draw裡就加進draw
+                                document.querySelector("#" + word).style.top = 580 + "px";
                                 for (let j = 0; j < 16; j++) {
-                                    if (draw[j] == temp) {
-                                        test = j;
+                                    if (draw[j] == -1) {
+                                        draw[j] = temp;
+                                        i++;
                                         break;
                                     }
                                 }
-                                if (test == -1) {//不在draw裡就加進draw
-                                    document.querySelector("#" + word).style.top = 580 + "px";
-                                    for (let j = 0; j < 16; j++) {
-                                        if (draw[j] == -1) {
-                                            draw[j] = temp;
-                                            i++;
-                                            break;
-                                        }
-                                    }
-                                }
-                                else {//在draw裡就丟出draw
-                                    document.querySelector("#" + word).style.top = 610 + "px";
-                                    draw[test] = -1;
-                                    i--;
-                                }
-                            }                       
+                                console.log(draw);
+                            }
+                            else {//在draw裡就丟出draw
+                                document.querySelector("#" + word).style.top = 610 + "px";
+                                draw[test] = -1;
+                                i--;
+                                console.log(draw);
+                            }
                         }
                         else
                             if (word[0] == 's') {//點選系統按鈕的場合                              
                                 temp = parseInt(word[1]);
                                 switch (temp) {
-                                    case 1://清空
-                                        for (let j = 0; j < 16; j++) {
-                                            if (draw[j] != -1) {                                              
-                                                draw[j] = -1;
-                                            }
-                                            playerA[j] = poker[j + 1];
-                                        }
-                                        i = 0;
-                                        for (let j = 1; j <= 13; j++) {
-                                            document.getElementById("n" + j).src = "imgs/n0.png";
-                                        }
-                                        for (let j = 1; j <= 16; j++) {
-                                            document.querySelector("#p" + j).style.top = 610 + "px";
-                                        }                                  
-                                        show();
-                                        break;
-                                    case 2://自動(最後再處理)
-                                        break;
-                                    case 3://放入頭墩
-                                        draws = 11;
-                                        if (i == 3) {
-                                            for (let j = 0; j < 16; j++) {
-                                                if (draw[j] != -1) {
-                                                    temp = Math.floor(playerA[draw[j] - 1] / 13);
-                                                    head[draws - 11] = playerA[draw[j] - 1];
-                                                    document.getElementById("n" + draws).src = easyswitch(temp, playerA, parseInt(draw[j]) - 1);
-                                                    document.querySelector("#p" + draw[j]).style.top = 610 + "px";
-                                                    draws++;
-                                                    playerA[draw[j] - 1] = -1;
-                                                    draw[j] = -1;
-                                                }
-                                            } 
-                                            show();
-                                        }                                                                               
-                                        break;
-                                    case 4://放入二道
-                                        draws = 6;
-                                        if (i == 5) {
-                                            for (let j = 0; j < 16; j++) {
-                                                if (draw[j] != -1) {
-                                                    temp = Math.floor(playerA[draw[j] - 1] / 13);
-                                                    mid[draws - 6] = playerA[draw[j] - 1];
-                                                    document.getElementById("n" + draws).src = easyswitch(temp, playerA, parseInt(draw[j]) - 1);
-                                                    document.querySelector("#p" + draw[j]).style.top = 610 + "px";
-                                                    draws++;
-                                                    playerA[draw[j] - 1] = -1;
-                                                    draw[j] = -1;
-                                                }
-                                            }
-                                            show();
-                                        }  
-                                        break;
-                                    case 5://放入尾墩
-                                        draws = 1;
-                                        if (i == 5) {
-                                            for (let j = 0; j < 16; j++) {
-                                                if (draw[j] != -1) {
-                                                    temp = Math.floor(playerA[draw[j] - 1] / 13);
-                                                    tail[draws - 1] = playerA[draw[j] - 1];
-                                                    document.getElementById("n" + draws).src = easyswitch(temp, playerA, parseInt(draw[j]) - 1);
-                                                    document.querySelector("#p" + draw[j]).style.top = 610 + "px";
-                                                    draws++;
-                                                    playerA[draw[j] - 1] = -1;
-                                                    draw[j] = -1;
-                                                }
-                                            }
-                                            show();
-                                        }  
-                                    case 6://依大小排序
+                                    case 6:
                                         for (let j = 0; j < 16; j++) {
                                             if (draw[j] != -1) {
                                                 document.querySelector("#p" + draw[j]).style.top = 610 + "px";
@@ -397,7 +366,7 @@
                                         });
                                         show();
                                         break;
-                                    case 7://依花色排序
+                                    case 7:
                                         for (let j = 0; j < 16; j++) {
                                             if (draw[j] != -1) {
                                                 document.querySelector("#p" + draw[j]).style.top = 610 + "px";
@@ -413,53 +382,6 @@
                                 }
                             }
                     }, false);
-                }
-                function easyswitch(t, array, index) {//用來處理重複出現的switch(其功能是展示牌所需要的)
-                    let w = "";
-                    switch (t) {
-                        case -1:
-                            w = "imgs/b0.png";
-                            break;
-                        case 0://c
-                            w = "imgs/c" + parseInt(array[index])  + ".png";                          
-                            break;
-                        case 1://d
-                            if (parseInt(array[index]) - 13 != 0) {
-                                w = "imgs/d" + (parseInt(array[index]) - 13) + ".png";
-                            }
-                            else {
-                                w = "imgs/c" + 13 + ".png";
-                            }
-                            break;
-                        case 2://h
-                            if (array[index] - 26 != 0) {
-                                w = "imgs/h" + (parseInt(array[index]) - 26) + ".png";
-                            }
-                            else {
-                                w = "imgs/d" + 13 + ".png";
-                            }
-                            break;
-                        case 3://s
-                            if (parseInt(array[index]) - 39 != 0) {
-                                w = "imgs/s" + (parseInt(array[index]) - 39) + ".png";
-                            }
-                            else {
-                                w = "imgs/h" + 13 + ".png";
-                            }
-                            break;
-                        case 4://s
-                            if (parseInt(array[index]) - 52 != 0) {
-                                w = "imgs/s" + (parseInt(array[index]) - 52) + ".png";
-                            }
-                            else {
-                                w = "imgs/s" + 13 + ".png";
-                            }
-                            break;
-                        case 5://s
-                            w = "imgs/s" + 13 + ".png";
-                            break;
-                    }
-                    return w;
                 }
             </script>
         </body>
