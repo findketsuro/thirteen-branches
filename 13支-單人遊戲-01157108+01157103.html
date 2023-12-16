@@ -244,7 +244,7 @@
         let draws = 0;
         let gold = 0;
         let sys = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];//配合牌型按鈕使用
-        let now = [0,0];//當前使用的牌型按鈕，再次按下用的準備
+        let now = [0, 0, 0, 0, 0];//當前使用的牌型按鈕，再次按下用的準備
         for (let i = 0; i < 65; i++) {//建立牌組
             poker[i] = i + 1;
         }
@@ -367,6 +367,11 @@
                                     show();
                                     if (mid[0] > 0 && tail[0] > 0) {
                                         document.querySelector("#go").style.display = "initial";
+                                        document.getElementById("go").addEventListener("click", function () {
+                                            window.open("13支-比牌環節-01157108+01157103.html");
+                                            window.opener = null;
+                                            window.close();
+                                        })
                                     }
                                 }
                                 break;
@@ -387,6 +392,11 @@
                                     show();
                                     if (head[0] > 0 && tail[0] > 0) {
                                         document.querySelector("#go").style.display = "initial";
+                                        document.getElementById("go").addEventListener("click", function () {
+                                            window.open("13支-比牌環節-01157108+01157103.html");
+                                            window.opener = null;
+                                            window.close();
+                                        })
                                     }
                                 }
                                 break;
@@ -407,6 +417,11 @@
                                     show();
                                     if (mid[0] > 0 && head[0] > 0) {
                                         document.querySelector("#go").style.display = "initial";
+                                        document.getElementById("go").addEventListener("click", function () {
+                                            window.open("13支-比牌環節-01157108+01157103.html");
+                                            window.opener = null;
+                                            window.close();
+                                        })
                                     }
                                 }
                             case 6://依大小排序
@@ -448,7 +463,7 @@
                                         draw[j] = -1;
                                         document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
                                     }
-                                    now = [1, 0];//唯一不需要的牌型按鈕
+                                    now = [1, 0, 0, 0, 0];//唯一不需要的牌型按鈕
                                     gold = poker[0] % 13;
                                     for (let j = 0; j < 16; j++) {
                                         if (playerA[j] % 13 == gold) {
@@ -599,18 +614,152 @@
                                         }
                                     }
                                     break;
-                                case 5://葫蘆(未完成)
+                                case 5://葫蘆
                                     if (now[0] == 5) {
-
+                                        test = 0;
+                                        gold = 0;
+                                        for (let j = now[1] + 1; j < 16; j++) {
+                                            if (sys[j] == 3) {
+                                                test = 1;
+                                                for (let j = 0; j < 16; j++) {
+                                                    draw[j] = -1;
+                                                    document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                                }
+                                                for (let k = 0; k < 16; k++) {
+                                                    if (playerA[k] % 13 == j) {
+                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        draw[k] = k + 1;
+                                                    }
+                                                }
+                                                now[1] = j;
+                                                break;
+                                            }
+                                        }
+                                        for (let j = now[2] + 1; j < 16; j++) {
+                                            if (sys[j] == 2) {
+                                                gold = 1;
+                                                if (test == 0) {
+                                                    for (let j = 0; j < 16; j++) {
+                                                        draw[j] = -1;
+                                                        document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                                    }
+                                                }
+                                                for (let k = 0; k < 16; k++) {
+                                                    if (playerA[k] % 13 == j) {
+                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        draw[k] = k + 1;
+                                                    }
+                                                }
+                                                now[2] = j;
+                                                break;
+                                            }
+                                        }
+                                        if (test == 0 && gold == 0) {//00
+                                            for (let j = 0; j < 16; j++) {
+                                                if (sys[j] == 3) {
+                                                    test = 1;
+                                                    for (let j = 0; j < 16; j++) {
+                                                        draw[j] = -1;
+                                                        document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                                    }
+                                                    for (let k = 0; k < 16; k++) {
+                                                        if (playerA[k] % 13 == j) {
+                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            draw[k] = k + 1;
+                                                        }
+                                                    }
+                                                    now[1] = j;
+                                                    break;
+                                                }
+                                            }
+                                            for (let j = 0; j < 16; j++) {
+                                                if (sys[j] == 2) {
+                                                    test = 1;
+                                                    for (let k = 0; k < 16; k++) {
+                                                        if (playerA[k] % 13 == j) {
+                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            draw[k] = k + 1;
+                                                        }
+                                                    }
+                                                    now[2] = j;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        else if (test == 0) {//01
+                                            for (let j = 0; j < 16; j++) {
+                                                if (sys[j] == 3) {
+                                                    for (let k = 0; k < 16; k++) {
+                                                        if (playerA[k] % 13 == j) {
+                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            draw[k] = k + 1;
+                                                        }
+                                                    }
+                                                    now[1] = j;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        else if (gold == 0) {//10
+                                            for (let j = 0; j < 16; j++) {
+                                                if (sys[j] == 2) {
+                                                    for (let k = 0; k < 16; k++) {
+                                                        if (playerA[k] % 13 == j) {
+                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            draw[k] = k + 1;
+                                                        }
+                                                    }
+                                                    now[2] = j;
+                                                    break;
+                                                }
+                                            }
+                                        }
                                     }
                                     else {
                                         for (let j = 0; j < 16; j++) {
                                             draw[j] = -1;
                                             document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
                                         }
-                                    }
-                                    now[0] = 5;
-                                    sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                                        now[0] = 5;
+                                        sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                                        for (let j = 0; j < 16; j++) {
+                                            sys[playerA[j] % 13] += 1;
+                                        }
+                                        for (let j = 0; j < 13; j++) {
+                                            if (sys[j] == 3) {
+                                                now[3]++;
+                                            }
+                                            if (sys[j] == 2) {
+                                                now[4]++;
+                                            }
+                                        }
+                                        if (now[3] > 0 && now[4] > 0) {
+                                            for (let j = 0; j < 13; j++) {
+                                                if (sys[j] == 3) {
+                                                    for (let k = 0; k < 16; k++) {
+                                                        if (playerA[k] % 13 == j) {
+                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            draw[k] = k + 1;
+                                                        }
+                                                    }
+                                                    now[1] = j;
+                                                    break;
+                                                }
+                                            }
+                                            for (let j = 0; j < 13; j++) {
+                                                if (sys[j] == 2) {
+                                                    for (let k = 0; k < 16; k++) {
+                                                        if (playerA[k] % 13 == j) {
+                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            draw[k] = k + 1;
+                                                        }
+                                                    }
+                                                    now[2] = j;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }                                    
                                     break;
                                 case 6://同花
                                     if (now[0] == 6) {
@@ -906,7 +1055,7 @@
                     break;
             }
             return w;
-        }
+        }       
     </script>
 </body>
 </html>
