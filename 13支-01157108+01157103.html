@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
   <head>
     <meta charset="utf-8" />
     <title>13支-主頁</title>
@@ -78,96 +77,12 @@
       id="introduction_buttom"
       onclick="introduction()"
     />
-=======
-<head>
-    <meta charset="utf-8">
-    <title>13支-主頁</title>
-    <style>
-        body {
-            background-image: url("imgs/牌桌.png");
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        #play_buttom {
-            position: absolute;
-            top: 205px;
-            left: 38%;
-        }
-
-        #introduction_buttom {
-            position: absolute;
-            top: 450px;
-            left: 38%;
-        }
-
-        #introduction {
-            display: none;
-            position: absolute;
-            width: 50%;
-            left: 35%;
-            top: 150px;
-        }
-
-        #block1 {
-            display: none;
-            position: absolute;
-            width: 15%;
-            left: 20%;
-            top: 160px;
-        }
-
-        #block2 {
-            display: none;
-            position: absolute;
-            width: 15%;
-            left: 20%;
-            top: 390px;
-        }
-
-        #X {
-            display: none;
-            position: absolute;
-            width: 3%;
-            left: 78%;
-            top: 160px;
-        }
-
-        #oneplayer {
-            display: none;
-            position: absolute;
-            width: 30%;
-            left: 10%;
-            top: 225px;
-        }
-
-        #players {
-            display: none;
-            position: absolute;
-            width: 30%;
-            left: 60%;
-            top: 225px;
-        }
-
-        #gear {
-            position: absolute;
-            width: 8%;
-            left: 92%;
-            top: 610px;
-        }
-    </style>
-</head>
-<body>
-    <img src="imgs/開始按鈕.png" id="play_buttom" onclick="play()" />
-    <img src="imgs/遊戲規則.png" id="introduction_buttom" onclick="introduction()" />
->>>>>>> 4797ff73c26cc0ffab27d43ff435437dfacd5db6
     <img id="introduction" src="imgs/說明1.png" />
     <img id="block1" src="imgs/說明方塊1.png" />
     <img id="block2" src="imgs/說明方塊4.png" />
     <img id="oneplayer" src="imgs/單人遊戲.png" />
     <img id="players" src="imgs/連線遊戲.png" />
-    <img id="X" src="imgs/x.png" />
-<<<<<<< HEAD
+    <img id="X" src="imgs/X.png" />
     <img id="gear" src="imgs/齒輪.png" onclick="set()" />
     <script src="主頁.js"></script>
     <!-- <script>
@@ -221,59 +136,4 @@
             }
         </script> -->
   </body>
-=======
-    <img id="X" src="imgs/X.png" />
-    <img id="gear" src="imgs/齒輪.png" onclick="set()" />
-    <script>
-        let block = 1;
-        function introduction() {//當按下遊戲規則(顯示遊戲規則與其按鈕)
-            document.querySelector("#introduction").style.display = "initial";
-            document.querySelector("#block1").style.display = "initial";
-            document.querySelector("#block2").style.display = "initial";
-            document.querySelector("#X").style.display = "initial";
-            document.getElementById("block1").addEventListener("click", function () {
-                if (block == 2) {
-                    document.getElementById("block1").src = "imgs/說明方塊1.png"
-                    document.getElementById("block2").src = "imgs/說明方塊4.png"
-                    document.getElementById("introduction").src = "imgs/說明1.png"
-                    block = 1;
-                }
-            })
-            document.getElementById("block2").addEventListener("click", function () {
-                if (block == 1) {
-                    document.getElementById("block1").src = "imgs/說明方塊2.png"
-                    document.getElementById("block2").src = "imgs/說明方塊3.png"
-                    document.getElementById("introduction").src = "imgs/說明2.png"
-                    block = 2;
-                }
-            })
-            document.getElementById("X").addEventListener("click", function () {
-                document.querySelector("#introduction").style.display = "none";
-                document.querySelector("#block1").style.display = "none";
-                document.querySelector("#block2").style.display = "none";
-                document.querySelector("#X").style.display = "none";
-            })
-        }
-        function play() {//當按下開始遊戲(出現選擇按鈕，依選擇跳出新視窗，並關閉原視窗)
-            document.querySelector("#oneplayer").style.display = "initial";
-            document.querySelector("#players").style.display = "initial";
-            document.getElementById("oneplayer").addEventListener("click", function () {
-                window.open("13支-單人遊戲-01157108+01157103.html");
-                window.opener = null;
-                window.close();
-            })
-            document.getElementById("players").addEventListener("click", function () {
-                window.open("13支-連線遊戲-01157108+01157103.html");
-                window.opener = null;
-                window.close();
-            })
-        }
-        function set() {//當按下齒輪按鈕(出現控制選項)
-            alert("SET")
-            //確定:查看成就、查看牌譜、登入帳號
-            //不確定:音樂大小、音效大小
-        }
-    </script>
-</body>
->>>>>>> 4797ff73c26cc0ffab27d43ff435437dfacd5db6
 </html>
