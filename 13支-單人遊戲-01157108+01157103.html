@@ -13,13 +13,13 @@
             position: absolute;
             width: 10%;
             left: 45%;
-            top: 300px;
+            top: 50%;
         }
         .cards {
             display: none;
             position: absolute;
             width: 6%;
-            top: 610px;
+            top: 82%;
             filter: drop-shadow(red);
         }
         .system {
@@ -253,7 +253,7 @@
         }
         function show() {//展示手牌(如果缺牌還沒做)
             for (i = 0; i < 16; i++) {//顯示手牌
-                document.querySelector("#p" + (i + 1)).style.left = i * 95 + 10 + "px";
+                document.querySelector("#p" + (i + 1)).style.left = i * 6.25 + "%";
                 temp = Math.floor(playerA[i] / 13);
                 document.getElementById("p" + (i + 1)).src = easyswitch(temp, playerA, i);
                 document.querySelector("#p" + (i + 1)).style.display = "initial";//未來有機會改成用動畫
@@ -305,7 +305,7 @@
                             }
                         }
                         if (test == -1) {//不在draw裡就加進draw
-                            document.querySelector("#" + word).style.top = 580 + "px";
+                            document.querySelector("#" + word).style.top = 78 + "%";
                             for (let j = 0; j < 16; j++) {
                                 if (draw[j] == -1) {
                                     draw[j] = temp;
@@ -314,7 +314,7 @@
                             }
                         }
                         else {//在draw裡就丟出draw
-                            document.querySelector("#" + word).style.top = 610 + "px";
+                            document.querySelector("#" + word).style.top = 82 + "%";
                             draw[test] = -1;
                         }
                     }
@@ -335,7 +335,7 @@
                                     document.getElementById("n" + j).src = "imgs/n0.png";
                                 }
                                 for (let j = 1; j <= 16; j++) {
-                                    document.querySelector("#p" + j).style.top = 610 + "px";
+                                    document.querySelector("#p" + j).style.top = 82 + "%";
                                 }
                                 head = [0, 0, 0];
                                 mid = [0, 0, 0, 0, 0];
@@ -353,7 +353,7 @@
                                             temp = Math.floor(playerA[draw[j] - 1] / 13);
                                             head[draws - 11] = playerA[draw[j] - 1];
                                             document.getElementById("n" + draws).src = easyswitch(temp, playerA, parseInt(draw[j]) - 1);
-                                            document.querySelector("#p" + draw[j]).style.top = 610 + "px";
+                                            document.querySelector("#p" + draw[j]).style.top = 82 + "%";
                                             draws++;
                                             playerA[draw[j] - 1] = -1;
                                             draw[j] = -1;
@@ -378,7 +378,7 @@
                                             temp = Math.floor(playerA[draw[j] - 1] / 13);
                                             mid[draws - 6] = playerA[draw[j] - 1];
                                             document.getElementById("n" + draws).src = easyswitch(temp, playerA, parseInt(draw[j]) - 1);
-                                            document.querySelector("#p" + draw[j]).style.top = 610 + "px";
+                                            document.querySelector("#p" + draw[j]).style.top = 82 + "%";
                                             draws++;
                                             playerA[draw[j] - 1] = -1;
                                             draw[j] = -1;
@@ -403,7 +403,7 @@
                                             temp = Math.floor(playerA[draw[j] - 1] / 13);
                                             tail[draws - 1] = playerA[draw[j] - 1];
                                             document.getElementById("n" + draws).src = easyswitch(temp, playerA, parseInt(draw[j]) - 1);
-                                            document.querySelector("#p" + draw[j]).style.top = 610 + "px";
+                                            document.querySelector("#p" + draw[j]).style.top = 82 + "%";
                                             draws++;
                                             playerA[draw[j] - 1] = -1;
                                             draw[j] = -1;
@@ -422,7 +422,7 @@
                             case 6://依大小排序
                                 for (let j = 0; j < 16; j++) {
                                     if (draw[j] != -1) {
-                                        document.querySelector("#p" + draw[j]).style.top = 610 + "px";
+                                        document.querySelector("#p" + draw[j]).style.top = 82 + "%";
                                         draw[j] = -1;
                                     }
                                 }
@@ -438,7 +438,7 @@
                             case 7://依花色排序
                                 for (let j = 0; j < 16; j++) {
                                     if (draw[j] != -1) {
-                                        document.querySelector("#p" + draw[j]).style.top = 610 + "px";
+                                        document.querySelector("#p" + draw[j]).style.top = 82 + "%";
                                         draw[j] = -1;
                                     }
                                 }
@@ -456,13 +456,13 @@
                                 case 1://彩金   
                                     for (let j = 0; j < 16; j++) {
                                         draw[j] = -1;
-                                        document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                        document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
                                     }
                                     now = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];//唯一不需要的牌型按鈕
                                     gold = poker[0] % 13;
                                     for (let j = 0; j < 16; j++) {
                                         if (playerA[j] % 13 == gold) {
-                                            document.querySelector("#p" + (j + 1)).style.top = 580 + "px";
+                                            document.querySelector("#p" + (j + 1)).style.top = 78 + "%";
                                             draw[j] = j + 1;
                                         }
                                     }
@@ -475,11 +475,11 @@
                                                 test = 1;
                                                 for (let j = 0; j < 16; j++) {
                                                     draw[j] = -1;
-                                                    document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                                    document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
                                                 }
                                                 for (let k = 0; k < 16; k++) {
                                                     if (playerA[k] % 13 == j) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78 + "%";
                                                         draw[k] = k + 1;
                                                     }
                                                 }
@@ -493,11 +493,11 @@
                                                     test = 1;
                                                     for (let j = 0; j < 16; j++) {
                                                         draw[j] = -1;
-                                                        document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                                        document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
                                                     }
                                                     for (let k = 0; k < 16; k++) {
                                                         if (playerA[k] % 13 == j) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            document.querySelector("#p" + (k + 1)).style.top = 78 + "%";
                                                             draw[k] = k + 1;
                                                         }
                                                     }
@@ -510,7 +510,7 @@
                                     else {
                                         for (let j = 0; j < 16; j++) {
                                             draw[j] = -1;
-                                            document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                            document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
                                         }
                                         now[0] = 2;
                                         sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -521,7 +521,7 @@
                                             if (sys[j] == 5) {
                                                 for (let k = 0; k < 16; k++) {
                                                     if (playerA[k] % 13 == j) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78 + "%";
                                                         draw[k] = k + 1;
                                                     }
                                                 }
@@ -534,7 +534,7 @@
                                 case 3://同花順(未完成)
                                     for (let j = 0; j < 16; j++) {
                                         draw[j] = -1;
-                                        document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                        document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
                                     }
                                     now[0] = 6;
                                     sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -571,7 +571,7 @@
                                                             gold = k + 1;
                                                             for (let l = 0; l < 16; l++) {
                                                                 if (playerA[l] % 13 == gold && playerA[l] <= 13) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 580 + "px";
+                                                                    document.querySelector("#p" + (l + 1)).style.top = 78 + "%";
                                                                     draw[l] = l + 1;
                                                                     break;
                                                                 }
@@ -579,7 +579,7 @@
                                                             gold = k + 2;
                                                             for (let l = 0; l < 16; l++) {
                                                                 if (playerA[l] % 13 == gold && playerA[l] <= 13) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 580 + "px";
+                                                                    document.querySelector("#p" + (l + 1)).style.top = 78 + "%";
                                                                     draw[l] = l + 1;
                                                                     break;
                                                                 }
@@ -587,7 +587,7 @@
                                                             gold = k + 3;
                                                             for (let l = 0; l < 16; l++) {
                                                                 if (playerA[l] % 13 == gold && playerA[l] <= 13) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 580 + "px";
+                                                                    document.querySelector("#p" + (l + 1)).style.top = 78 + "%";
                                                                     draw[l] = l + 1;
                                                                     break;
                                                                 }
@@ -595,7 +595,7 @@
                                                             gold = k + 4;
                                                             for (let l = 0; l < 16; l++) {
                                                                 if (playerA[l] % 13 == gold && playerA[l] <= 13) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 580 + "px";
+                                                                    document.querySelector("#p" + (l + 1)).style.top = 78 + "%";
                                                                     draw[l] = l + 1;
                                                                     break;
                                                                 }
@@ -604,7 +604,7 @@
                                                             if (gold == 13) gold = 0;
                                                             for (let l = 0; l < 16; l++) {
                                                                 if (playerA[l] % 13 == gold && playerA[l] <= 13) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 580 + "px";
+                                                                    document.querySelector("#p" + (l + 1)).style.top = 78 + "%";
                                                                     draw[l] = l + 1;
                                                                     break;
                                                                 }
@@ -635,7 +635,7 @@
                                                             gold = k + 1;
                                                             for (let l = 0; l < 16; l++) {
                                                                 if (playerA[l] % 13 == gold && playerA[l] <= 26 && playerA[l] >= 14) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 580 + "px";
+                                                                    document.querySelector("#p" + (l + 1)).style.top = 78 + "%";
                                                                     draw[l] = l + 1;
                                                                     break;
                                                                 }
@@ -643,7 +643,7 @@
                                                             gold = k + 2;
                                                             for (let l = 0; l < 16; l++) {
                                                                 if (playerA[l] % 13 == gold && playerA[l] <= 26 && playerA[l] >= 14) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 580 + "px";
+                                                                    document.querySelector("#p" + (l + 1)).style.top = 78 + "%";
                                                                     draw[l] = l + 1;
                                                                     break;
                                                                 }
@@ -651,7 +651,7 @@
                                                             gold = k + 3;
                                                             for (let l = 0; l < 16; l++) {
                                                                 if (playerA[l] % 13 == gold && playerA[l] <= 26 && playerA[l] >= 14) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 580 + "px";
+                                                                    document.querySelector("#p" + (l + 1)).style.top = 78 + "%";
                                                                     draw[l] = l + 1;
                                                                     break;
                                                                 }
@@ -659,7 +659,7 @@
                                                             gold = k + 4;
                                                             for (let l = 0; l < 16; l++) {
                                                                 if (playerA[l] % 13 == gold && playerA[l] <= 26 && playerA[l] >= 14) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 580 + "px";
+                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
                                                                     draw[l] = l + 1;
                                                                     break;
                                                                 }
@@ -668,7 +668,7 @@
                                                             if (gold == 13) gold = 0;
                                                             for (let l = 0; l < 16; l++) {
                                                                 if (playerA[l] % 13 == gold && playerA[l] <= 26 && playerA[l] >= 14) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 580 + "px";
+                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
                                                                     draw[l] = l + 1;
                                                                     break;
                                                                 }
@@ -699,7 +699,7 @@
                                                             gold = k + 1;
                                                             for (let l = 0; l < 16; l++) {
                                                                 if (playerA[l] % 13 == gold && playerA[l] <= 39 && playerA[l] >= 27) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 580 + "px";
+                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
                                                                     draw[l] = l + 1;
                                                                     break;
                                                                 }
@@ -707,7 +707,7 @@
                                                             gold = k + 2;
                                                             for (let l = 0; l < 16; l++) {
                                                                 if (playerA[l] % 13 == gold && playerA[l] <= 39 && playerA[l] >= 27) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 580 + "px";
+                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
                                                                     draw[l] = l + 1;
                                                                     break;
                                                                 }
@@ -715,7 +715,7 @@
                                                             gold = k + 3;
                                                             for (let l = 0; l < 16; l++) {
                                                                 if (playerA[l] % 13 == gold && playerA[l] <= 39 && playerA[l] >= 27) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 580 + "px";
+                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
                                                                     draw[l] = l + 1;
                                                                     break;
                                                                 }
@@ -723,7 +723,7 @@
                                                             gold = k + 4;
                                                             for (let l = 0; l < 16; l++) {
                                                                 if (playerA[l] % 13 == gold && playerA[l] <= 39 && playerA[l] >= 27) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 580 + "px";
+                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
                                                                     draw[l] = l + 1;
                                                                     break;
                                                                 }
@@ -732,7 +732,7 @@
                                                             if (gold == 13) gold = 0;
                                                             for (let l = 0; l < 16; l++) {
                                                                 if (playerA[l] % 13 == gold && playerA[l] <= 39 && playerA[l] >= 27) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 580 + "px";
+                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
                                                                     draw[l] = l + 1;
                                                                     break;
                                                                 }
@@ -763,7 +763,7 @@
                                                             gold = k + 1;
                                                             for (let l = 0; l < 16; l++) {
                                                                 if (playerA[l] % 13 == gold && playerA[l] >= 40) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 580 + "px";
+                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
                                                                     draw[l] = l + 1;
                                                                     break;
                                                                 }
@@ -771,7 +771,7 @@
                                                             gold = k + 2;
                                                             for (let l = 0; l < 16; l++) {
                                                                 if (playerA[l] % 13 == gold && playerA[l] >= 40) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 580 + "px";
+                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
                                                                     draw[l] = l + 1;
                                                                     break;
                                                                 }
@@ -779,7 +779,7 @@
                                                             gold = k + 3;
                                                             for (let l = 0; l < 16; l++) {
                                                                 if (playerA[l] % 13 == gold && playerA[l] >= 40) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 580 + "px";
+                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
                                                                     draw[l] = l + 1;
                                                                     break;
                                                                 }
@@ -787,7 +787,7 @@
                                                             gold = k + 4;
                                                             for (let l = 0; l < 16; l++) {
                                                                 if (playerA[l] % 13 == gold && playerA[l] >= 40) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 580 + "px";
+                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
                                                                     draw[l] = l + 1;
                                                                     break;
                                                                 }
@@ -796,7 +796,7 @@
                                                             if (gold == 13) gold = 0;
                                                             for (let l = 0; l < 16; l++) {
                                                                 if (playerA[l] % 13 == gold && playerA[l] >= 40) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 580 + "px";
+                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
                                                                     draw[l] = l + 1;
                                                                     break;
                                                                 }
@@ -824,11 +824,11 @@
                                                 test = 1;
                                                 for (let j = 0; j < 16; j++) {
                                                     draw[j] = -1;
-                                                    document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                                    document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
                                                 }
                                                 for (let k = 0; k < 16; k++) {
                                                     if (playerA[k] % 13 == j) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                         draw[k] = k + 1;
                                                     }
                                                 }
@@ -842,11 +842,11 @@
                                                     test = 1;
                                                     for (let j = 0; j < 16; j++) {
                                                         draw[j] = -1;
-                                                        document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                                        document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
                                                     }
                                                     for (let k = 0; k < 16; k++) {
                                                         if (playerA[k] % 13 == j) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                             draw[k] = k + 1;
                                                         }
                                                     }
@@ -859,7 +859,7 @@
                                     else {
                                         for (let j = 0; j < 16; j++) {
                                             draw[j] = -1;
-                                            document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                            document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
                                         }
                                         now[0] = 4;
                                         sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -870,7 +870,7 @@
                                             if (sys[j] == 4) {
                                                 for (let k = 0; k < 16; k++) {
                                                     if (playerA[k] % 13 == j) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                         draw[k] = k + 1;
                                                     }
                                                 }
@@ -889,11 +889,11 @@
                                                 test = 1;
                                                 for (let j = 0; j < 16; j++) {
                                                     draw[j] = -1;
-                                                    document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                                    document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
                                                 }
                                                 for (let k = 0; k < 16; k++) {
                                                     if (playerA[k] % 13 == j) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                         draw[k] = k + 1;
                                                     }
                                                 }
@@ -907,12 +907,12 @@
                                                 if (test == 0) {
                                                     for (let j = 0; j < 16; j++) {
                                                         draw[j] = -1;
-                                                        document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                                        document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
                                                     }
                                                 }
                                                 for (let k = 0; k < 16; k++) {
                                                     if (playerA[k] % 13 == j) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                         draw[k] = k + 1;
                                                     }
                                                 }
@@ -926,11 +926,11 @@
                                                     test = 1;
                                                     for (let j = 0; j < 16; j++) {
                                                         draw[j] = -1;
-                                                        document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                                        document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
                                                     }
                                                     for (let k = 0; k < 16; k++) {
                                                         if (playerA[k] % 13 == j) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                             draw[k] = k + 1;
                                                         }
                                                     }
@@ -943,7 +943,7 @@
                                                     test = 1;
                                                     for (let k = 0; k < 16; k++) {
                                                         if (playerA[k] % 13 == j) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                             draw[k] = k + 1;
                                                         }
                                                     }
@@ -957,7 +957,7 @@
                                                 if (sys[j] == 3) {
                                                     for (let k = 0; k < 16; k++) {
                                                         if (playerA[k] % 13 == j) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                             draw[k] = k + 1;
                                                         }
                                                     }
@@ -971,7 +971,7 @@
                                                 if (sys[j] == 2) {
                                                     for (let k = 0; k < 16; k++) {
                                                         if (playerA[k] % 13 == j) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                             draw[k] = k + 1;
                                                         }
                                                     }
@@ -984,7 +984,7 @@
                                     else {
                                         for (let j = 0; j < 16; j++) {
                                             draw[j] = -1;
-                                            document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                            document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
                                         }
                                         now[0] = 5;
                                         sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -1004,7 +1004,7 @@
                                                 if (sys[j] == 3) {
                                                     for (let k = 0; k < 16; k++) {
                                                         if (playerA[k] % 13 == j) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                             draw[k] = k + 1;
                                                         }
                                                     }
@@ -1016,7 +1016,7 @@
                                                 if (sys[j] == 2) {
                                                     for (let k = 0; k < 16; k++) {
                                                         if (playerA[k] % 13 == j) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                             draw[k] = k + 1;
                                                         }
                                                     }
@@ -1035,15 +1035,15 @@
                                                 test = 1;
                                                 for (let k = 0; k < 16; k++) {
                                                     draw[k] = -1;
-                                                    document.querySelector("#p" + (k + 1)).style.top = 610 + "px";
+                                                    document.querySelector("#p" + (k + 1)).style.top = 82 + "%";
                                                 }
                                                 for (let k = 0; k < 16; k++) {
                                                     if (j == 3 && playerA[k] > 39) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                         draw[k] = k + 1;
                                                     }
                                                     else if (playerA[k] < (14 + 13 * j) && playerA[k] > (13 * j)) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                         draw[k] = k + 1;
                                                     }
                                                 }
@@ -1057,15 +1057,15 @@
                                                     test = 1;
                                                     for (let k = 0; k < 16; k++) {
                                                         draw[k] = -1;
-                                                        document.querySelector("#p" + (k + 1)).style.top = 610 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 82 + "%";
                                                     }
                                                     for (let k = 0; k < 16; k++) {
                                                         if (j == 3 && playerA[k] > 39) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                             draw[k] = k + 1;
                                                         }
                                                         else if (playerA[k] < (14 + 13 * j) && playerA[k] > (13 * j)) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                             draw[k] = k + 1;
                                                         }
                                                     }
@@ -1078,7 +1078,7 @@
                                     else {
                                         for (let j = 0; j < 16; j++) {
                                             draw[j] = -1;
-                                            document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                            document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
                                         }
                                         now[0] = 6;
                                         sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -1100,11 +1100,11 @@
                                             if (sys[j] >= 5) {
                                                 for (let k = 0; k < 16; k++) {
                                                     if (j == 3 && playerA[k] > 39) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                         draw[k] = k + 1;
                                                     }
                                                     else if (playerA[k] < (14 + 13 * j) && playerA[k] > (13 * j)) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                         draw[k] = k + 1;
                                                     }
                                                 }
@@ -1122,12 +1122,12 @@
                                                 test = 1;
                                                 for (let j = 0; j < 16; j++) {
                                                     draw[j] = -1;
-                                                    document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                                    document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
                                                 }
                                                 gold = j + 1;
                                                 for (let k = 0; k < 16; k++) {
                                                     if (playerA[k] % 13 == gold) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                         draw[k] = k + 1;
                                                         break;
                                                     }
@@ -1135,7 +1135,7 @@
                                                 gold = j + 2;
                                                 for (let k = 0; k < 16; k++) {
                                                     if (playerA[k] % 13 == gold) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                         draw[k] = k + 1;
                                                         break;
                                                     }
@@ -1143,7 +1143,7 @@
                                                 gold = j + 3;
                                                 for (let k = 0; k < 16; k++) {
                                                     if (playerA[k] % 13 == gold) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                         draw[k] = k + 1;
                                                         break;
                                                     }
@@ -1151,7 +1151,7 @@
                                                 gold = j + 4;
                                                 for (let k = 0; k < 16; k++) {
                                                     if (playerA[k] % 13 == gold) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                         draw[k] = k + 1;
                                                         break;
                                                     }
@@ -1160,7 +1160,7 @@
                                                 if (gold == 13) gold = 0;
                                                 for (let k = 0; k < 16; k++) {
                                                     if (playerA[k] % 13 == gold) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                         draw[k] = k + 1;
                                                         break;
                                                     }
@@ -1172,14 +1172,14 @@
                                         if (test == 0) {
                                             for (let j = 0; j < 16; j++) {
                                                 draw[j] = -1;
-                                                document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                                document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
                                             }
                                             for (let j = 0; j < 9; j++) {
                                                 if (sys[j] > 0 && sys[j + 1] > 0 && sys[j + 2] > 0 && sys[j + 3] > 0 && sys[j + 4] > 0) {
                                                     gold = j + 1;
                                                     for (let k = 0; k < 16; k++) {
                                                         if (playerA[k] % 13 == gold) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                             draw[k] = k + 1;
                                                             break;
                                                         }
@@ -1187,7 +1187,7 @@
                                                     gold = j + 2;
                                                     for (let k = 0; k < 16; k++) {
                                                         if (playerA[k] % 13 == gold) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                             draw[k] = k + 1;
                                                             break;
                                                         }
@@ -1195,7 +1195,7 @@
                                                     gold = j + 3;
                                                     for (let k = 0; k < 16; k++) {
                                                         if (playerA[k] % 13 == gold) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                             draw[k] = k + 1;
                                                             break;
                                                         }
@@ -1203,7 +1203,7 @@
                                                     gold = j + 4;
                                                     for (let k = 0; k < 16; k++) {
                                                         if (playerA[k] % 13 == gold) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                             draw[k] = k + 1;
                                                             break;
                                                         }
@@ -1212,7 +1212,7 @@
                                                     if (gold == 13) gold = 0;
                                                     for (let k = 0; k < 16; k++) {
                                                         if (playerA[k] % 13 == gold) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                             draw[k] = k + 1;
                                                             break;
                                                         }
@@ -1226,7 +1226,7 @@
                                     else {
                                         for (let j = 0; j < 16; j++) {
                                             draw[j] = -1;
-                                            document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                            document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
                                         }
                                         now[0] = 7;
                                         sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -1244,7 +1244,7 @@
                                                 gold = j + 1;   
                                                 for (let k = 0; k < 16; k++) {
                                                     if (playerA[k] % 13 == gold) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                         draw[k] = k + 1;
                                                         break;
                                                     }
@@ -1252,7 +1252,7 @@
                                                 gold = j + 2;
                                                 for (let k = 0; k < 16; k++) {
                                                     if (playerA[k] % 13 == gold) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                         draw[k] = k + 1;
                                                         break;
                                                     }
@@ -1260,7 +1260,7 @@
                                                 gold = j + 3;
                                                 for (let k = 0; k < 16; k++) {
                                                     if (playerA[k] % 13 == gold) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                         draw[k] = k + 1;
                                                         break;
                                                     }
@@ -1268,7 +1268,7 @@
                                                 gold = j + 4;
                                                 for (let k = 0; k < 16; k++) {
                                                     if (playerA[k] % 13 == gold) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                         draw[k] = k + 1;
                                                         break;
                                                     }
@@ -1277,7 +1277,7 @@
                                                 if (gold == 13) gold = 0;
                                                 for (let k = 0; k < 16; k++) {
                                                     if (playerA[k] % 13 == gold) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                         draw[k] = k + 1;
                                                         break;
                                                     }
@@ -1296,11 +1296,11 @@
                                                 test = 1;
                                                 for (let j = 0; j < 16; j++) {
                                                     draw[j] = -1;
-                                                    document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                                    document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
                                                 }
                                                 for (let k = 0; k < 16; k++) {
                                                     if (playerA[k] % 13 == j) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                         draw[k] = k + 1;
                                                     }
                                                 }
@@ -1314,11 +1314,11 @@
                                                     test = 1;
                                                     for (let j = 0; j < 16; j++) {
                                                         draw[j] = -1;
-                                                        document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                                        document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
                                                     }
                                                     for (let k = 0; k < 16; k++) {
                                                         if (playerA[k] % 13 == j) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                             draw[k] = k + 1;
                                                         }
                                                     }
@@ -1331,7 +1331,7 @@
                                     else {
                                         for (let j = 0; j < 16; j++) {
                                             draw[j] = -1;
-                                            document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                            document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
                                         }
                                         now[0] = 8;
                                         sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -1342,7 +1342,7 @@
                                             if (sys[j] == 3) {
                                                 for (let k = 0; k < 16; k++) {
                                                     if (playerA[k] % 13 == j) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                         draw[k] = k + 1;
                                                     }
                                                 }
@@ -1360,11 +1360,11 @@
                                                 test = 1;
                                                 for (let j = 0; j < 16; j++) {
                                                     draw[j] = -1;
-                                                    document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                                    document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
                                                 }
                                                 for (let k = 0; k < 16; k++) {
                                                     if (playerA[k] % 13 == j) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                         draw[k] = k + 1;
                                                     }
                                                 }
@@ -1378,11 +1378,11 @@
                                                     test = 1;
                                                     for (let j = 0; j < 16; j++) {
                                                         draw[j] = -1;
-                                                        document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                                        document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
                                                     }
                                                     for (let k = 0; k < 16; k++) {
                                                         if (playerA[k] % 13 == j) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                             draw[k] = k + 1;
                                                         }
                                                     }
@@ -1395,7 +1395,7 @@
                                     else {
                                         for (let j = 0; j < 16; j++) {
                                             draw[j] = -1;
-                                            document.querySelector("#p" + (j + 1)).style.top = 610 + "px";
+                                            document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
                                         }
                                         now[0] = 9;
                                         sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -1406,7 +1406,7 @@
                                             if (sys[j] == 2) {
                                                 for (let k = 0; k < 16; k++) {
                                                     if (playerA[k] % 13 == j) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 580 + "px";
+                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
                                                         draw[k] = k + 1;
                                                     }
                                                 }
