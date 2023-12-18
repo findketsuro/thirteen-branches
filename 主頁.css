@@ -5,12 +5,12 @@ body {
 }
 #play_buttom{
     position:absolute;
-    top:205px;
+    top:27.55%;
     left:38%;
 }
 #introduction_buttom {
     position: absolute;
-    top: 450px;
+    top: 60.75%;
     left: 38%;
 }
 #introduction {
@@ -18,46 +18,46 @@ body {
     position: absolute;
     width: 50%;
     left: 35%;
-    top:150px;
+    top:19.5%;
 }
 #block1 {
     display: none;
     position: absolute;
     width: 15%;
     left: 20%;
-    top: 160px;
+    top: 21.5%;
 }
 #block2 {
     display: none;
     position: absolute;
     width: 15%;
     left: 20%;
-    top: 390px;
+    top: 52.5%;
 }
 #X {
     display: none;
     position: absolute;
     width: 3%;
     left: 78%;
-    top: 160px;
+    top: 21.5%;
 }
 #oneplayer {
     display: none;
     position: absolute;
     width: 30%;
     left: 10%;
-    top: 225px;
+    top: 20%;
 }
 #players {
     display: none;
     position: absolute;
     width: 30%;
     left: 60%;
-    top: 225px;
+    top: 20%;
 }
 #gear{
     position:absolute;
     width:8%;
     left:92%;
-    top:610px;
+    top:83%;
 }
