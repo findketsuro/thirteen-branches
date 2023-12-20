@@ -222,7 +222,7 @@
         <img src="imgs/n0.png" id="n12" class="block" />
         <img src="imgs/n0.png" id="n13" class="block" />
         <img src="imgs/b0.png" id="gold" />
-        <img src="imgs/出牌.png" id="go" />
+        <img src="imgs/出牌.png" id="go" onclick="next()"/>
     </div>
 
     <script>
@@ -343,7 +343,8 @@
                                 show();
                                 document.querySelector("#go").style.display = "none";
                                 break;
-                            case 2://自動(最後再處理)
+                            case 2://自動(最後再處理)現在是開網頁的資料傳遞方法的測試
+                                
                                 break;
                             case 3://放入頭墩
                                 draws = 11;
@@ -1482,7 +1483,24 @@
                     break;
             }
             return w;
-        }       
+        }
+        function next() {
+            // 定義數據
+            var dataToPass = {
+                key1: head,
+                key2: mid,
+                key3: tail,
+                key4: playerB,
+                key5: playerC,
+                key6: playerD
+            };
+            //將數據轉成字串
+            var queryString = Object.keys(dataToPass).map(key => key + '=' + encodeURIComponent(dataToPass[key])).join('&');
+            // 傳遞數據並開啟視窗
+            var newWindow = window.open('13支-比牌環節-01157108+01157103.html?' + queryString);
+            window.opener = null;
+            window.close();        
+        }
     </script>
 </body>
 </html>

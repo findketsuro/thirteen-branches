@@ -12,8 +12,28 @@
         </style>
     </head >
     <body>
+        <img src="imgs/齒輪.png" onclick="getdata()"/>
         <script>
-            
+            let data = {};
+            let queryString = window.location.search;// 獲得網址字串
+            let A1 = new Array(3), A2 = new Array(5), A3 = new Array(5);//玩家1
+            function getdata() {              
+                // 去除問號
+                queryString = queryString.substring(1);
+                // 把資料放到data           
+                queryString.split("&").forEach(function (keyValue) {
+                    var parts = keyValue.split("=");
+                    data[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1]);
+                });
+                //key1:頭墩//key2:二道//key3:尾墩//key4:玩家2//key5:玩家3//key6:玩家4
+                A1 = data.key1.split(',');
+                for (let i = 0; i <= 2; i++) { A1[i] = parseInt(A1[i]) }
+                A2 = data.key2.split(',');
+                for (let i = 0; i <= 4; i++) { A2[i] = parseInt(A2[i]) }
+                A3 = data.key3.split(',');
+                for (let i = 0; i <= 4; i++) { A3[i] = parseInt(A3[i]) }
+                console.log(A1);console.log(A2);console.log(A3);//測試用
+            }
         </script>
     </body>
 </html >
