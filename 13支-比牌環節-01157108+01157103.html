@@ -1,80 +1,105 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>13支-比牌環節</title>
-        <style>
-            body {
-                background-image: url("imgs/牌桌.png");
-                background-repeat:no-repeat;
-                background-size:cover;
-            }
-            #compare{
-                position:absolute;
-                width:15%;
-                top:38%;
-                left:42.5%;
-            }
-        </style>
-    </head >
-    <body>
-        <img src="imgs/比較1.png" onclick="COMPARE()" id="compare"/>
-        <script>
-            let data = {};
-            let queryString = window.location.search;// 獲得網址字串
-            let A1 = new Array(3), A2 = new Array(5), A3 = new Array(5);//玩家1
-            let p2 = new Array(16);
-            let B1 = new Array(3), B2 = new Array(5), B3 = new Array(5);//玩家2
-            let p3 = new Array(16);
-            let C1 = new Array(3), C2 = new Array(5), C3 = new Array(5);//玩家3
-            let p4 = new Array(16);
-            let D1 = new Array(3), D2 = new Array(5), D3 = new Array(5);//玩家4
-            let now = 1;
-            function getdata() {                             
-                queryString = queryString.substring(1);// 去除問號                         
-                queryString.split("&").forEach(function (keyValue) {// 把資料放到data  
-                    var parts = keyValue.split("=");
-                    data[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1]);
-                });
-                //key1:頭墩//key2:二道//key3:尾墩//key4:玩家2//key5:玩家3//key6:玩家4//key7:當前局數
-                A1 = data.key1.split(',');
-                for (let i = 0; i <= 2; i++) { A1[i] = parseInt(A1[i]) }
-                A2 = data.key2.split(',');
-                for (let i = 0; i <= 4; i++) { A2[i] = parseInt(A2[i]) }
-                A3 = data.key3.split(',');
-                for (let i = 0; i <= 4; i++) { A3[i] = parseInt(A3[i]) }
-                console.log(A1); console.log(A2); console.log(A3);//測試用
-                p2 = data.key4.split(',');
-                p3 = data.key5.split(',');
-                p4 = data.key6.split(',');
-                for (let i = 0; i <= 15; i++) { p2[i] = parseInt(p2[i]) }
-                for (let i = 0; i <= 15; i++) { p3[i] = parseInt(p3[i]) }
-                for (let i = 0; i <= 15; i++) { p4[i] = parseInt(p4[i]) }
-                AI(p2);
-                AI(p3);
-                AI(p4);
-            }
-            function COMPARE() {//Step1:先得到牌型Step2:比牌型Step3:比同牌型大小
-                switch (now) {
-                    case 1://比較頭墩
-                        head();
-                        break;
-                    case 2://比較二道
-                        mid();
-                        break;
-                    case 3://比較尾墩
-                        tail();
-                        break;
-                }
-            }
-            function AI(AIarray) {//五枚>同花順>彩金鐵支>鐵支>彩金葫蘆>葫蘆>對子同花>同花>順子>彩金三條>三條>兩對<一對>烏龍
-                //頭:衝三++
-                //二道:彩金三條、彩金葫蘆、鐵支、同花順、彩金鐵支、五枚++
-                //尾:同二道
-                //AI配牌
-                console.log(AIarray);
-            }
-            document.addEventListener("load", getdata(), false);//載入完網頁後讀數據
-        </script>
-    </body>
-</html >
+  <head>
+    <meta charset="utf-8" />
+    <title>13支-比牌環節</title>
+    <style>
+      body {
+        background-image: url("imgs/牌桌.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      #compare {
+        position: absolute;
+        width: 15%;
+        top: 38%;
+        left: 42.5%;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="imgs/比較1.png" onclick="COMPARE()" id="compare" />
+    <script>
+      let data = {};
+      let queryString = window.location.search; // 獲得網址字串
+      let A1 = new Array(3),
+        A2 = new Array(5),
+        A3 = new Array(5); //玩家1
+      let p2 = new Array(16);
+      let B1 = new Array(3),
+        B2 = new Array(5),
+        B3 = new Array(5); //玩家2
+      let p3 = new Array(16);
+      let C1 = new Array(3),
+        C2 = new Array(5),
+        C3 = new Array(5); //玩家3
+      let p4 = new Array(16);
+      let D1 = new Array(3),
+        D2 = new Array(5),
+        D3 = new Array(5); //玩家4
+      let now = 1;
+      function getdata() {
+        queryString = queryString.substring(1); // 去除問號
+        queryString.split("&").forEach(function (keyValue) {
+          // 把資料放到data
+          var parts = keyValue.split("=");
+          data[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1]);
+        });
+        //key1:頭墩//key2:二道//key3:尾墩//key4:玩家2//key5:玩家3//key6:玩家4//key7:當前局數
+        A1 = data.key1.split(",");
+        for (let i = 0; i <= 2; i++) {
+          A1[i] = parseInt(A1[i]);
+        }
+        A2 = data.key2.split(",");
+        for (let i = 0; i <= 4; i++) {
+          A2[i] = parseInt(A2[i]);
+        }
+        A3 = data.key3.split(",");
+        for (let i = 0; i <= 4; i++) {
+          A3[i] = parseInt(A3[i]);
+        }
+        console.log(A1);
+        console.log(A2);
+        console.log(A3); //測試用
+        p2 = data.key4.split(",");
+        p3 = data.key5.split(",");
+        p4 = data.key6.split(",");
+        for (let i = 0; i <= 15; i++) {
+          p2[i] = parseInt(p2[i]);
+        }
+        for (let i = 0; i <= 15; i++) {
+          p3[i] = parseInt(p3[i]);
+        }
+        for (let i = 0; i <= 15; i++) {
+          p4[i] = parseInt(p4[i]);
+        }
+        AI(p2);
+        AI(p3);
+        AI(p4);
+      }
+      function COMPARE() {
+        //Step1:先得到牌型Step2:比牌型Step3:比同牌型大小
+        switch (now) {
+          case 1: //比較頭墩
+            head();
+            break;
+          case 2: //比較二道
+            mid();
+            break;
+          case 3: //比較尾墩
+            tail();
+            break;
+        }
+      }
+      function AI(AIarray) {
+        //五枚>同花順>彩金鐵支>鐵支>彩金葫蘆>葫蘆>對子同花>同花>順子>彩金三條>三條>兩對<一對>烏龍
+        //頭:衝三++
+        //二道:彩金三條、彩金葫蘆、鐵支、同花順、彩金鐵支、五枚++
+        //尾:同二道
+        //AI配牌
+        console.log(AIarray);
+      }
+      document.addEventListener("load", getdata(), false); //載入完網頁後讀數據
+    </script>
+  </body>
+</html>
