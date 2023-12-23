@@ -1487,6 +1487,7 @@
         }
         function next() {
             // 定義數據
+            gold = poker[0];
             var dataToPass = {
                 key1: head,
                 key2: mid,
@@ -1494,7 +1495,8 @@
                 key4: playerB,
                 key5: playerC,
                 key6: playerD,
-                key7: 1
+                key7: 1,
+                key8: gold
             };
             //將數據轉成字串
             var queryString = Object.keys(dataToPass).map(key => key + '=' + encodeURIComponent(dataToPass[key])).join('&');
