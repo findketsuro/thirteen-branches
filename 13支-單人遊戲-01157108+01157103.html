@@ -31,6 +31,11 @@
             top: 34%;
             left: 6%;
         }
+        #s2 {
+            width: 8%;
+            top: 34%;
+            left: 15%;
+        }
         #s3 {
             width: 7%;
             top: 51%;
@@ -158,13 +163,13 @@
             position: absolute;
             width: 7%;
             left:2%;
-        }
+        }    
         #go {
-            display: none;
-            position: absolute;
-            width: 10%;
-            left: 18%;
-            top: 31.5%;
+            display:none;
+            position:absolute;
+            width:7.5%;
+            left:75%;
+            top:19%;
         }
     </style>
 </head>
@@ -188,7 +193,7 @@
         <img src="imgs/n0.png" id="p15" class="cards" />
         <img src="imgs/n0.png" id="p16" class="cards" />
         <img src="imgs/系統按鈕1.png" id="s1" class="system" />
-        <img  id="s2" class="system" />
+        <img src="imgs/系統按鈕2.png" id="s2" class="system" />
         <img src="imgs/系統按鈕3.png" id="s3" class="system" />
         <img src="imgs/系統按鈕4.png" id="s4" class="system" />
         <img src="imgs/系統按鈕5.png" id="s5" class="system" />
@@ -337,6 +342,9 @@
                                 tail = [0, 0, 0, 0, 0];
                                 show();
                                 document.querySelector("#go").style.display = "none";
+                                break;
+                            case 2://自動(最後再處理)現在是開網頁的資料傳遞方法的測試
+                                
                                 break;
                             case 3://放入頭墩
                                 draws = 11;
@@ -524,7 +532,7 @@
                                         }
                                     }
                                     break;
-                                case 3://同花順
+                                case 3://同花順(未完成)
                                     for (let j = 0; j < 16; j++) {
                                         draw[j] = -1;
                                         document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
@@ -802,6 +810,7 @@
                                                     break;
                                             }
                                         }
+                                        console.log(now);
                                         if (test == 1) {
                                             break;
                                         }
@@ -1484,7 +1493,7 @@
                 key4: playerB,
                 key5: playerC,
                 key6: playerD,
-                key7: 1
+                key7: 0
             };
             //將數據轉成字串
             var queryString = Object.keys(dataToPass).map(key => key + '=' + encodeURIComponent(dataToPass[key])).join('&');
