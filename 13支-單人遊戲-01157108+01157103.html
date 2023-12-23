@@ -163,13 +163,13 @@
             position: absolute;
             width: 7%;
             left:2%;
-        }    
+        }
         #go {
-            display:none;
-            position:absolute;
-            width:7.5%;
-            left:75%;
-            top:19%;
+            display: none;
+            position: absolute;
+            width: 10%;
+            left: 17%;
+            top: 32%;
         }
     </style>
 </head>
@@ -193,7 +193,7 @@
         <img src="imgs/n0.png" id="p15" class="cards" />
         <img src="imgs/n0.png" id="p16" class="cards" />
         <img src="imgs/系統按鈕1.png" id="s1" class="system" />
-        <img src="imgs/系統按鈕2.png" id="s2" class="system" />
+        <img id="s2" class="system" />
         <img src="imgs/系統按鈕3.png" id="s3" class="system" />
         <img src="imgs/系統按鈕4.png" id="s4" class="system" />
         <img src="imgs/系統按鈕5.png" id="s5" class="system" />
@@ -1494,7 +1494,7 @@
                 key4: playerB,
                 key5: playerC,
                 key6: playerD,
-                key7: 0
+                key7: 1
             };
             //將數據轉成字串
             var queryString = Object.keys(dataToPass).map(key => key + '=' + encodeURIComponent(dataToPass[key])).join('&');
