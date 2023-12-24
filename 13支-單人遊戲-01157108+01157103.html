@@ -1793,21 +1793,6 @@
           key7: 1,
         };
 
-        function saveDataToLocalStorage() {
-          var cardData = {
-            head: head, // 頭墩數據
-            mid: mid, // 中墩數據
-            tail: tail, // 尾墩數據
-            hand: draw, // 手牌數據
-          };
-
-          // 將數據儲存到 localStorage
-          localStorage.setItem("playerCardData", JSON.stringify(cardData));
-        }
-
-        // 確保在玩家出牌後調用此函數
-        saveDataToLocalStorage();
-
         //將數據轉成字串
         var queryString = Object.keys(dataToPass)
           .map((key) => key + "=" + encodeURIComponent(dataToPass[key]))
