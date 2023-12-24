@@ -33,7 +33,7 @@
         let sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         let now = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         let test1 = 0, test2 = 0, test3 = 0, index = 0, gold = 0;
-        let ABCD = [0, 0, 0, 0];
+        let trickA = [0, 0, 0], trickB = [0, 0, 0], trickC = [0, 0, 0], trickD = [0, 0, 0];
         function getdata() {
             queryString = queryString.substring(1);// 去除問號
             queryString.split("&").forEach(function (keyValue) {// 把資料放到data
@@ -57,75 +57,15 @@
             for (let i = 0; i <= 15; i++) { p4[i] = parseInt(p4[i]) }
             console.log("AI前:")
             console.log(p2); console.log(p3); console.log(p4);
-            AI(p2, B1, B2, B3, 1);
-            AI(p3, C1, C2, C3, 2);
-            AI(p4, D1, D2, D3, 3);
+            AI(p2, B1, B2, B3, 1, trickB);
+            AI(p3, C1, C2, C3, 2, trickC);
+            AI(p4, D1, D2, D3, 3, trickD);
             console.log("AI後:")
             console.log(B1, B2, B3); console.log(C1, C2, C3); console.log(D1, D2, D3);
+            console.log(trickB, trickC, trickD)
         }
         function head() {//彩金三條(4)>三條(3)>一對(2)>烏龍(1)
-            //三條判定
-            if (A1 % 13 == A2 % 13 && A2 % 13 == A3 % 13) {//經典三段論
-                if (A1 % 13 == gold % 13) {//彩金
-                    ABCD[0] = 4;
-                }
-                else {
-                    ABCD[0] = 3;
-                }
-            }
-            else
-                if (A1 % 13 == A2 % 13 || A1 % 13 == A3 % 13 || A2 % 13 == A3 % 13) {//一對判定
-                    ABCD[0] = 2;
-                }
-                else {
-                    ABCD[0] = 1;
-                }
-            if (B1 % 13 == B2 % 13 && B2 % 13 == B3 % 13) {
-                if (B1 % 13 == gold % 13) {//彩金
-                    ABCD[1] = 4;
-                }
-                else {
-                    ABCD[1] = 3;
-                }
-            }
-            else
-                if (B1 % 13 == B2 % 13 || B1 % 13 == B3 % 13 || B2 % 13 == B3 % 13) {//一對判定
-                    ABCD[1] = 2;
-                }
-                else {
-                    ABCD[1] = 1;
-                }
-            if (C1 % 13 == C2 % 13 && C2 % 13 == C3 % 13) {
-                if (C1 % 13 == gold % 13) {//彩金
-                    ABCD[2] = 4;
-                }
-                else {
-                    ABCD[2] = 3;
-                }
-            }
-            else
-                if (C1 % 13 == C2 % 13 || C1 % 13 == C3 % 13 || C2 % 13 == C3 % 13) {//一對判定
-                    ABCD[2] = 2;
-                }
-                else {
-                    ABCD[2] = 1;
-                }
-            if (D1 % 13 == D2 % 13 && D2 % 13 == D3 % 13) {
-                if (D1 % 13 == gold % 13) {//彩金
-                    ABCD[3] = 4;
-                }
-                else {
-                    ABCD[3] = 3;
-                }
-            }
-            else
-                if (D1 % 13 == D2 % 13 || D1 % 13 == D3 % 13 || D2 % 13 == D3 % 13) {//一對判定
-                    ABCD[3] = 2;
-                }
-                else {
-                    ABCD[3] = 1;
-                }
-
+            
         }
         function mid() {//五枚>同花順>彩金鐵>葫蘆>對子同花>順子>彩三>兩對>一對>烏龍
 
@@ -133,8 +73,245 @@
         function tail() {//彩金>正常版，對子同花>同花
 
         }
+        function player_trick() {
+            //head
+            sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            for (let j = 0; j < 3; j++) {
+                sys[A1[j] % 13] += 1;
+            }
+            for (let j = 0; j < 13; j++) {
+                if (sys[j] == 3) {
+                    if (gold % 13 == A1[0] % 13) {
+                        trickA[0] = 4;
+                        break;
+                    }
+                    else {
+                        trickA[0] = 3;
+                        break;
+                    }
+                }
+                else if (sys[j] == 2) {
+                    trickA[0] = 1;
+                    break;
+                }                        
+            }
+            console.log("player_trick1", trickA);
+            //mid
+            sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            now = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            index = 0;
+            for (let j = 0; j < 5; j++) {
+                sys[A2[j] % 13] += 1;
+                if (A2[j] > 0 && A2[j] < 14) {
+                    now[0]++;
+                }
+                if (A2[j] > 13 && A2[j] < 27) {
+                    now[1]++;
+                }
+                if (A2[j] > 26 && A2[j] < 40) {
+                    now[2]++;
+                }
+                if (A2[j] > 39) {
+                    now[3]++;
+                }
+                if (A2[j] % 13 == gold % 13) {
+                    now[6]++;
+                }
+            }
+            //五枚13//鐵支10
+            for (let j = 0; j < 13; j++) {
+                if (sys[j] == 5) {
+                    trickA[1] = 13;
+                    index = 1;
+                    break;
+                }
+                else if (sys[j] == 4) {                   
+                    if ((A2[0] % 13 == gold % 13 && A2[1] % 13 == gold % 13) || (A2[2] % 13 == gold % 13 && A2[3] % 13 == gold % 13)) {
+                        trickA[1] = 11;
+                        index = 1;
+                    }
+                    else {
+                        trickA[1] = 10;
+                        index = 1;
+                    }
+                    break;
+                }
+            }
+            //葫蘆8//三條3//兩對2//一對1
+            if (index == 0) {//五枚13>同花順12>彩金鐵支11>鐵支10>彩金葫蘆9>葫蘆8>對子同花7>同花6>順子5>彩金三條4>三條3>兩對2<一對1>烏龍0
+                for (let j = 0; j < 13; j++) {
+                    if (sys[j] == 3) {
+                        now[4]++;
+                    }
+                    if (sys[j] == 2) {
+                        now[5]++;
+                    }
+                }
+                if (now[4] > 0 && now[5] > 0) {
+                    if (now[6] == 3) {
+                        trickA[1] = 9;
+                        index = 1;
+                    }
+                    else {
+                        trickA[1] = 8;
+                        index = 1;
+                    }                    
+                }
+                else if (now[4] > 0) {
+                    trickA[1] = 3;
+                    index = 1;
+                }
+                else if (now[5] > 1) {
+                    trickA[1] = 2;
+                    index = 1;
+                }
+                else if (now[5] > 0) {
+                    trickA[1] = 1;
+                    index = 1;
+                }
+            }           
+            //桐花順12//桐花6//順子5 
+            if (index == 0) {
+                for (let j = 0; j < 4; j++) {
+                    if (now[j] == 5) {//桐花系列
+                        for (let i = 0; i < 13; i++) {
+                            if (sys[i] == 1) {
+                                if (sys[i + 1] == 1 && sys[i + 2] == 1 && sys[i + 3] == 1 && sys[i + 4] == 1) {
+                                    trickA[1] = 12;
+                                    index = 1;
+                                }
+                                break;
+                            }
+                            else {
+                                trickA[1] = 6;
+                                index = 1;
+                            }
+                        }
+                    }
+                    else {//順子判定
+                        for (let i = 0; i < 13; i++) {
+                            if (sys[i] == 1) {
+                                if (sys[i + 1] == 1 && sys[i + 2] == 1 && sys[i + 3] == 1 && sys[i + 4] == 1) {
+                                    trickA[1] = 5;
+                                    index = 1;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            console.log("player_trick2", trickA);
+            //tail
+            sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            now = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            index = 0;
+            for (let j = 0; j < 5; j++) {
+                sys[A3[j] % 13] += 1;
+                if (A3[j] > 0 && A3[j] < 14) {
+                    now[0]++;
+                }
+                if (A3[j] > 13 && A3[j] < 27) {
+                    now[1]++;
+                }
+                if (A3[j] > 26 && A3[j] < 40) {
+                    now[2]++;
+                }
+                if (A3[j] > 39) {
+                    now[3]++;
+                }
+                if (A3[j] % 13 == gold % 13) {
+                    now[6]++;
+                }
+            }
+            //五枚13//鐵支10
+            for (let j = 0; j < 13; j++) {
+                if (sys[j] == 5) {
+                    trickA[2] = 13;
+                    index = 1;
+                    break;
+                }
+                else if (sys[j] == 4) {
+                    if ((A3[0] % 13 == gold % 13 && A3[1] % 13 == gold % 13) || (A3[2] % 13 == gold % 13 && A3[3] % 13 == gold % 13)) {
+                        trickA[2] = 11;
+                        index = 1;
+                    }
+                    else {
+                        trickA[2] = 10;
+                        index = 1;
+                    }
+                    break;
+                }
+            }
+            //葫蘆8//三條3//兩對2//一對1
+            if (index == 0) {//五枚13>同花順12>彩金鐵支11>鐵支10>彩金葫蘆9>葫蘆8>對子同花7>同花6>順子5>彩金三條4>三條3>兩對2<一對1>烏龍0
+                for (let j = 0; j < 13; j++) {
+                    if (sys[j] == 3) {
+                        now[4]++;
+                    }
+                    if (sys[j] == 2) {
+                        now[5]++;
+                    }
+                }
+                if (now[4] > 0 && now[5] > 0) {
+                    if (now[6] == 3) {
+                        trickA[2] = 9;
+                        index = 1;
+                    }
+                    else {
+                        trickA[2] = 8;
+                        index = 1;
+                    }
+                }
+                else if (now[4] > 0) {
+                    trickA[2] = 3;
+                    index = 1;
+                }
+                else if (now[5] > 1) {
+                    trickA[2] = 2;
+                    index = 1;
+                }
+                else if (now[5] > 0) {
+                    trickA[2] = 1;
+                    index = 1;
+                }
+            }
+            //桐花順12//桐花6//順子5 
+            if (index == 0) {
+                for (let j = 0; j < 4; j++) {
+                    if (now[j] == 5) {//桐花系列
+                        for (let i = 0; i < 13; i++) {
+                            if (sys[i] == 1) {
+                                if (sys[i + 1] == 1 && sys[i + 2] == 1 && sys[i + 3] == 1 && sys[i + 4] == 1) {
+                                    trickA[2] = 12;
+                                    index = 1;
+                                }
+                                break;
+                            }
+                            else {
+                                trickA[2] = 6;
+                                index = 1;
+                            }
+                        }
+                    }
+                    else {//順子判定
+                        for (let i = 0; i < 13; i++) {
+                            if (sys[i] == 1) {
+                                if (sys[i + 1] == 1 && sys[i + 2] == 1 && sys[i + 3] == 1 && sys[i + 4] == 1) {
+                                    trickA[2] = 5;
+                                    index = 1;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            console.log("player_trick2", trickA);
+        }
         function COMPARE() {//Step1:先得到牌型Step2:比牌型Step3:比同牌型大小
             gold = parseInt(data.key8);
+            player_trick();
             switch (now_for_compare) {
                 case 1://比較頭墩
                     head();
@@ -147,9 +324,9 @@
                     break;
             }
         }
-        function AI(AIarray, head, mid, tail, bcd) {//五枚>同花順>彩金鐵支>鐵支>彩金葫蘆>葫蘆>對子同花>同花>順子>彩金三條>三條>兩對<一對>烏龍
+        function AI(AIarray, head, mid, tail, bcd, trick) {
             //頭:衝三++//二道:彩金三條、彩金葫蘆、鐵支、同花順、彩金鐵支、五枚++//尾:同二道
-            //五枚
+            //五枚13
             test1 = 0; test2 = 0; test3 = 0;
             sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
             index = 0;
@@ -163,12 +340,14 @@
                             if (test3 == 0) {
                                 test3 = 1;
                                 tail[index] = AIarray[k];
+                                trick[2] = 13;
                                 index += 1;
                                 AIarray[k] = -1;
                             }
                             else if (test2 == 0) {
                                 test2 = 1;
                                 mid[index] = AIarray[k];
+                                trick[1] = 13;
                                 index += 1;
                                 AIarray[k] = -1;
                             }
@@ -176,7 +355,7 @@
                     }
                 }
             }
-            //同花順
+            //同花順12
             sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
             index = 0;
             for (let j = 0; j < 16; j++) {
@@ -605,7 +784,7 @@
                     }
                 }
             }
-            //鐵支
+            //鐵支10
             sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
             index = 0;
             for (let j = 0; j < 16; j++) {
@@ -618,6 +797,7 @@
                         for (let k = 0; k < 16; k++) {
                             if (AIarray[k] % 13 == j) {
                                 tail[index] = AIarray[k];
+                                trick[2] = 10;
                                 index += 1;
                                 AIarray[k] = -1;
                             }
@@ -628,6 +808,7 @@
                         for (let k = 0; k < 16; k++) {
                             if (AIarray[k] % 13 == j) {
                                 tail[index] = AIarray[k];
+                                trick[1] = 10;
                                 index += 1;
                                 AIarray[k] = -1;
                             }
@@ -648,6 +829,7 @@
                         for (let k = 0; k < 16; k++) {
                             if (AIarray[k] % 13 == j) {
                                 head[index] = AIarray[k];
+                                trick[0] = 3;
                                 index += 1;
                                 AIarray[k] = -1;
                                 now[index + 10] = k;
@@ -674,11 +856,12 @@
                     index = 0;
                     if (now[3] > 0 && now[4] > 0) {
                         test2 = 1;
+                        trick[1] = 8;
                         for (let j = 0; j < 13; j++) {
                             if (sys[j] == 3) {
                                 for (let k = 0; k < 16; k++) {
                                     if (AIarray[k] % 13 == j) {
-                                        mid[index] = AIarray[k];
+                                        mid[index] = AIarray[k];                              
                                         index += 1;
                                         AIarray[k] = -1;
                                     }
@@ -718,6 +901,7 @@
                     }
                     for (let j = 0; j < 4; j++) {
                         if (sys[j] >= 5) {
+                            trick[1] = 6;
                             test2 = 1;
                             for (let k = 0; k < 16; k++) {
                                 if (j == 3 && AIarray[k] > 39) {
@@ -751,6 +935,7 @@
                     for (let j = 0; j < 9; j++) {
                         if (sys[j] > 0 && sys[j + 1] > 0 && sys[j + 2] > 0 && sys[j + 3] > 0 && sys[j + 4] > 0) {
                             test2 = 1;
+                            trick[1] = 5;
                             gold = j + 1;
                             for (let k = 0; k < 16; k++) {
                                 if (AIarray[k] % 13 == gold) {
@@ -808,6 +993,7 @@
                     }
                     for (let j = 0; j < 13; j++) {
                         if (sys[j] == 3) {
+                            trick[1] = 3;
                             test2 = -2;
                             for (let k = 0; k < 16; k++) {
                                 if (AIarray[k] % 13 == j) {
@@ -853,6 +1039,7 @@
                     }
                     index = 0;
                     if (now[3] > 0 && now[4] > 0) {
+                        trick[2] = 8;
                         test3 = 1;
                         for (let j = 0; j < 13; j++) {
                             if (sys[j] == 3) {
@@ -898,6 +1085,7 @@
                     index = 0;
                     if (now[3] > 0 && now[4] > 0) {
                         test2 = 1;
+                        trick[1] = 8;
                         for (let j = 0; j < 13; j++) {
                             if (sys[j] == 3) {
                                 for (let k = 0; k < 16; k++) {
@@ -945,6 +1133,7 @@
                     for (let j = 0; j < 4; j++) {
                         if (sys[j] >= 5) {
                             test3 = 1;
+                            trick[2] = 6;
                             for (let k = 0; k < 16; k++) {
                                 if (j == 3 && AIarray[k] > 39) {
                                     tail[index] = AIarray[k];
@@ -983,6 +1172,7 @@
                     for (let j = 0; j < 4; j++) {
                         if (sys[j] >= 5) {
                             test2 = 1;
+                            trick[1] = 6;
                             for (let k = 0; k < 16; k++) {
                                 if (j == 3 && AIarray[k] > 39) {
                                     mid[index] = AIarray[k];
@@ -1017,6 +1207,7 @@
                     for (let j = 0; j < 9; j++) {
                         if (sys[j] > 0 && sys[j + 1] > 0 && sys[j + 2] > 0 && sys[j + 3] > 0 && sys[j + 4] > 0) {
                             test3 = 1;
+                            trick[2] = 5;
                             gold = j + 1;
                             for (let k = 0; k < 16; k++) {
                                 if (AIarray[k] % 13 == gold) {
@@ -1082,6 +1273,7 @@
                     for (let j = 0; j < 9; j++) {
                         if (sys[j] > 0 && sys[j + 1] > 0 && sys[j + 2] > 0 && sys[j + 3] > 0 && sys[j + 4] > 0) {
                             test2 = 1;
+                            trick[1] = 5;
                             gold = j + 1;
                             for (let k = 0; k < 16; k++) {
                                 if (AIarray[k] % 13 == gold) {
@@ -1141,6 +1333,7 @@
                     }
                     for (let j = 0; j < 13; j++) {
                         if (sys[j] == 3) {
+                            trick[2] = 3;
                             test3 = -2;
                             for (let k = 0; k < 16; k++) {
                                 if (AIarray[k] % 13 == j) {
@@ -1161,6 +1354,7 @@
                     }
                     for (let j = 0; j < 13; j++) {
                         if (sys[j] == 3) {
+                            trick[1] = 3;
                             test2 = -2;
                             for (let k = 0; k < 16; k++) {
                                 if (AIarray[k] % 13 == j) {
@@ -1182,6 +1376,7 @@
                     for (let j = 0; j < 13; j++) {
                         if (sys[j] == 3) {
                             test1 = 1;
+                            trick[0] = 3;
                             for (let k = 0; k < 16; k++) {
                                 if (AIarray[k] % 13 == j) {
                                     head[index] = AIarray[k];
@@ -1203,6 +1398,7 @@
                     for (let j = 0; j < 13; j++) {
                         if (sys[j] == 2) {
                             test3 = -3;
+                            trick[2] = 1;
                             for (let k = 0; k < 16; k++) {
                                 if (AIarray[k] % 13 == j) {
                                     tail[index] = AIarray[k];
@@ -1222,6 +1418,7 @@
                     }
                     for (let j = 0; j < 13; j++) {
                         if (sys[j] == 2) {
+                            trick[1] = 1;
                             test2 = -3;
                             for (let k = 0; k < 16; k++) {
                                 if (AIarray[k] % 13 == j) {
@@ -1243,6 +1440,7 @@
                     for (let j = 0; j < 13; j++) {
                         if (sys[j] == 2) {
                             test1 = -1;
+                            trick[0] = 1;
                             for (let k = 0; k < 16; k++) {
                                 if (AIarray[k] % 13 == j) {
                                     head[index] = AIarray[k];
@@ -1342,16 +1540,19 @@
                 B1 = head;
                 B2 = mid;
                 B3 = tail;
+                trickB = trick;
             }
             if (bcd == 2) {
                 C1 = head;
                 C2 = mid;
                 C3 = tail;
+                trickC = trick;
             }
             if (bcd == 3) {
                 D1 = head;
                 D2 = mid;
                 D3 = tail;
+                trickD = trick;
             }
         }
         document.addEventListener("load", getdata(), false);//載入完網頁後讀數據
