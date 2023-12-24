@@ -52,6 +52,8 @@
         let test1 = 0, test2 = 0, test3 = 0, test4 = 0, index = 0, gold = 0;
         let trickA = [0, 0, 0], trickB = [0, 0, 0], trickC = [0, 0, 0], trickD = [0, 0, 0];
         let wordsA = "", wordsB = "", wordsC = "", wordsD = "";
+        let totalA = 0, totalB = 0, totalC = 0, totalD = 0;
+        let homerunA = 0, homerunB = 0, homerunC = 0, homerunD = 0;
         function getdata() {
             queryString = queryString.substring(1);// 去除問號
             queryString.split("&").forEach(function (keyValue) {// 把資料放到data
@@ -87,12 +89,12 @@
             document.getElementById("comC").innerHTML = ""; document.getElementById("comD").innerHTML = "";
             test1 = 0; test2 = 0; test3 = 0; test4 = 0;
             wordsA = ""; wordsB = ""; wordsC = ""; wordsD = "";
-            console.log(trickA[0], trickB[0], trickC[0], trickD[0]);
             //A            
             wordsA = "玩家A(你):<br>";
             if (trickA[0] > trickB[0]) {
                 wordsA += "大於玩家B(+1) ";
                 test1 += 1;
+                homerunA += 1;
             }
             else if (trickA[0] == trickB[0]) {
                 wordsA += "等於玩家B(+0) ";
@@ -104,6 +106,7 @@
             if (trickA[0] > trickC[0]) {
                 wordsA += "大於玩家C(+1) ";
                 test1 += 1;
+                homerunA += 1;
             }
             else if (trickA[0] == trickC[0]) {
                 wordsA += "等於玩家C(+0) ";
@@ -115,6 +118,7 @@
             if (trickA[0] > trickD[0]) {
                 wordsA += "大於玩家D(+1) ";
                 test1 += 1;
+                homerunA += 1;
             }
             else if (trickA[0] == trickD[0]) {
                 wordsA += "等於玩家D(+0) ";
@@ -156,16 +160,13 @@
                 wordsA += "玩家D衝三(-1)";
                 test1 -= 1;
             }
-            if (trickA[0] > trickB[0] && trickA[0] > trickC[0] && trickA[0] > trickD[0]) {
-                wordsA += "玩家A(你)全壘打(+3)，其他玩家(-1)";
-                test1 += 3; test2 -= 1; test3 -= 1; test4 -= 1;
-            }
             //B
             wordsB = "";
             wordsB = "玩家B:<br>";
             if (trickB[0] > trickA[0]) {
                 wordsB += "大於玩家A(+1) ";
                 test2 += 1;
+                homerunB += 1;
             }
             else if (trickB[0] == trickA[0]) {
                 wordsB += "等於玩家A(+0) ";
@@ -176,6 +177,7 @@
             }
             if (trickB[0] > trickC[0]) {
                 wordsB += "大於玩家C(+1) ";
+                homerunB += 1;
                 test2 += 1;
             }
             else if (trickB[0] == trickC[0]) {
@@ -187,6 +189,7 @@
             }
             if (trickB[0] > trickD[0]) {
                 wordsB += "大於玩家D(+1) ";
+                homerunB += 1;
                 test2 += 1;
             }
             else if (trickB[0] == trickD[0]) {
@@ -229,16 +232,13 @@
                 wordsB += "玩家D衝三(-1)";
                 test2 -= 1;
             }
-            if (trickB[0] > trickA[0] && trickB[0] > trickC[0] && trickB[0] > trickD[0]) {
-                wordsB += "玩家B全壘打(+3)，其他玩家(-1)";
-                test2 += 3; test1 -= 1; test3 -= 1; test4 -= 1;
-            }
             //C
             wordsC = "";
             wordsC = "玩家C:<br>";
             if (trickC[0] > trickA[0]) {
                 wordsC += "大於玩家A(+1) ";
                 test3 += 1;
+                homerunC += 1;
             }
             else if (trickC[0] == trickA[0]) {
                 wordsC += "等於玩家A(+0) ";
@@ -250,6 +250,7 @@
             if (trickC[0] > trickB[0]) {
                 wordsC += "大於玩家B(+1) ";
                 test3 += 1;
+                homerunC += 1;
             }
             else if (trickB[0] == trickC[0]) {
                 wordsC += "等於玩家B(+0) ";
@@ -260,6 +261,7 @@
             }
             if (trickC[0] > trickD[0]) {
                 wordsC += "大於玩家D(+1) ";
+                homerunC += 1;
                 test3 += 1;
             }
             else if (trickC[0] == trickD[0]) {
@@ -302,16 +304,13 @@
                 wordsC += "玩家D衝三(-1)";
                 test3 -= 1;
             }
-            if (trickC[0] > trickA[0] && trickC[0] > trickB[0] && trickC[0] > trickD[0]) {
-                wordsC += "玩家C全壘打(+3)，其他玩家(-1)";
-                test3 += 3; test1 -= 1; test2 -= 1; test4 -= 1;
-            }
             //D
             wordsD = "";
             wordsD = "玩家D:<br>";
             if (trickD[0] > trickA[0]) {
                 wordsD += "大於玩家A(+1) ";
                 test4 += 1;
+                homerunD += 1;
             }
             else if (trickD[0] == trickA[0]) {
                 wordsD += "等於玩家A(+0) ";
@@ -322,6 +321,7 @@
             }
             if (trickD[0] > trickB[0]) {
                 wordsD += "大於玩家B(+1) ";
+                homerunD += 1;
                 test4 += 1;
             }
             else if (trickB[0] == trickD[0]) {
@@ -333,6 +333,7 @@
             }
             if (trickD[0] > trickC[0]) {
                 wordsD += "大於玩家C(+1) ";
+                homerunD += 1;
                 test4 += 1;
             }
             else if (trickC[0] == trickD[0]) {
@@ -375,36 +376,597 @@
                 wordsD += "玩家D衝三(+3)";
                 test4 += 3;
             }
-            if (trickD[0] > trickA[0] && trickD[0] > trickB[0] && trickD[0] > trickC[0]) {
-                wordsD += "玩家D全壘打(+3)，其他玩家(-1)";
-                test4 += 3; test1 -= 1; test2 -= 1; test3 -= 1;
-            }
-            wordsA += "<br>玩家A頭墩總共獲得" + test1 + "墩牌";
-            wordsB += "<br>玩家B頭墩總共獲得" + test2 + "墩牌";
-            wordsC += "<br>玩家C頭墩總共獲得" + test3 + "墩牌";
-            wordsD += "<br>玩家D頭墩總共獲得" + test4 + "墩牌";
+            totalA += test1; totalB += test2; totalC += test3; totalD += test4;
+            wordsA += "<br>玩家A頭墩這次獲得" + test1 + "墩牌(共" + totalA + "墩)";
+            wordsB += "<br>玩家B頭墩這次獲得" + test2 + "墩牌(共" + totalB + "墩)";
+            wordsC += "<br>玩家C頭墩這次獲得" + test3 + "墩牌(共" + totalC + "墩)";
+            wordsD += "<br>玩家D頭墩這次獲得" + test4 + "墩牌(共" + totalD + "墩)";
             document.getElementById("comA").innerHTML = wordsA;
             document.getElementById("comB").innerHTML = wordsB;
             document.getElementById("comC").innerHTML = wordsC;
             document.getElementById("comD").innerHTML = wordsD;
             document.getElementById("ohmygoddesu").style.display = "initial";
             document.getElementById("ohmygoddesu").addEventListener("click", function () {
-                now_for_compare += 1;
-                document.getElementById("compare").src = "imgs/比較" + now_for_compare + ".png";
-                document.getElementById("compare").style.display = "initial";
-                document.getElementById("ohmygoddesu").style.display = "none";
+                if (now_for_compare == 1) {
+                    now_for_compare = 2;
+                    document.getElementById("compare").src = "imgs/比較" + now_for_compare + ".png";
+                    document.getElementById("compare").style.display = "initial";
+                    document.getElementById("ohmygoddesu").style.display = "none";
+                }               
             })
         }
-        function mid() {//五枚13>同花順12>彩金鐵支11>鐵支10>彩金葫蘆9>葫蘆8>對子同花7>同花6>順子5>彩金三條4>三條3>兩對2<一對1>烏龍0
-
+        function mid() {
+            document.getElementById("compare").style.display = "none";
+            document.getElementById("comA").innerHTML = ""; document.getElementById("comB").innerHTML = "";
+            document.getElementById("comC").innerHTML = ""; document.getElementById("comD").innerHTML = "";
+            test1 = 0; test2 = 0; test3 = 0; test4 = 0;
+            wordsA = ""; wordsB = ""; wordsC = ""; wordsD = "";
+            //A            
+            wordsA = "玩家A(你):<br>";
+            if (trickA[1] > trickB[1]) {
+                wordsA += "大於玩家B(+1) ";
+                test1 += 1;
+                homerunA += 1;
+            }
+            else if (trickA[1] == trickB[1]) {
+                wordsA += "等於玩家B(+0) ";
+            }
+            else {
+                wordsA += "小於玩家B(-1) ";
+                test1 -= 1;
+            }
+            if (trickA[1] > trickC[1]) {
+                wordsA += "大於玩家C(+1) ";
+                test1 += 1;
+                homerunA += 1;
+            }
+            else if (trickA[1] == trickC[1]) {
+                wordsA += "等於玩家C(+0) ";
+            }
+            else {
+                wordsA += "小於玩家C(-1) ";
+                test1 -= 1;
+            }
+            if (trickA[1] > trickD[1]) {
+                wordsA += "大於玩家D(+1) ";
+                test1 += 1;
+                homerunA += 1;
+            }
+            else if (trickA[1] == trickD[1]) {
+                wordsA += "等於玩家D(+0) ";
+            }
+            else {
+                wordsA += "小於玩家D(-1) ";
+                test1 -= 1;
+            }//五枚13>同花順12>彩金鐵支11>鐵支10>彩金葫蘆9>葫蘆8>對子同花7>同花6>順子5>彩金三條4>三條3>兩對2<一對1>烏龍0
+            wordsA += "<br>";
+            if (trickA[1] == 4) { wordsA += "玩家A彩金三條(+3)"; test1 += 3; }
+            else if (trickA[1] == 9) { wordsA += "玩家A彩金葫蘆(+6)"; test1 += 6; }
+            else if (trickA[1] == 10) { wordsA += "玩家A鐵支(+6)"; test1 += 6; }
+            else if (trickA[1] == 12) { wordsA += "玩家A同花順(+6)"; test1 += 6; }
+            else if (trickA[1] == 11) { wordsA += "玩家A彩金鐵支(+15)"; test1 += 15; }
+            else if (trickA[1] == 13) { wordsA += "玩家A五枚(+30)"; test1 += 30; }
+            if (trickB[1] == 4) { wordsA += "玩家B彩金三條(-1)"; test1 -= 1; }
+            else if (trickB[1] == 9) { wordsA += "玩家B彩金葫蘆(-2)"; test1 -= 2; }
+            else if (trickB[1] == 10) { wordsA += "玩家B鐵支(-2)"; test1 -= 2; }
+            else if (trickB[1] == 12) { wordsA += "玩家B同花順(-2)"; test1 -= 2; }
+            else if (trickB[1] == 11) { wordsA += "玩家B彩金鐵支(-5)"; test1 -= 5; }
+            else if (trickB[1] == 13) { wordsA += "玩家B五枚(-10)"; test1 -= 10; }
+            if (trickC[1] == 4) { wordsA += "玩家C彩金三條(-1)"; test1 -= 1; }
+            else if (trickC[1] == 9) { wordsA += "玩家C彩金葫蘆(-2)"; test1 -= 2; }
+            else if (trickC[1] == 10) { wordsA += "玩家C鐵支(-2)"; test1 -= 2; }
+            else if (trickC[1] == 12) { wordsA += "玩家C同花順(-2)"; test1 -= 2; }
+            else if (trickC[1] == 11) { wordsA += "玩家C彩金鐵支(-5)"; test1 -= 5; }
+            else if (trickC[1] == 13) { wordsA += "玩家C五枚(-10)"; test1 -= 10; }
+            if (trickD[1] == 4) { wordsA += "玩家D彩金三條(-1)"; test1 -= 1; }
+            else if (trickD[1] == 9) { wordsA += "玩家D彩金葫蘆(-2)"; test1 -= 2; }
+            else if (trickD[1] == 10) { wordsA += "玩家D鐵支(-2)"; test1 -= 2; }
+            else if (trickD[1] == 12) { wordsA += "玩家D同花順(-2)"; test1 -= 2; }
+            else if (trickD[1] == 11) { wordsA += "玩家D彩金鐵支(-5)"; test1 -= 5; }
+            else if (trickD[1] == 13) { wordsA += "玩家D五枚(-10)"; test1 -= 10; }
+            //B
+            wordsB = "";
+            wordsB = "玩家B:<br>";
+            if (trickB[1] > trickA[1]) {
+                wordsB += "大於玩家A(+1) ";
+                homerunB += 1;
+                test2 += 1;
+            }
+            else if (trickB[1] == trickA[1]) {
+                wordsB += "等於玩家A(+0) ";
+            }
+            else {
+                wordsB += "小於玩家A(-1) ";
+                test2 -= 1;
+            }
+            if (trickB[1] > trickC[1]) {
+                wordsB += "大於玩家C(+1) ";
+                homerunB += 1;
+                test2 += 1;
+            }
+            else if (trickB[1] == trickC[1]) {
+                wordsB += "等於玩家C(+0) ";
+            }
+            else {
+                wordsB += "小於玩家C(-1) ";
+                test2 -= 1;
+            }
+            if (trickB[1] > trickD[1]) {
+                wordsB += "大於玩家D(+1) ";
+                homerunB += 1;
+                test2 += 1;
+            }
+            else if (trickB[1] == trickD[1]) {
+                wordsB += "等於玩家D(+0) ";
+            }
+            else {
+                wordsB += "小於玩家D(-1) ";
+                test2 -= 1;
+            }
+            wordsB += "<br>";
+            if (trickA[1] == 4) { wordsB += "玩家A彩金三條(-1)"; test2 -= 1; }
+            else if (trickA[1] == 9) { wordsB += "玩家A彩金葫蘆(-2)"; test2 -= 2; }
+            else if (trickA[1] == 10) { wordsB += "玩家A鐵支(-2)"; test2 -= 2; }
+            else if (trickA[1] == 12) { wordsB += "玩家A同花順(-2)"; test2 -= 2; }
+            else if (trickA[1] == 11) { wordsB += "玩家A彩金鐵支(-5)"; test2 -= 5; }
+            else if (trickA[1] == 13) { wordsB += "玩家A五枚(-10)"; test2 -= 10; }
+            if (trickB[1] == 4) { wordsB += "玩家B彩金三條(+3)"; test2 += 3; }
+            else if (trickB[1] == 9) { wordsB += "玩家B彩金葫蘆(+6)"; test2 += 6; }
+            else if (trickB[1] == 10) { wordsB += "玩家B鐵支(+6)"; test2 += 6; }
+            else if (trickB[1] == 12) { wordsB += "玩家B同花順(+6)"; test2 += 6; }
+            else if (trickB[1] == 11) { wordsB += "玩家B彩金鐵支(+15)"; test2 += 15; }
+            else if (trickB[1] == 13) { wordsB += "玩家B五枚(+30)"; test2 += 30; }
+            if (trickC[1] == 4) { wordsB += "玩家C彩金三條(-1)"; test2 -= 1; }
+            else if (trickC[1] == 9) { wordsB += "玩家C彩金葫蘆(-2)"; test2 -= 2; }
+            else if (trickC[1] == 10) { wordsB += "玩家C鐵支(-2)"; test2 -= 2; }
+            else if (trickC[1] == 12) { wordsB += "玩家C同花順(-2)"; test2 -= 2; }
+            else if (trickC[1] == 11) { wordsB += "玩家C彩金鐵支(-5)"; test2 -= 5; }
+            else if (trickC[1] == 13) { wordsB += "玩家C五枚(-10)"; test2 -= 10; }
+            if (trickD[1] == 4) { wordsB += "玩家D彩金三條(-1)"; test2 -= 1; }
+            else if (trickD[1] == 9) { wordsB += "玩家D彩金葫蘆(-2)"; test2 -= 2; }
+            else if (trickD[1] == 10) { wordsB += "玩家D鐵支(-2)"; test2 -= 2; }
+            else if (trickD[1] == 12) { wordsB += "玩家D同花順(-2)"; test2 -= 2; }
+            else if (trickD[1] == 11) { wordsB += "玩家D彩金鐵支(-5)"; test2 -= 5; }
+            else if (trickD[1] == 13) { wordsB += "玩家D五枚(-10)"; test2 -= 10; }
+            //C
+            wordsC = "";
+            wordsC = "玩家C:<br>";
+            if (trickC[1] > trickA[1]) {
+                wordsC += "大於玩家A(+1) ";
+                test3 += 1;
+                homerunC += 1;
+            }
+            else if (trickC[1] == trickA[1]) {
+                wordsC += "等於玩家A(+0) ";
+            }
+            else {
+                wordsC += "小於玩家A(-1) ";
+                test3 -= 1;
+            }
+            if (trickC[1] > trickB[1]) {
+                wordsC += "大於玩家B(+1) ";
+                test3 += 1;
+                homerunC += 1;
+            }
+            else if (trickB[1] == trickC[1]) {
+                wordsC += "等於玩家B(+0) ";
+            }
+            else {
+                wordsC += "小於玩家B(-1) ";
+                test3 -= 1;
+            }
+            if (trickC[1] > trickD[1]) {
+                wordsC += "大於玩家D(+1) ";
+                test3 += 1;
+                homerunC += 1;
+            }
+            else if (trickC[1] == trickD[1]) {
+                wordsC += "等於玩家D(+0) ";
+            }
+            else {
+                wordsC += "小於玩家D(-1) ";
+                test3 -= 1;
+            }
+            wordsC += "<br>";
+            if (trickA[1] == 4) { wordsC += "玩家A彩金三條(-1)"; test3 -= 1; }
+            else if (trickA[1] == 9) { wordsC += "玩家A彩金葫蘆(-2)"; test3 -= 2; }
+            else if (trickA[1] == 10) { wordsC += "玩家A鐵支(-2)"; test3 -= 2; }
+            else if (trickA[1] == 12) { wordsC += "玩家A同花順(-2)"; test3 -= 2; }
+            else if (trickA[1] == 11) { wordsC += "玩家A彩金鐵支(-5)"; test3 -= 5; }
+            else if (trickA[1] == 13) { wordsC += "玩家A五枚(-10)"; test3 -= 10; }
+            if (trickB[1] == 4) { wordsC += "玩家B彩金三條(-1)"; test3 -=1; }
+            else if (trickB[1] == 9) { wordsC += "玩家B彩金葫蘆(-2)"; test3 -=2; }
+            else if (trickB[1] == 10) { wordsC += "玩家B鐵支(-2)"; test3 -=2; }
+            else if (trickB[1] == 12) { wordsC += "玩家B同花順(-2)"; test3 -=2; }
+            else if (trickB[1] == 11) { wordsC += "玩家B彩金鐵支(-5)"; test3 -=5; }
+            else if (trickB[1] == 13) { wordsC += "玩家B五枚(-10)"; test3 -=10; }
+            if (trickC[1] == 4) { wordsC += "玩家C彩金三條(+3)"; test3 += 3; }
+            else if (trickC[1] == 9) { wordsC += "玩家C彩金葫蘆(+6)"; test3 += 6; }
+            else if (trickC[1] == 10) { wordsC += "玩家C鐵支(+6)"; test3 += 6; }
+            else if (trickC[1] == 12) { wordsC += "玩家C同花順(+6)"; test3 += 6; }
+            else if (trickC[1] == 11) { wordsC += "玩家C彩金鐵支(+15)"; test3 += 15; }
+            else if (trickC[1] == 13) { wordsC += "玩家C五枚(+30)"; test3 += 30; }
+            if (trickD[1] == 4) { wordsC += "玩家D彩金三條(-1)"; test3 -= 1; }
+            else if (trickD[1] == 9) { wordsC += "玩家D彩金葫蘆(-2)"; test3 -= 2; }
+            else if (trickD[1] == 10) { wordsC += "玩家D鐵支(-2)"; test3 -= 2; }
+            else if (trickD[1] == 12) { wordsC += "玩家D同花順(-2)"; test3 -= 2; }
+            else if (trickD[1] == 11) { wordsC += "玩家D彩金鐵支(-5)"; test3 -= 5; }
+            else if (trickD[1] == 13) { wordsC += "玩家D五枚(-10)"; test3 -= 10; }
+            //D
+            wordsD = "";
+            wordsD = "玩家D:<br>";
+            if (trickD[1] > trickA[1]) {
+                wordsD += "大於玩家A(+1) ";
+                test4 += 1;
+                homerunD += 1;
+            }
+            else if (trickD[1] == trickA[1]) {
+                wordsD += "等於玩家A(+0) ";
+            }
+            else {
+                wordsD += "小於玩家A(-1) ";
+                test4 -= 1;
+            }
+            if (trickD[1] > trickB[1]) {
+                wordsD += "大於玩家B(+1) ";
+                test4 += 1;
+                homerunD += 1;
+            }
+            else if (trickB[1] == trickD[1]) {
+                wordsD += "等於玩家B(+0) ";
+            }
+            else {
+                wordsD += "小於玩家B(-1) ";
+                test4 -= 1;
+            }
+            if (trickD[1] > trickC[1]) {
+                wordsD += "大於玩家C(+1) ";
+                test4 += 1;
+                homerunD += 1;
+            }
+            else if (trickC[1] == trickD[1]) {
+                wordsD += "等於玩家C(+0) ";
+            }
+            else {
+                wordsD += "小於玩家C(-1) ";
+                test4 -= 1;
+            }
+            wordsD += "<br>";
+            if (trickA[1] == 4) { wordsD += "玩家A彩金三條(-1)"; test4 -= 1; }
+            else if (trickA[1] == 9) { wordsD += "玩家A彩金葫蘆(-2)"; test4 -= 2; }
+            else if (trickA[1] == 10) { wordsD += "玩家A鐵支(-2)"; test4 -= 2; }
+            else if (trickA[1] == 12) { wordsD += "玩家A同花順(-2)"; test4 -= 2; }
+            else if (trickA[1] == 11) { wordsD += "玩家A彩金鐵支(-5)"; test4 -= 5; }
+            else if (trickA[1] == 13) { wordsD += "玩家A五枚(-10)"; test4 -= 10; }
+            if (trickB[1] == 4) { wordsD += "玩家B彩金三條(-1)"; test4 -= 1; }
+            else if (trickB[1] == 9) { wordsD += "玩家B彩金葫蘆(-2)"; test4 -= 2; }
+            else if (trickB[1] == 10) { wordsD += "玩家B鐵支(-2)"; test4 -= 2; }
+            else if (trickB[1] == 12) { wordsD += "玩家B同花順(-2)"; test4 -= 2; }
+            else if (trickB[1] == 11) { wordsD += "玩家B彩金鐵支(-5)"; test4 -= 5; }
+            else if (trickB[1] == 13) { wordsD += "玩家B五枚(-10)"; test4 -= 10; }
+            if (trickC[1] == 4) { wordsD += "玩家C彩金三條(-1)"; test4 -= 1; }
+            else if (trickC[1] == 9) { wordsD += "玩家C彩金葫蘆(-2)"; test4 -= 2; }
+            else if (trickC[1] == 10) { wordsD += "玩家C鐵支(-2)"; test4 -=2; }
+            else if (trickC[1] == 12) { wordsD += "玩家C同花順(-2)"; test4 -= 2; }
+            else if (trickC[1] == 11) { wordsD += "玩家C彩金鐵支(-5)"; test4 -= 5; }
+            else if (trickC[1] == 13) { wordsD += "玩家C五枚(-10)"; test4 -= 10; }
+            if (trickD[1] == 4) { wordsD += "玩家D彩金三條(+3)"; test4 += 3; }
+            else if (trickD[1] == 9) { wordsD += "玩家D彩金葫蘆(+6)"; test4 += 6; }
+            else if (trickD[1] == 10) { wordsD += "玩家D鐵支(+6)"; test4 += 6; }
+            else if (trickD[1] == 12) { wordsD += "玩家D同花順(+6)"; test4 += 6; }
+            else if (trickD[1] == 11) { wordsD += "玩家D彩金鐵支(+15)"; test4 += 15; }
+            else if (trickD[1] == 13) { wordsD += "玩家D五枚(+30)"; test4 += 30; }
+            totalA += test1; totalB += test2; totalC += test3; totalD += test4;
+            wordsA += "<br>玩家A頭墩這次獲得" + test1 + "墩牌(共" + totalA + "墩)";
+            wordsB += "<br>玩家B頭墩這次獲得" + test2 + "墩牌(共" + totalB + "墩)";
+            wordsC += "<br>玩家C頭墩這次獲得" + test3 + "墩牌(共" + totalC + "墩)";
+            wordsD += "<br>玩家D頭墩這次獲得" + test4 + "墩牌(共" + totalD + "墩)";
+            document.getElementById("comA").innerHTML = wordsA;
+            document.getElementById("comB").innerHTML = wordsB;
+            document.getElementById("comC").innerHTML = wordsC;
+            document.getElementById("comD").innerHTML = wordsD;
+            document.getElementById("ohmygoddesu").style.display = "initial";
+            document.getElementById("ohmygoddesu").addEventListener("click", function () {
+                if (now_for_compare == 2) {
+                    now_for_compare = 3;
+                    document.getElementById("compare").src = "imgs/比較" + now_for_compare + ".png";
+                    document.getElementById("compare").style.display = "initial";
+                    document.getElementById("ohmygoddesu").style.display = "none";
+                }                
+            })
         }
         function tail() {
-
+            document.getElementById("compare").style.display = "none";
+            document.getElementById("comA").innerHTML = ""; document.getElementById("comB").innerHTML = "";
+            document.getElementById("comC").innerHTML = ""; document.getElementById("comD").innerHTML = "";
+            test1 = 0; test2 = 0; test3 = 0; test4 = 0;
+            wordsA = ""; wordsB = ""; wordsC = ""; wordsD = "";
+            //A            
+            wordsA = "玩家A(你):<br>";
+            if (trickA[2] > trickB[2]) {
+                wordsA += "大於玩家B(+1) ";
+                test1 += 1;
+                homerunA += 1;
+            }
+            else if (trickA[2] == trickB[2]) {
+                wordsA += "等於玩家B(+0) ";
+            }
+            else {
+                wordsA += "小於玩家B(-1) ";
+                test1 -= 1;
+            }
+            if (trickA[2] > trickC[2]) {
+                wordsA += "大於玩家C(+1) ";
+                homerunA += 1;
+                test1 += 1;
+            }
+            else if (trickA[2] == trickC[2]) {
+                wordsA += "等於玩家C(+0) ";
+            }
+            else {
+                wordsA += "小於玩家C(-1) ";
+                test1 -= 1;
+            }
+            if (trickA[2] > trickD[2]) {
+                wordsA += "大於玩家D(+1) ";
+                homerunA += 1;
+                test1 += 1;
+            }
+            else if (trickA[2] == trickD[2]) {
+                wordsA += "等於玩家D(+0) ";
+            }
+            else {
+                wordsA += "小於玩家D(-1) ";
+                test1 -= 1;
+            }//五枚13>同花順12>彩金鐵支11>鐵支10>彩金葫蘆9>葫蘆8>對子同花7>同花6>順子5>彩金三條4>三條3>兩對2<一對1>烏龍0
+            wordsA += "<br>";
+            if (trickA[2] == 4) { wordsA += "玩家A彩金三條(+3)"; test1 += 3; }
+            else if (trickA[2] == 9) { wordsA += "玩家A彩金葫蘆(+3)"; test1 += 3; }
+            else if (trickA[2] == 10) { wordsA += "玩家A鐵支(+3)"; test1 += 3; }
+            else if (trickA[2] == 12) { wordsA += "玩家A同花順(+3)"; test1 += 3; }
+            else if (trickA[2] == 11) { wordsA += "玩家A彩金鐵支(+15)"; test1 += 15; }
+            else if (trickA[2] == 13) { wordsA += "玩家A五枚(+15)"; test1 += 15; }
+            if (trickB[2] == 4) { wordsA += "玩家B彩金三條(-1)"; test1 -= 1; }
+            else if (trickB[2] == 9) { wordsA += "玩家B彩金葫蘆(-1)"; test1 -= 1; }
+            else if (trickB[2] == 10) { wordsA += "玩家B鐵支(-1)"; test1 -= 1; }
+            else if (trickB[2] == 12) { wordsA += "玩家B同花順(-1)"; test1 -= 1; }
+            else if (trickB[2] == 11) { wordsA += "玩家B彩金鐵支(-5)"; test1 -= 5; }
+            else if (trickB[2] == 13) { wordsA += "玩家B五枚(-5)"; test1 -= 5; }
+            if (trickC[1] == 4) { wordsA += "玩家C彩金三條(-1)"; test1 -= 1; }
+            else if (trickC[2] == 9) { wordsA += "玩家C彩金葫蘆(-1)"; test1 -= 1; }
+            else if (trickC[2] == 10) { wordsA += "玩家C鐵支(-1)"; test1 -= 1; }
+            else if (trickC[2] == 12) { wordsA += "玩家C同花順(-1)"; test1 -= 1; }
+            else if (trickC[2] == 11) { wordsA += "玩家C彩金鐵支(-5)"; test1 -= 5; }
+            else if (trickC[2] == 13) { wordsA += "玩家C五枚(-5)"; test1 -= 5; }
+            if (trickD[1] == 4) { wordsA += "玩家D彩金三條(-1)"; test1 -= 1; }
+            else if (trickD[2] == 9) { wordsA += "玩家D彩金葫蘆(-1)"; test1 -= 1; }
+            else if (trickD[2] == 10) { wordsA += "玩家D鐵支(-1)"; test1 -= 1; }
+            else if (trickD[2] == 12) { wordsA += "玩家D同花順(-1)"; test1 -= 1; }
+            else if (trickD[2] == 11) { wordsA += "玩家D彩金鐵支(-5)"; test1 -= 5; }
+            else if (trickD[2] == 13) { wordsA += "玩家D五枚(-5)"; test1 -= 5; }
+            //B
+            wordsB = "";
+            wordsB = "玩家B:<br>";
+            if (trickB[2] > trickA[2]) {
+                wordsB += "大於玩家A(+1) ";
+                test2 += 1;
+                homerunB += 1;
+            }
+            else if (trickB[2] == trickA[2]) {
+                wordsB += "等於玩家A(+0) ";
+            }
+            else {
+                wordsB += "小於玩家A(-1) ";
+                test2 -= 1;
+            }
+            if (trickB[2] > trickC[2]) {
+                wordsB += "大於玩家C(+1) ";
+                homerunB += 1;
+                test2 += 1;
+            }
+            else if (trickB[2] == trickC[2]) {
+                wordsB += "等於玩家C(+0) ";
+            }
+            else {
+                wordsB += "小於玩家C(-1) ";
+                test2 -= 1;
+            }
+            if (trickB[2] > trickD[2]) {
+                wordsB += "大於玩家D(+1) ";
+                homerunB += 1;
+                test2 += 1;
+            }
+            else if (trickB[2] == trickD[2]) {
+                wordsB += "等於玩家D(+0) ";
+            }
+            else {
+                wordsB += "小於玩家D(-1) ";
+                test2 -= 1;
+            }
+            wordsB += "<br>";
+            if (trickA[2] == 4) { wordsB += "玩家A彩金三條(-1)"; test2 -= 1; }
+            else if (trickA[2] == 9) { wordsB += "玩家A彩金葫蘆(-1)"; test2 -= 1; }
+            else if (trickA[2] == 10) { wordsB += "玩家A鐵支(-1)"; test2 -= 1; }
+            else if (trickA[2] == 12) { wordsB += "玩家A同花順(-1)"; test2 -= 1; }
+            else if (trickA[2] == 11) { wordsB += "玩家A彩金鐵支(-5)"; test2 -= 5; }
+            else if (trickA[2] == 13) { wordsB += "玩家A五枚(-5)"; test2 -= 5; }
+            if (trickB[2] == 4) { wordsB += "玩家B彩金三條(+3)"; test2 += 3; }
+            else if (trickB[2] == 9) { wordsB += "玩家B彩金葫蘆(+3)"; test2 += 3; }
+            else if (trickB[2] == 10) { wordsB += "玩家B鐵支(+3)"; test2 += 3; }
+            else if (trickB[2] == 12) { wordsB += "玩家B同花順(+3)"; test2 += 3; }
+            else if (trickB[2] == 11) { wordsB += "玩家B彩金鐵支(+15)"; test2 += 15; }
+            else if (trickB[2] == 13) { wordsB += "玩家B五枚(+15)"; test2 += 15; }
+            if (trickC[2] == 4) { wordsB += "玩家C彩金三條(-1)"; test2 -= 1; }
+            else if (trickC[2] == 9) { wordsB += "玩家C彩金葫蘆(-1)"; test2 -= 1; }
+            else if (trickC[2] == 10) { wordsB += "玩家C鐵支(-1)"; test2 -= 1; }
+            else if (trickC[2] == 12) { wordsB += "玩家C同花順(-1)"; test2 -= 1; }
+            else if (trickC[2] == 11) { wordsB += "玩家C彩金鐵支(-5)"; test2 -= 5; }
+            else if (trickC[2] == 13) { wordsB += "玩家C五枚(-5)"; test2 -= 5; }
+            if (trickD[2] == 4) { wordsB += "玩家D彩金三條(-1)"; test2 -= 1; }
+            else if (trickD[2] == 9) { wordsB += "玩家D彩金葫蘆(-1)"; test2 -= 1; }
+            else if (trickD[2] == 10) { wordsB += "玩家D鐵支(-1)"; test2 -= 1; }
+            else if (trickD[2] == 12) { wordsB += "玩家D同花順(-1)"; test2 -= 1; }
+            else if (trickD[2] == 11) { wordsB += "玩家D彩金鐵支(-5)"; test2 -= 5; }
+            else if (trickD[2] == 13) { wordsB += "玩家D五枚(-5)"; test2 -= 5; }
+            //C
+            wordsC = "";
+            wordsC = "玩家C:<br>";
+            if (trickC[2] > trickA[2]) {
+                wordsC += "大於玩家A(+1) ";
+                test3 += 1;
+                homerunC += 1;
+            }
+            else if (trickC[2] == trickA[2]) {
+                wordsC += "等於玩家A(+0) ";
+            }
+            else {
+                wordsC += "小於玩家A(-1) ";
+                test3 -= 1;
+            }
+            if (trickC[2] > trickB[2]) {
+                wordsC += "大於玩家B(+1) ";
+                homerunC += 1;
+                test3 += 1;
+            }
+            else if (trickB[2] == trickC[2]) {
+                wordsC += "等於玩家B(+0) ";
+            }
+            else {
+                wordsC += "小於玩家B(-1) ";
+                test3 -= 1;
+            }
+            if (trickC[2] > trickD[2]) {
+                wordsC += "大於玩家D(+1) ";
+                homerunC += 1;
+                test3 += 1;
+            }
+            else if (trickC[2] == trickD[2]) {
+                wordsC += "等於玩家D(+0) ";
+            }
+            else {
+                wordsC += "小於玩家D(-1) ";
+                test3 -= 1;
+            }
+            wordsC += "<br>";
+            if (trickA[2] == 4) { wordsC += "玩家A彩金三條(-1)"; test3 -= 1; }
+            else if (trickA[2] == 9) { wordsC += "玩家A彩金葫蘆(-1)"; test3 -= 1; }
+            else if (trickA[2] == 10) { wordsC += "玩家A鐵支(-1)"; test3 -= 1; }
+            else if (trickA[2] == 12) { wordsC += "玩家A同花順(-1)"; test3 -= 1; }
+            else if (trickA[2] == 11) { wordsC += "玩家A彩金鐵支(-5)"; test3 -= 5; }
+            else if (trickA[2] == 13) { wordsC += "玩家A五枚(-5)"; test3 -= 5; }
+            if (trickB[2] == 4) { wordsC += "玩家B彩金三條(-1)"; test3 -= 1; }
+            else if (trickB[2] == 9) { wordsC += "玩家B彩金葫蘆(-1)"; test3 -= 1; }
+            else if (trickB[2] == 10) { wordsC += "玩家B鐵支(-1)"; test3 -= 1; }
+            else if (trickB[2] == 12) { wordsC += "玩家B同花順(-1)"; test3 -= 1; }
+            else if (trickB[2] == 11) { wordsC += "玩家B彩金鐵支(-5)"; test3 -= 5; }
+            else if (trickB[2] == 13) { wordsC += "玩家B五枚(-5)"; test3 -= 5; }
+            if (trickC[2] == 4) { wordsC += "玩家C彩金三條(+3)"; test3 += 3; }
+            else if (trickC[2] == 9) { wordsC += "玩家C彩金葫蘆(+3)"; test3 += 3; }
+            else if (trickC[2] == 10) { wordsC += "玩家C鐵支(+3)"; test3 += 3; }
+            else if (trickC[2] == 12) { wordsC += "玩家C同花順(+3)"; test3 += 3; }
+            else if (trickC[2] == 11) { wordsC += "玩家C彩金鐵支(+15)"; test3 += 15; }
+            else if (trickC[2] == 13) { wordsC += "玩家C五枚(+15)"; test3 += 15; }
+            if (trickD[2] == 4) { wordsC += "玩家D彩金三條(-1)"; test3 -= 1; }
+            else if (trickD[2] == 9) { wordsC += "玩家D彩金葫蘆(-1)"; test3 -= 1; }
+            else if (trickD[2] == 10) { wordsC += "玩家D鐵支(-1)"; test3 -= 1; }
+            else if (trickD[2] == 12) { wordsC += "玩家D同花順(-1)"; test3 -= 1; }
+            else if (trickD[2] == 11) { wordsC += "玩家D彩金鐵支(-5)"; test3 -= 5; }
+            else if (trickD[2] == 13) { wordsC += "玩家D五枚(-5)"; test3 -= 5; }
+            //D
+            wordsD = "";
+            wordsD = "玩家D:<br>";
+            if (trickD[2] > trickA[2]) {
+                wordsD += "大於玩家A(+1) ";
+                test4 += 1;
+                homerunD += 1;
+            }
+            else if (trickD[2] == trickA[2]) {
+                wordsD += "等於玩家A(+0) ";
+            }
+            else {
+                wordsD += "小於玩家A(-1) ";
+                test4 -= 1;
+            }
+            if (trickD[2] > trickB[2]) {
+                wordsD += "大於玩家B(+1) ";
+                homerunD += 1;
+                test4 += 1;
+            }
+            else if (trickB[2] == trickD[2]) {
+                wordsD += "等於玩家B(+0) ";
+            }
+            else {
+                wordsD += "小於玩家B(-1) ";
+                test4 -= 1;
+            }
+            if (trickD[2] > trickC[2]) {
+                wordsD += "大於玩家C(+1) ";
+                homerunD += 1;
+                test4 += 1;
+            }
+            else if (trickC[2] == trickD[2]) {
+                wordsD += "等於玩家C(+0) ";
+            }
+            else {
+                wordsD += "小於玩家C(-1) ";
+                test4 -= 1;
+            }
+            wordsD += "<br>";
+            if (trickA[2] == 4) { wordsD += "玩家A彩金三條(-1)"; test4 -= 1; }
+            else if (trickA[2] == 9) { wordsD += "玩家A彩金葫蘆(-1)"; test4 -= 1; }
+            else if (trickA[2] == 10) { wordsD += "玩家A鐵支(-1)"; test4 -= 1; }
+            else if (trickA[2] == 12) { wordsD += "玩家A同花順(-1)"; test4 -= 1; }
+            else if (trickA[2] == 11) { wordsD += "玩家A彩金鐵支(-5)"; test4 -= 5; }
+            else if (trickA[2] == 13) { wordsD += "玩家A五枚(-5)"; test4 -= 5; }
+            if (trickB[2] == 4) { wordsD += "玩家B彩金三條(-1)"; test4 -= 1; }
+            else if (trickB[2] == 9) { wordsD += "玩家B彩金葫蘆(-1)"; test4 -= 1; }
+            else if (trickB[2] == 10) { wordsD += "玩家B鐵支(-1)"; test4 -= 1; }
+            else if (trickB[2] == 12) { wordsD += "玩家B同花順(-1)"; test4 -= 1; }
+            else if (trickB[2] == 11) { wordsD += "玩家B彩金鐵支(-5)"; test4 -= 5; }
+            else if (trickB[2] == 13) { wordsD += "玩家B五枚(-5)"; test4 -= 5; }
+            if (trickC[2] == 4) { wordsD += "玩家C彩金三條(-1)"; test4 -= 1; }
+            else if (trickC[2] == 9) { wordsD += "玩家C彩金葫蘆(-1)"; test4 -= 1; }
+            else if (trickC[2] == 10) { wordsD += "玩家C鐵支(-1)"; test4 -= 1; }
+            else if (trickC[2] == 12) { wordsD += "玩家C同花順(-1)"; test4 -= 1; }
+            else if (trickC[2] == 11) { wordsD += "玩家C彩金鐵支(-5)"; test4 -= 5; }
+            else if (trickC[2] == 13) { wordsD += "玩家C五枚(-5)"; test4 -= 5; }
+            if (trickD[2] == 4) { wordsD += "玩家D彩金三條(+3)"; test4 += 3; }
+            else if (trickD[2] == 9) { wordsD += "玩家D彩金葫蘆(+3)"; test4 += 3; }
+            else if (trickD[2] == 10) { wordsD += "玩家D鐵支(+3)"; test4 += 3; }
+            else if (trickD[2] == 12) { wordsD += "玩家D同花順(+3)"; test4 += 3; }
+            else if (trickD[2] == 11) { wordsD += "玩家D彩金鐵支(+15)"; test4 += 15; }
+            else if (trickD[2] == 13) { wordsD += "玩家D五枚(+15)"; test4 += 15; }
+            if (homerunA == 9) {
+                wordsD += "玩家A全壘打"; test1 += 3; test2 -= 1; test3 -= 1; test4 -= 1;
+            }
+            if (homerunB == 9) {
+                wordsD += "玩家B全壘打"; test2 += 3; test1 -= 1; test3 -= 1; test4 -= 1;
+            }
+            if (homerunC == 9) {
+                wordsD += "玩家C全壘打"; test3 += 3; test2 -= 1; test1 -= 1; test4 -= 1;
+            }
+            if (homerunD == 9) {
+                wordsD += "玩家D全壘打"; test4 += 3; test2 -= 1; test3 -= 1; test1 -= 1;
+            }
+            totalA += test1; totalB += test2; totalC += test3; totalD += test4;
+            wordsA += "<br>玩家A頭墩這次獲得" + test1 + "墩牌(共" + totalA + "墩)";
+            wordsB += "<br>玩家B頭墩這次獲得" + test2 + "墩牌(共" + totalB + "墩)";
+            wordsC += "<br>玩家C頭墩這次獲得" + test3 + "墩牌(共" + totalC + "墩)";
+            wordsD += "<br>玩家D頭墩這次獲得" + test4 + "墩牌(共" + totalD + "墩)";
+            document.getElementById("comA").innerHTML = wordsA;
+            document.getElementById("comB").innerHTML = wordsB;
+            document.getElementById("comC").innerHTML = wordsC;
+            document.getElementById("comD").innerHTML = wordsD;
+            document.getElementById("ohmygoddesu").style.display = "initial";
+            document.getElementById("ohmygoddesu").addEventListener("click", function () {               
+                if (now_for_compare == 3) {
+                    alert("end");
+                }
+            })
         }
         function COMPARE() {//Step1:先得到牌型Step2:比牌型Step3:比同牌型大小
             gold = parseInt(data.key8);
             player_trick();
-            console.log("player", trickA);
             switch (now_for_compare) {
                 case 1://比較頭墩
                     head();
@@ -651,7 +1213,6 @@
             }
         }
         function AI(AIarray, head, mid, tail, bcd, trick) {
-            //頭:衝三++//二道:彩金三條、彩金葫蘆、鐵支、同花順、彩金鐵支、五枚++//尾:同二道
             //五枚13
             test1 = 0; test2 = 0; test3 = 0;
             sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -719,11 +1280,13 @@
                                                 tail[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                             else if (test2 == 0) {
                                                 mid[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                             break;
                                         }
@@ -735,11 +1298,13 @@
                                                 tail[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                             else if (test2 == 0) {
                                                 mid[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                         }
                                     }
@@ -750,11 +1315,13 @@
                                                 tail[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                             else if (test2 == 0) {
                                                 mid[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                         }
                                     }
@@ -765,11 +1332,13 @@
                                                 tail[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                             else if (test2 == 0) {
                                                 mid[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                         }
                                     }
@@ -781,19 +1350,23 @@
                                                 tail[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                             else if (test2 == 0) {
                                                 mid[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                         }
                                     }
                                     if (test3 == 0) {
                                         test3 = 1;
+                                        trick[2] = 12;
                                     }
                                     else if (test2 == 0) {
                                         test2 = 1;
+                                        trick[1] = 12;
                                     }
                                 }
 
@@ -824,11 +1397,13 @@
                                                 tail[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                             else if (test2 == 0) {
                                                 mid[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                         }
                                     }
@@ -839,11 +1414,13 @@
                                                 tail[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                             else if (test2 == 0) {
                                                 mid[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                         }
                                     }
@@ -854,11 +1431,13 @@
                                                 tail[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                             else if (test2 == 0) {
                                                 mid[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                         }
                                     }
@@ -869,11 +1448,13 @@
                                                 tail[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                             else if (test2 == 0) {
                                                 mid[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                         }
                                     }
@@ -885,19 +1466,23 @@
                                                 tail[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                             else if (test2 == 0) {
                                                 mid[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                         }
                                     }
                                     if (test3 == 0) {
                                         test3 = 1;
+                                        trick[2] = 12;
                                     }
                                     else if (test2 == 0) {
                                         test2 = 1;
+                                        trick[1] = 12;
                                     }
                                 }
                             }
@@ -927,11 +1512,13 @@
                                                 tail[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                             else if (test2 == 0) {
                                                 mid[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                         }
                                     }
@@ -942,11 +1529,13 @@
                                                 tail[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
-                                            else if (test2 == 0) {
+                                            else if (test2 == 0) {;
                                                 mid[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                         }
                                     }
@@ -957,11 +1546,13 @@
                                                 tail[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                             else if (test2 == 0) {
                                                 mid[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                         }
                                     }
@@ -972,11 +1563,13 @@
                                                 tail[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                             else if (test2 == 0) {
                                                 mid[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                         }
                                     }
@@ -988,25 +1581,30 @@
                                                 tail[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                             else if (test2 == 0) {
                                                 mid[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                         }
                                     }
                                     if (test3 == 0) {
                                         test3 = 1;
+                                        trick[2] = 12;
                                     }
                                     else if (test2 == 0) {
                                         test2 = 1;
+                                        trick[1] = 12;
                                     }
                                 }
                             }
                             break;
                         case 3://黑桃
                             now = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                            
                             for (let k = 0; k < 16; k++) {
                                 if (AIarray[k] >= 40) {
                                     gold = AIarray[k] % 13;
@@ -1029,11 +1627,13 @@
                                                 tail[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                             else if (test2 == 0) {
                                                 mid[index] = AIarray[l];
                                                 index += 1;
-                                                AIarray[l] = -1;
+                                                AIarray[l] = -1;   
+                                                break;
                                             }
                                         }
                                     }
@@ -1044,11 +1644,13 @@
                                                 tail[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                             else if (test2 == 0) {
                                                 mid[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                         }
                                     }
@@ -1059,11 +1661,13 @@
                                                 tail[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                             else if (test2 == 0) {
                                                 mid[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                         }
                                     }
@@ -1074,11 +1678,13 @@
                                                 tail[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                             else if (test2 == 0) {
                                                 mid[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                         }
                                     }
@@ -1090,19 +1696,23 @@
                                                 tail[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                             else if (test2 == 0) {
                                                 mid[index] = AIarray[l];
                                                 index += 1;
                                                 AIarray[l] = -1;
+                                                break;
                                             }
                                         }
                                     }
                                     if (test3 == 0) {
                                         test3 = 1;
+                                        trick[2] = 12;
                                     }
                                     else if (test2 == 0) {
                                         test2 = 1;
+                                        trick[1] = 12;
                                     }
                                 }
                             }
@@ -1110,6 +1720,7 @@
                     }
                 }
             }
+            console.log(bcd, AIarray);
             //鐵支10
             sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
             index = 0;
@@ -1457,7 +2068,7 @@
                         }
                     }
                     for (let j = 0; j < 4; j++) {
-                        if (sys[j] >= 5) {
+                        if (sys[j] >= 5) {;
                             test3 = 1;
                             trick[2] = 6;
                             for (let k = 0; k < 16; k++) {
@@ -1496,7 +2107,7 @@
                         }
                     }
                     for (let j = 0; j < 4; j++) {
-                        if (sys[j] >= 5) {
+                        if (sys[j] >= 5) {                          
                             test2 = 1;
                             trick[1] = 6;
                             for (let k = 0; k < 16; k++) {
@@ -1679,7 +2290,7 @@
                         sys[AIarray[j] % 13] += 1;
                     }
                     for (let j = 0; j < 13; j++) {
-                        if (sys[j] == 3) {
+                        if (sys[j] == 3) {                           
                             trick[1] = 3;
                             test2 = -2;
                             for (let k = 0; k < 16; k++) {
@@ -1743,7 +2354,7 @@
                         sys[AIarray[j] % 13] += 1;
                     }
                     for (let j = 0; j < 13; j++) {
-                        if (sys[j] == 2) {
+                        if (sys[j] == 2) {                            
                             trick[1] = 1;
                             test2 = -3;
                             for (let k = 0; k < 16; k++) {
