@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <title>玩家出牌資料</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 5px;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cardDataTable">載入中...</div>
+
+    <script>
+      window.onload = function () {
+        var cardData = JSON.parse(localStorage.getItem("playerCardData"));
+        if (cardData && Array.isArray(cardData)) {
+          var table =
+            "<table><tr><th>組別</th><th>頭墩</th><th>中墩</th><th>尾墩</th><th>手牌</th></tr>";
+          cardData.forEach(function (group, index) {
+            table +=
+              "<tr><td>" +
+              (index + 1) +
+              "</td><td>" +
+              group.head.join(", ") +
+              "</td><td>" +
+              group.mid.join(", ") +
+              "</td><td>" +
+              group.tail.join(", ") +
+              "</td><td>" +
+              group.hand.join(", ") +
+              "</td></tr>";
+          });
+          table += "</table>";
+          document.getElementById("cardDataTable").innerHTML = table;
+        } else {
+          document.getElementById("cardDataTable").innerHTML =
+            "未找到出牌資料。";
+        }
+      };
+    </script>
+  </body>
+</html>

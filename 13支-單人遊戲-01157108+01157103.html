@@ -1,1510 +1,1809 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>13支-單人遊戲</title>
     <style>
-        body {
-            background-image: url("imgs/牌桌.png");
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        #deal {
-            position: absolute;
-            width: 10%;
-            left: 45%;
-            top: 50%;
-        }
-        .cards {
-            display: none;
-            position: absolute;
-            width: 6%;
-            top: 82%;
-            filter: drop-shadow(red);
-        }
-        .system {
-            position: absolute;
-            display: none;
-        }
-        #s1 {
-            width: 8%;
-            top: 34%;
-            left: 6%;
-        }
-        #s2 {
-            width: 8%;
-            top: 34%;
-            left: 15%;
-        }
-        #s3 {
-            width: 7%;
-            top: 51%;
-            left: 2.5%;
-        }
-        #s4 {
-            width: 7%;
-            top: 51%;
-            left: 11%;
-        }
-        #s5 {
-            width: 7%;
-            top: 51%;
-            left: 20%;
-        }
-        #s6 {
-            width: 11.5%;
-            top: 67%;
-            left: 2%;
-        }
-        #s7 {
-            width: 11.5%;
-            top: 67%;
-            left: 15.5%;
-        }
-        .type {
-            display: none;
-            position: absolute;
-            width: 6.5%;
-        }
-        #c1 {
-            top: 33.65%;
-            left: 75%;
-        }
-        #c2 {
-            top: 33.65%;
-            left: 82%;
-        }
-        #c3 {
-            top: 33%;
-            left: 89%;
-        }
-        #c4 {
-            top: 49%;
-            left: 75%;
-        }
-        #c5 {
-            top: 49%;
-            left: 82%;
-        }
-        #c6 {
-            top: 49%;
-            left: 89%;
-        }
-        #c7 {
-            top: 64%;
-            left: 75%;
-        }
-        #c8 {
-            top: 64%;
-            left: 82%;
-        }
-        #c9 {
-            top: 64%;
-            left: 89%;
-        }
-        .block {
-            position: absolute;
-            width: 8%;
-            display: none;
-        }
-        #n1 {
-            left: 29%;
-            top: 55%;
-        }
-        #n2 {
-            left: 38%;
-            top: 55%;
-        }
-        #n3 {
-            left: 47%;
-            top: 55%;
-        }
-        #n4 {
-            left: 56%;
-            top: 55%;
-        }
-        #n5 {
-            left: 65%;
-            top: 55%;
-        }
-        #n6 {
-            left: 29%;
-            top: 31%;
-        }
-        #n7 {
-            left: 38%;
-            top: 31%;
-        }
-        #n8 {
-            left: 47%;
-            top: 31%;
-        }
-        #n9 {
-            left: 56%;
-            top: 31%;
-        }
-        #n10 {
-            left: 65%;
-            top: 31%;
-        }
-        #n11 {
-            left: 38%;
-            top: 7%;
-        }
-        #n12 {
-            left: 47%;
-            top: 7%;
-        }
-        #n13 {
-            left: 56%;
-            top: 7%;
-        }
-        #gold {
-            position: absolute;
-            width: 7%;
-            left:2%;
-        }
-        #go {
-            display: none;
-            position: absolute;
-            width: 10%;
-            left: 17%;
-            top: 32%;
-        }
+      body {
+        background-image: url("imgs/牌桌.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      #deal {
+        position: absolute;
+        width: 10%;
+        left: 45%;
+        top: 50%;
+      }
+      .cards {
+        display: none;
+        position: absolute;
+        width: 6%;
+        top: 82%;
+        filter: drop-shadow(red);
+      }
+      .system {
+        position: absolute;
+        display: none;
+      }
+      #s1 {
+        width: 8%;
+        top: 34%;
+        left: 6%;
+      }
+      #s2 {
+        width: 8%;
+        top: 34%;
+        left: 15%;
+      }
+      #s3 {
+        width: 7%;
+        top: 51%;
+        left: 2.5%;
+      }
+      #s4 {
+        width: 7%;
+        top: 51%;
+        left: 11%;
+      }
+      #s5 {
+        width: 7%;
+        top: 51%;
+        left: 20%;
+      }
+      #s6 {
+        width: 11.5%;
+        top: 67%;
+        left: 2%;
+      }
+      #s7 {
+        width: 11.5%;
+        top: 67%;
+        left: 15.5%;
+      }
+      .type {
+        display: none;
+        position: absolute;
+        width: 6.5%;
+      }
+      #c1 {
+        top: 33.65%;
+        left: 75%;
+      }
+      #c2 {
+        top: 33.65%;
+        left: 82%;
+      }
+      #c3 {
+        top: 33%;
+        left: 89%;
+      }
+      #c4 {
+        top: 49%;
+        left: 75%;
+      }
+      #c5 {
+        top: 49%;
+        left: 82%;
+      }
+      #c6 {
+        top: 49%;
+        left: 89%;
+      }
+      #c7 {
+        top: 64%;
+        left: 75%;
+      }
+      #c8 {
+        top: 64%;
+        left: 82%;
+      }
+      #c9 {
+        top: 64%;
+        left: 89%;
+      }
+      .block {
+        position: absolute;
+        width: 8%;
+        display: none;
+      }
+      #n1 {
+        left: 29%;
+        top: 55%;
+      }
+      #n2 {
+        left: 38%;
+        top: 55%;
+      }
+      #n3 {
+        left: 47%;
+        top: 55%;
+      }
+      #n4 {
+        left: 56%;
+        top: 55%;
+      }
+      #n5 {
+        left: 65%;
+        top: 55%;
+      }
+      #n6 {
+        left: 29%;
+        top: 31%;
+      }
+      #n7 {
+        left: 38%;
+        top: 31%;
+      }
+      #n8 {
+        left: 47%;
+        top: 31%;
+      }
+      #n9 {
+        left: 56%;
+        top: 31%;
+      }
+      #n10 {
+        left: 65%;
+        top: 31%;
+      }
+      #n11 {
+        left: 38%;
+        top: 7%;
+      }
+      #n12 {
+        left: 47%;
+        top: 7%;
+      }
+      #n13 {
+        left: 56%;
+        top: 7%;
+      }
+      #gold {
+        position: absolute;
+        width: 7%;
+        left: 2%;
+      }
+      #go {
+        display: none;
+        position: absolute;
+        width: 10%;
+        left: 17%;
+        top: 32%;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div id="all">
-        <img src="imgs/發牌.png" onclick="deal()" id="deal" />
-        <img src="imgs/n0.png" id="p1" class="cards" />
-        <img src="imgs/n0.png" id="p2" class="cards" />
-        <img src="imgs/n0.png" id="p3" class="cards" />
-        <img src="imgs/n0.png" id="p4" class="cards" />
-        <img src="imgs/n0.png" id="p5" class="cards" />
-        <img src="imgs/n0.png" id="p6" class="cards" />
-        <img src="imgs/n0.png" id="p7" class="cards" />
-        <img src="imgs/n0.png" id="p8" class="cards" />
-        <img src="imgs/n0.png" id="p9" class="cards" />
-        <img src="imgs/n0.png" id="p10" class="cards" />
-        <img src="imgs/n0.png" id="p11" class="cards" />
-        <img src="imgs/n0.png" id="p12" class="cards" />
-        <img src="imgs/n0.png" id="p13" class="cards" />
-        <img src="imgs/n0.png" id="p14" class="cards" />
-        <img src="imgs/n0.png" id="p15" class="cards" />
-        <img src="imgs/n0.png" id="p16" class="cards" />
-        <img src="imgs/系統按鈕1.png" id="s1" class="system" />
-        <img id="s2" class="system" />
-        <img src="imgs/系統按鈕3.png" id="s3" class="system" />
-        <img src="imgs/系統按鈕4.png" id="s4" class="system" />
-        <img src="imgs/系統按鈕5.png" id="s5" class="system" />
-        <img src="imgs/系統按鈕6.png" id="s6" class="system" />
-        <img src="imgs/系統按鈕7.png" id="s7" class="system" />
-        <img src="imgs/牌型按鈕1.png" id="c1" class="type" />
-        <img src="imgs/牌型按鈕2.png" id="c2" class="type" />
-        <img src="imgs/牌型按鈕3.png" id="c3" class="type" />
-        <img src="imgs/牌型按鈕4.png" id="c4" class="type" />
-        <img src="imgs/牌型按鈕5.png" id="c5" class="type" />
-        <img src="imgs/牌型按鈕6.png" id="c6" class="type" />
-        <img src="imgs/牌型按鈕7.png" id="c7" class="type" />
-        <img src="imgs/牌型按鈕8.png" id="c8" class="type" />
-        <img src="imgs/牌型按鈕9.png" id="c9" class="type" />
-        <img src="imgs/n0.png" id="n1" class="block" />
-        <img src="imgs/n0.png" id="n2" class="block" />
-        <img src="imgs/n0.png" id="n3" class="block" />
-        <img src="imgs/n0.png" id="n4" class="block" />
-        <img src="imgs/n0.png" id="n5" class="block" />
-        <img src="imgs/n0.png" id="n6" class="block" />
-        <img src="imgs/n0.png" id="n7" class="block" />
-        <img src="imgs/n0.png" id="n8" class="block" />
-        <img src="imgs/n0.png" id="n9" class="block" />
-        <img src="imgs/n0.png" id="n10" class="block" />
-        <img src="imgs/n0.png" id="n11" class="block" />
-        <img src="imgs/n0.png" id="n12" class="block" />
-        <img src="imgs/n0.png" id="n13" class="block" />
-        <img src="imgs/b0.png" id="gold" />
-        <img src="imgs/出牌.png" id="go" onclick="next()"/>
+      <img src="imgs/發牌.png" onclick="deal()" id="deal" />
+      <img src="imgs/n0.png" id="p1" class="cards" />
+      <img src="imgs/n0.png" id="p2" class="cards" />
+      <img src="imgs/n0.png" id="p3" class="cards" />
+      <img src="imgs/n0.png" id="p4" class="cards" />
+      <img src="imgs/n0.png" id="p5" class="cards" />
+      <img src="imgs/n0.png" id="p6" class="cards" />
+      <img src="imgs/n0.png" id="p7" class="cards" />
+      <img src="imgs/n0.png" id="p8" class="cards" />
+      <img src="imgs/n0.png" id="p9" class="cards" />
+      <img src="imgs/n0.png" id="p10" class="cards" />
+      <img src="imgs/n0.png" id="p11" class="cards" />
+      <img src="imgs/n0.png" id="p12" class="cards" />
+      <img src="imgs/n0.png" id="p13" class="cards" />
+      <img src="imgs/n0.png" id="p14" class="cards" />
+      <img src="imgs/n0.png" id="p15" class="cards" />
+      <img src="imgs/n0.png" id="p16" class="cards" />
+      <img src="imgs/系統按鈕1.png" id="s1" class="system" />
+      <img id="s2" class="system" />
+      <img src="imgs/系統按鈕3.png" id="s3" class="system" />
+      <img src="imgs/系統按鈕4.png" id="s4" class="system" />
+      <img src="imgs/系統按鈕5.png" id="s5" class="system" />
+      <img src="imgs/系統按鈕6.png" id="s6" class="system" />
+      <img src="imgs/系統按鈕7.png" id="s7" class="system" />
+      <img src="imgs/牌型按鈕1.png" id="c1" class="type" />
+      <img src="imgs/牌型按鈕2.png" id="c2" class="type" />
+      <img src="imgs/牌型按鈕3.png" id="c3" class="type" />
+      <img src="imgs/牌型按鈕4.png" id="c4" class="type" />
+      <img src="imgs/牌型按鈕5.png" id="c5" class="type" />
+      <img src="imgs/牌型按鈕6.png" id="c6" class="type" />
+      <img src="imgs/牌型按鈕7.png" id="c7" class="type" />
+      <img src="imgs/牌型按鈕8.png" id="c8" class="type" />
+      <img src="imgs/牌型按鈕9.png" id="c9" class="type" />
+      <img src="imgs/n0.png" id="n1" class="block" />
+      <img src="imgs/n0.png" id="n2" class="block" />
+      <img src="imgs/n0.png" id="n3" class="block" />
+      <img src="imgs/n0.png" id="n4" class="block" />
+      <img src="imgs/n0.png" id="n5" class="block" />
+      <img src="imgs/n0.png" id="n6" class="block" />
+      <img src="imgs/n0.png" id="n7" class="block" />
+      <img src="imgs/n0.png" id="n8" class="block" />
+      <img src="imgs/n0.png" id="n9" class="block" />
+      <img src="imgs/n0.png" id="n10" class="block" />
+      <img src="imgs/n0.png" id="n11" class="block" />
+      <img src="imgs/n0.png" id="n12" class="block" />
+      <img src="imgs/n0.png" id="n13" class="block" />
+      <img src="imgs/b0.png" id="gold" />
+      <img src="imgs/出牌.png" id="go" onclick="next()" />
     </div>
 
     <script>
-        //有poker串列用0~64代表牌庫，index[0]是彩金牌，index[1]~[16]是玩家1，index[17]~[32]是玩家2，index[33]~[48]是玩家，index[49]~[64]是玩家3的手牌
-        //牌型:數字1~13是梅花(c)1~13，14~26是方塊(d)1~13，27~39是紅心(h)1~13，40~65是(s)黑桃1~13共兩次
-        let poker = new Array(65);
-        let playerA = new Array(16);
-        let playerB = new Array(16);
-        let playerC = new Array(16);
-        let playerD = new Array(16);
-        let draw = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];//手牌
-        let head = [-1, -1, -1];//頭墩
-        let mid = [-1, -1, -1, -1, -1];//二道
-        let tail = [-1, -1, -1, -1, -1];//尾墩
-        let temp = 0;
-        let word = "";
-        let i = 0;
-        let test = 0;
-        let draws = 0;
-        let gold = 0;
-        let sys = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];//配合牌型按鈕使用
-        let now = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];//當前使用的牌型按鈕，再次按下用的準備
-        for (let i = 0; i < 65; i++) {//建立牌組
-            poker[i] = i + 1;
+      //有poker串列用0~64代表牌庫，index[0]是彩金牌，index[1]~[16]是玩家1，index[17]~[32]是玩家2，index[33]~[48]是玩家，index[49]~[64]是玩家3的手牌
+      //牌型:數字1~13是梅花(c)1~13，14~26是方塊(d)1~13，27~39是紅心(h)1~13，40~65是(s)黑桃1~13共兩次
+      let poker = new Array(65);
+      let playerA = new Array(16);
+      let playerB = new Array(16);
+      let playerC = new Array(16);
+      let playerD = new Array(16);
+      let draw = [
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+      ]; //手牌
+      let head = [-1, -1, -1]; //頭墩
+      let mid = [-1, -1, -1, -1, -1]; //二道
+      let tail = [-1, -1, -1, -1, -1]; //尾墩
+      let temp = 0;
+      let word = "";
+      let i = 0;
+      let test = 0;
+      let draws = 0;
+      let gold = 0;
+      let sys = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]; //配合牌型按鈕使用
+      let now = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //當前使用的牌型按鈕，再次按下用的準備
+      for (let i = 0; i < 65; i++) {
+        //建立牌組
+        poker[i] = i + 1;
+      }
+      function shuffle() {
+        //洗牌
+        poker.sort(() => Math.random() - 0.5);
+      }
+      function show() {
+        //展示手牌(如果缺牌還沒做)
+        for (i = 0; i < 16; i++) {
+          //顯示手牌
+          document.querySelector("#p" + (i + 1)).style.left = i * 6.25 + "%";
+          temp = Math.floor(playerA[i] / 13);
+          document.getElementById("p" + (i + 1)).src = easyswitch(
+            temp,
+            playerA,
+            i
+          );
+          document.querySelector("#p" + (i + 1)).style.display = "initial"; //未來有機會改成用動畫
         }
-        function shuffle() {//洗牌
-            poker.sort(() => Math.random() - 0.5);
+      }
+      function deal() {
+        //洗牌並發牌給玩家
+        shuffle();
+        document.querySelector("#deal").style.display = "none";
+        for (i = 1; i <= 16; i++) {
+          //發牌
+          playerA[i - 1] = poker[i];
+          playerB[i - 1] = poker[i + 16];
+          playerC[i - 1] = poker[i + 32];
+          playerD[i - 1] = poker[i + 48];
         }
-        function show() {//展示手牌(如果缺牌還沒做)
-            for (i = 0; i < 16; i++) {//顯示手牌
-                document.querySelector("#p" + (i + 1)).style.left = i * 6.25 + "%";
-                temp = Math.floor(playerA[i] / 13);
-                document.getElementById("p" + (i + 1)).src = easyswitch(temp, playerA, i);
-                document.querySelector("#p" + (i + 1)).style.display = "initial";//未來有機會改成用動畫
-            }
+        temp = Math.floor(poker[0] / 13);
+        document.getElementById("gold").src = easyswitch(temp, poker, 0);
+        show();
+        operate();
+      }
+      function operate() {
+        //操作(顯示按鈕跟實現操作)
+        for (i = 1; i <= 7; i++) {
+          //getelementbyclassname不可用改用這個將就一下
+          document.querySelector("#s" + i).style.display = "initial";
         }
-        function deal() {//洗牌並發牌給玩家
-            shuffle();
-            document.querySelector("#deal").style.display = "none";
-            for (i = 1; i <= 16; i++) {//發牌
-                playerA[i - 1] = poker[i];
-                playerB[i - 1] = poker[i + 16];
-                playerC[i - 1] = poker[i + 32];
-                playerD[i - 1] = poker[i + 48];
-            }
-            temp = Math.floor(poker[0] / 13);
-            document.getElementById("gold").src = easyswitch(temp, poker, 0);
-            show();
-            operate();
+        for (i = 1; i <= 9; i++) {
+          document.querySelector("#c" + i).style.display = "initial";
         }
-        function operate() {//操作(顯示按鈕跟實現操作)
-            for (i = 1; i <= 7; i++) {//getelementbyclassname不可用改用這個將就一下
-                document.querySelector("#s" + i).style.display = "initial";
-            }
-            for (i = 1; i <= 9; i++) {
-                document.querySelector("#c" + i).style.display = "initial";
-            }
-            for (i = 1; i <= 13; i++) {
-                document.querySelector("#n" + i).style.display = "initial";
-            }
-            document.getElementById("all").addEventListener("click", function (e) {
-                word = e.target.id;//word用來分辨觸發點擊的物件ID(p:撲克牌 s:系統按鈕 c:牌型按鈕)
-                if (word[0] == 'p') {//點選撲克牌的場合
-                    if (word.length == 2) {
-                        temp = parseInt(word[1]);//temp是第N張手牌
+        for (i = 1; i <= 13; i++) {
+          document.querySelector("#n" + i).style.display = "initial";
+        }
+        document.getElementById("all").addEventListener(
+          "click",
+          function (e) {
+            word = e.target.id; //word用來分辨觸發點擊的物件ID(p:撲克牌 s:系統按鈕 c:牌型按鈕)
+            if (word[0] == "p") {
+              //點選撲克牌的場合
+              if (word.length == 2) {
+                temp = parseInt(word[1]); //temp是第N張手牌
+              } else {
+                temp = parseInt(word[1]) * 10 + parseInt(word[2]);
+              }
+              let searchField = "b0";
+              if (
+                document.getElementById("p" + temp).src.indexOf(searchField) !==
+                -1
+              ) {
+                //控制背面的牌不能選
+              } else {
+                test = -1;
+                for (let j = 0; j < 16; j++) {
+                  if (draw[j] == temp) {
+                    test = j;
+                    break;
+                  }
+                }
+                if (test == -1) {
+                  //不在draw裡就加進draw
+                  document.querySelector("#" + word).style.top = 78 + "%";
+                  for (let j = 0; j < 16; j++) {
+                    if (draw[j] == -1) {
+                      draw[j] = temp;
+                      break;
                     }
-                    else {
-                        temp = parseInt(word[1]) * 10 + parseInt(word[2]);
+                  }
+                } else {
+                  //在draw裡就丟出draw
+                  document.querySelector("#" + word).style.top = 82 + "%";
+                  draw[test] = -1;
+                }
+              }
+            } else {
+              if (word[0] == "s") {
+                //點選系統按鈕的場合
+                temp = parseInt(word[1]);
+                switch (temp) {
+                  case 1: //清空
+                    for (let j = 0; j < 16; j++) {
+                      if (draw[j] != -1) {
+                        draw[j] = -1;
+                      }
+                      playerA[j] = poker[j + 1];
                     }
-                    let searchField = 'b0';
-                    if (document.getElementById("p" + temp).src.indexOf(searchField) !== -1) {
-                        //控制背面的牌不能選
+                    i = 0;
+                    for (let j = 1; j <= 13; j++) {
+                      document.getElementById("n" + j).src = "imgs/n0.png";
                     }
-                    else {
-                        test = -1;
-                        for (let j = 0; j < 16; j++) {
-                            if (draw[j] == temp) {
-                                test = j;
-                                break;
-                            }
+                    for (let j = 1; j <= 16; j++) {
+                      document.querySelector("#p" + j).style.top = 82 + "%";
+                    }
+                    head = [0, 0, 0];
+                    mid = [0, 0, 0, 0, 0];
+                    tail = [0, 0, 0, 0, 0];
+                    show();
+                    document.querySelector("#go").style.display = "none";
+                    break;
+                  case 2: //自動(最後再處理)現在是開網頁的資料傳遞方法的測試
+                    break;
+                  case 3: //放入頭墩
+                    draws = 11;
+                    if (put(3)) {
+                      for (let j = 0; j < 16; j++) {
+                        if (draw[j] != -1) {
+                          temp = Math.floor(playerA[draw[j] - 1] / 13);
+                          head[draws - 11] = playerA[draw[j] - 1];
+                          document.getElementById("n" + draws).src = easyswitch(
+                            temp,
+                            playerA,
+                            parseInt(draw[j]) - 1
+                          );
+                          document.querySelector("#p" + draw[j]).style.top =
+                            82 + "%";
+                          draws++;
+                          playerA[draw[j] - 1] = -1;
+                          draw[j] = -1;
                         }
-                        if (test == -1) {//不在draw裡就加進draw
-                            document.querySelector("#" + word).style.top = 78 + "%";
+                      }
+                      show();
+                      if (mid[0] > 0 && tail[0] > 0) {
+                        document.querySelector("#go").style.display = "initial";
+                        document
+                          .getElementById("go")
+                          .addEventListener("click", function () {
+                            window.open("13支-比牌環節-01157108+01157103.html");
+                            window.opener = null;
+                            window.close();
+                          });
+                      }
+                    }
+                    break;
+                  case 4: //放入二道
+                    draws = 6;
+                    if (put(5)) {
+                      for (let j = 0; j < 16; j++) {
+                        if (draw[j] != -1) {
+                          temp = Math.floor(playerA[draw[j] - 1] / 13);
+                          mid[draws - 6] = playerA[draw[j] - 1];
+                          document.getElementById("n" + draws).src = easyswitch(
+                            temp,
+                            playerA,
+                            parseInt(draw[j]) - 1
+                          );
+                          document.querySelector("#p" + draw[j]).style.top =
+                            82 + "%";
+                          draws++;
+                          playerA[draw[j] - 1] = -1;
+                          draw[j] = -1;
+                        }
+                      }
+                      show();
+                      if (head[0] > 0 && tail[0] > 0) {
+                        document.querySelector("#go").style.display = "initial";
+                        document
+                          .getElementById("go")
+                          .addEventListener("click", function () {
+                            window.open("13支-比牌環節-01157108+01157103.html");
+                            window.opener = null;
+                            window.close();
+                          });
+                      }
+                    }
+                    break;
+                  case 5: //放入尾墩
+                    draws = 1;
+                    if (put(5)) {
+                      for (let j = 0; j < 16; j++) {
+                        if (draw[j] != -1) {
+                          temp = Math.floor(playerA[draw[j] - 1] / 13);
+                          tail[draws - 1] = playerA[draw[j] - 1];
+                          document.getElementById("n" + draws).src = easyswitch(
+                            temp,
+                            playerA,
+                            parseInt(draw[j]) - 1
+                          );
+                          document.querySelector("#p" + draw[j]).style.top =
+                            82 + "%";
+                          draws++;
+                          playerA[draw[j] - 1] = -1;
+                          draw[j] = -1;
+                        }
+                      }
+                      show();
+                      if (mid[0] > 0 && head[0] > 0) {
+                        document.querySelector("#go").style.display = "initial";
+                        document
+                          .getElementById("go")
+                          .addEventListener("click", function () {
+                            window.open("13支-比牌環節-01157108+01157103.html");
+                            window.opener = null;
+                            window.close();
+                          });
+                      }
+                    }
+                  case 6: //依大小排序
+                    for (let j = 0; j < 16; j++) {
+                      if (draw[j] != -1) {
+                        document.querySelector("#p" + draw[j]).style.top =
+                          82 + "%";
+                        draw[j] = -1;
+                      }
+                    }
+                    playerA.sort(function (a, b) {
+                      a %= 13;
+                      if (a == 0) a = 13;
+                      b %= 13;
+                      if (b == 0) b = 13;
+                      return a - b;
+                    });
+                    show();
+                    break;
+                  case 7: //依花色排序
+                    for (let j = 0; j < 16; j++) {
+                      if (draw[j] != -1) {
+                        document.querySelector("#p" + draw[j]).style.top =
+                          82 + "%";
+                        draw[j] = -1;
+                      }
+                    }
+                    playerA.sort(function (a, b) {
+                      return a - b;
+                    });
+                    show();
+                    break;
+                }
+              } else {
+                //點選牌型按鈕的場合
+                if (word[0] == "c") {
+                  temp = parseInt(word[1]);
+                  switch (temp) {
+                    case 1: //彩金
+                      for (let j = 0; j < 16; j++) {
+                        draw[j] = -1;
+                        document.querySelector("#p" + (j + 1)).style.top =
+                          82 + "%";
+                      }
+                      now = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //唯一不需要的牌型按鈕
+                      gold = poker[0] % 13;
+                      for (let j = 0; j < 16; j++) {
+                        if (playerA[j] % 13 == gold) {
+                          document.querySelector("#p" + (j + 1)).style.top =
+                            78 + "%";
+                          draw[j] = j + 1;
+                        }
+                      }
+                      break;
+                    case 2: //五枚
+                      if (now[0] == 2) {
+                        test = 0;
+                        for (let j = now[1] + 1; j < 16; j++) {
+                          if (sys[j] == 5) {
+                            test = 1;
                             for (let j = 0; j < 16; j++) {
-                                if (draw[j] == -1) {
-                                    draw[j] = temp;
-                                    break;
-                                }
+                              draw[j] = -1;
+                              document.querySelector("#p" + (j + 1)).style.top =
+                                82 + "%";
                             }
+                            for (let k = 0; k < 16; k++) {
+                              if (playerA[k] % 13 == j) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                              }
+                            }
+                            now[1] = j;
+                            break;
+                          }
                         }
-                        else {//在draw裡就丟出draw
-                            document.querySelector("#" + word).style.top = 82 + "%";
-                            draw[test] = -1;
-                        }
-                    }
-                }
-                else {
-                    if (word[0] == 's') {//點選系統按鈕的場合
-                        temp = parseInt(word[1]);
-                        switch (temp) {
-                            case 1://清空
-                                for (let j = 0; j < 16; j++) {
-                                    if (draw[j] != -1) {
-                                        draw[j] = -1;
-                                    }
-                                    playerA[j] = poker[j + 1];
+                        if (test == 0) {
+                          for (let j = 0; j < 16; j++) {
+                            if (sys[j] == 5) {
+                              test = 1;
+                              for (let j = 0; j < 16; j++) {
+                                draw[j] = -1;
+                                document.querySelector(
+                                  "#p" + (j + 1)
+                                ).style.top = 82 + "%";
+                              }
+                              for (let k = 0; k < 16; k++) {
+                                if (playerA[k] % 13 == j) {
+                                  document.querySelector(
+                                    "#p" + (k + 1)
+                                  ).style.top = 78 + "%";
+                                  draw[k] = k + 1;
                                 }
+                              }
+                              now[1] = j;
+                              break;
+                            }
+                          }
+                        }
+                      } else {
+                        for (let j = 0; j < 16; j++) {
+                          draw[j] = -1;
+                          document.querySelector("#p" + (j + 1)).style.top =
+                            82 + "%";
+                        }
+                        now[0] = 2;
+                        sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                        for (let j = 0; j < 16; j++) {
+                          sys[playerA[j] % 13] += 1;
+                        }
+                        for (let j = 0; j < 13; j++) {
+                          if (sys[j] == 5) {
+                            for (let k = 0; k < 16; k++) {
+                              if (playerA[k] % 13 == j) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                              }
+                            }
+                            now[1] = j;
+                            break;
+                          }
+                        }
+                      }
+                      break;
+                    case 3: //同花順(未完成)
+                      for (let j = 0; j < 16; j++) {
+                        draw[j] = -1;
+                        document.querySelector("#p" + (j + 1)).style.top =
+                          82 + "%";
+                      }
+                      now[0] = 6;
+                      sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                      for (let j = 0; j < 16; j++) {
+                        if (playerA[j] < 14) {
+                          sys[0]++;
+                        } else if (playerA[j] < 27) {
+                          sys[1]++;
+                        } else if (playerA[j] < 40) {
+                          sys[2]++;
+                        } else {
+                          sys[3]++;
+                        }
+                      }
+                      for (let j = 0; j < 4; j++) {
+                        test = 0;
+                        if (sys[j] > 4) {
+                          console.log(j);
+                          switch (j) {
+                            case 0: //梅花
+                              now = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                              for (let k = 0; k < 16; k++) {
+                                if (playerA[k] <= 13) {
+                                  now[playerA[k] - 1] = 1;
+                                }
+                              }
+                              for (let k = 0; k < 9; k++) {
                                 i = 0;
-                                for (let j = 1; j <= 13; j++) {
-                                    document.getElementById("n" + j).src = "imgs/n0.png";
+                                if (
+                                  now[k] > 0 &&
+                                  now[k + 1] > 0 &&
+                                  now[k + 2] > 0 &&
+                                  now[k + 3] > 0 &&
+                                  now[k + 4] > 0
+                                ) {
+                                  i = 1;
+                                  gold = k + 1;
+                                  for (let l = 0; l < 16; l++) {
+                                    if (
+                                      playerA[l] % 13 == gold &&
+                                      playerA[l] <= 13
+                                    ) {
+                                      document.querySelector(
+                                        "#p" + (l + 1)
+                                      ).style.top = 78 + "%";
+                                      draw[l] = l + 1;
+                                      break;
+                                    }
+                                  }
+                                  gold = k + 2;
+                                  for (let l = 0; l < 16; l++) {
+                                    if (
+                                      playerA[l] % 13 == gold &&
+                                      playerA[l] <= 13
+                                    ) {
+                                      document.querySelector(
+                                        "#p" + (l + 1)
+                                      ).style.top = 78 + "%";
+                                      draw[l] = l + 1;
+                                      break;
+                                    }
+                                  }
+                                  gold = k + 3;
+                                  for (let l = 0; l < 16; l++) {
+                                    if (
+                                      playerA[l] % 13 == gold &&
+                                      playerA[l] <= 13
+                                    ) {
+                                      document.querySelector(
+                                        "#p" + (l + 1)
+                                      ).style.top = 78 + "%";
+                                      draw[l] = l + 1;
+                                      break;
+                                    }
+                                  }
+                                  gold = k + 4;
+                                  for (let l = 0; l < 16; l++) {
+                                    if (
+                                      playerA[l] % 13 == gold &&
+                                      playerA[l] <= 13
+                                    ) {
+                                      document.querySelector(
+                                        "#p" + (l + 1)
+                                      ).style.top = 78 + "%";
+                                      draw[l] = l + 1;
+                                      break;
+                                    }
+                                  }
+                                  gold = k + 5;
+                                  if (gold == 13) gold = 0;
+                                  for (let l = 0; l < 16; l++) {
+                                    if (
+                                      playerA[l] % 13 == gold &&
+                                      playerA[l] <= 13
+                                    ) {
+                                      document.querySelector(
+                                        "#p" + (l + 1)
+                                      ).style.top = 78 + "%";
+                                      draw[l] = l + 1;
+                                      break;
+                                    }
+                                  }
                                 }
-                                for (let j = 1; j <= 16; j++) {
-                                    document.querySelector("#p" + j).style.top = 82 + "%";
+                                if (i == 1) {
+                                  break;
                                 }
-                                head = [0, 0, 0];
-                                mid = [0, 0, 0, 0, 0];
-                                tail = [0, 0, 0, 0, 0];
-                                show();
-                                document.querySelector("#go").style.display = "none";
-                                break;
-                            case 2://自動(最後再處理)現在是開網頁的資料傳遞方法的測試
-                                
-                                break;
-                            case 3://放入頭墩
-                                draws = 11;
-                                if (put(3)) {
-                                    for (let j = 0; j < 16; j++) {
-                                        if (draw[j] != -1) {
-                                            temp = Math.floor(playerA[draw[j] - 1] / 13);
-                                            head[draws - 11] = playerA[draw[j] - 1];
-                                            document.getElementById("n" + draws).src = easyswitch(temp, playerA, parseInt(draw[j]) - 1);
-                                            document.querySelector("#p" + draw[j]).style.top = 82 + "%";
-                                            draws++;
-                                            playerA[draw[j] - 1] = -1;
-                                            draw[j] = -1;
-                                        }
-                                    }
-                                    show();
-                                    if (mid[0] > 0 && tail[0] > 0) {
-                                        document.querySelector("#go").style.display = "initial";
-                                        document.getElementById("go").addEventListener("click", function () {
-                                            window.open("13支-比牌環節-01157108+01157103.html");
-                                            window.opener = null;
-                                            window.close();
-                                        })
-                                    }
+                              }
+                              break;
+                            case 1: //磚塊
+                              now = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                              for (let k = 0; k < 16; k++) {
+                                if (playerA[k] <= 26 && playerA[k] >= 14) {
+                                  gold = playerA[k] % 13;
+                                  if (gold != 0) {
+                                    now[gold - 1] = 1;
+                                  } else {
+                                    now[12] = 1;
+                                  }
                                 }
-                                break;
-                            case 4://放入二道
-                                draws = 6;
-                                if (put(5)) {
-                                    for (let j = 0; j < 16; j++) {
-                                        if (draw[j] != -1) {
-                                            temp = Math.floor(playerA[draw[j] - 1] / 13);
-                                            mid[draws - 6] = playerA[draw[j] - 1];
-                                            document.getElementById("n" + draws).src = easyswitch(temp, playerA, parseInt(draw[j]) - 1);
-                                            document.querySelector("#p" + draw[j]).style.top = 82 + "%";
-                                            draws++;
-                                            playerA[draw[j] - 1] = -1;
-                                            draw[j] = -1;
-                                        }
+                              }
+                              for (let k = 0; k < 9; k++) {
+                                i = 0;
+                                if (
+                                  now[k] > 0 &&
+                                  now[k + 1] > 0 &&
+                                  now[k + 2] > 0 &&
+                                  now[k + 3] > 0 &&
+                                  now[k + 4] > 0
+                                ) {
+                                  i = 1;
+                                  gold = k + 1;
+                                  for (let l = 0; l < 16; l++) {
+                                    if (
+                                      playerA[l] % 13 == gold &&
+                                      playerA[l] <= 26 &&
+                                      playerA[l] >= 14
+                                    ) {
+                                      document.querySelector(
+                                        "#p" + (l + 1)
+                                      ).style.top = 78 + "%";
+                                      draw[l] = l + 1;
+                                      break;
                                     }
-                                    show();
-                                    if (head[0] > 0 && tail[0] > 0) {
-                                        document.querySelector("#go").style.display = "initial";
-                                        document.getElementById("go").addEventListener("click", function () {
-                                            window.open("13支-比牌環節-01157108+01157103.html");
-                                            window.opener = null;
-                                            window.close();
-                                        })
+                                  }
+                                  gold = k + 2;
+                                  for (let l = 0; l < 16; l++) {
+                                    if (
+                                      playerA[l] % 13 == gold &&
+                                      playerA[l] <= 26 &&
+                                      playerA[l] >= 14
+                                    ) {
+                                      document.querySelector(
+                                        "#p" + (l + 1)
+                                      ).style.top = 78 + "%";
+                                      draw[l] = l + 1;
+                                      break;
                                     }
+                                  }
+                                  gold = k + 3;
+                                  for (let l = 0; l < 16; l++) {
+                                    if (
+                                      playerA[l] % 13 == gold &&
+                                      playerA[l] <= 26 &&
+                                      playerA[l] >= 14
+                                    ) {
+                                      document.querySelector(
+                                        "#p" + (l + 1)
+                                      ).style.top = 78 + "%";
+                                      draw[l] = l + 1;
+                                      break;
+                                    }
+                                  }
+                                  gold = k + 4;
+                                  for (let l = 0; l < 16; l++) {
+                                    if (
+                                      playerA[l] % 13 == gold &&
+                                      playerA[l] <= 26 &&
+                                      playerA[l] >= 14
+                                    ) {
+                                      document.querySelector(
+                                        "#p" + (l + 1)
+                                      ).style.top = 78 + "%";
+                                      draw[l] = l + 1;
+                                      break;
+                                    }
+                                  }
+                                  gold = k + 5;
+                                  if (gold == 13) gold = 0;
+                                  for (let l = 0; l < 16; l++) {
+                                    if (
+                                      playerA[l] % 13 == gold &&
+                                      playerA[l] <= 26 &&
+                                      playerA[l] >= 14
+                                    ) {
+                                      document.querySelector(
+                                        "#p" + (l + 1)
+                                      ).style.top = 78 + "%";
+                                      draw[l] = l + 1;
+                                      break;
+                                    }
+                                  }
                                 }
-                                break;
-                            case 5://放入尾墩
-                                draws = 1;
-                                if (put(5)) {
-                                    for (let j = 0; j < 16; j++) {
-                                        if (draw[j] != -1) {
-                                            temp = Math.floor(playerA[draw[j] - 1] / 13);
-                                            tail[draws - 1] = playerA[draw[j] - 1];
-                                            document.getElementById("n" + draws).src = easyswitch(temp, playerA, parseInt(draw[j]) - 1);
-                                            document.querySelector("#p" + draw[j]).style.top = 82 + "%";
-                                            draws++;
-                                            playerA[draw[j] - 1] = -1;
-                                            draw[j] = -1;
-                                        }
-                                    }
-                                    show();
-                                    if (mid[0] > 0 && head[0] > 0) {
-                                        document.querySelector("#go").style.display = "initial";
-                                        document.getElementById("go").addEventListener("click", function () {
-                                            window.open("13支-比牌環節-01157108+01157103.html");
-                                            window.opener = null;
-                                            window.close();
-                                        })
-                                    }
+                                if (i == 1) {
+                                  break;
                                 }
-                            case 6://依大小排序
-                                for (let j = 0; j < 16; j++) {
-                                    if (draw[j] != -1) {
-                                        document.querySelector("#p" + draw[j]).style.top = 82 + "%";
-                                        draw[j] = -1;
-                                    }
+                              }
+                              break;
+                            case 2: //愛心
+                              now = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                              for (let k = 0; k < 16; k++) {
+                                if (playerA[k] <= 39 && playerA[k] >= 27) {
+                                  gold = playerA[k] % 13;
+                                  if (gold != 0) {
+                                    now[gold - 1] = 1;
+                                  } else {
+                                    now[12] = 1;
+                                  }
                                 }
-                                playerA.sort(function (a, b) {
-                                    a %= 13;
-                                    if (a == 0) a = 13;
-                                    b %= 13;
-                                    if (b == 0) b = 13;
-                                    return a - b;
-                                });
-                                show();
-                                break;
-                            case 7://依花色排序
-                                for (let j = 0; j < 16; j++) {
-                                    if (draw[j] != -1) {
-                                        document.querySelector("#p" + draw[j]).style.top = 82 + "%";
-                                        draw[j] = -1;
+                              }
+                              for (let k = 0; k < 9; k++) {
+                                i = 0;
+                                if (
+                                  now[k] > 0 &&
+                                  now[k + 1] > 0 &&
+                                  now[k + 2] > 0 &&
+                                  now[k + 3] > 0 &&
+                                  now[k + 4] > 0
+                                ) {
+                                  i == 1;
+                                  gold = k + 1;
+                                  for (let l = 0; l < 16; l++) {
+                                    if (
+                                      playerA[l] % 13 == gold &&
+                                      playerA[l] <= 39 &&
+                                      playerA[l] >= 27
+                                    ) {
+                                      document.querySelector(
+                                        "#p" + (l + 1)
+                                      ).style.top = 78 + "%";
+                                      draw[l] = l + 1;
+                                      break;
                                     }
+                                  }
+                                  gold = k + 2;
+                                  for (let l = 0; l < 16; l++) {
+                                    if (
+                                      playerA[l] % 13 == gold &&
+                                      playerA[l] <= 39 &&
+                                      playerA[l] >= 27
+                                    ) {
+                                      document.querySelector(
+                                        "#p" + (l + 1)
+                                      ).style.top = 78 + "%";
+                                      draw[l] = l + 1;
+                                      break;
+                                    }
+                                  }
+                                  gold = k + 3;
+                                  for (let l = 0; l < 16; l++) {
+                                    if (
+                                      playerA[l] % 13 == gold &&
+                                      playerA[l] <= 39 &&
+                                      playerA[l] >= 27
+                                    ) {
+                                      document.querySelector(
+                                        "#p" + (l + 1)
+                                      ).style.top = 78 + "%";
+                                      draw[l] = l + 1;
+                                      break;
+                                    }
+                                  }
+                                  gold = k + 4;
+                                  for (let l = 0; l < 16; l++) {
+                                    if (
+                                      playerA[l] % 13 == gold &&
+                                      playerA[l] <= 39 &&
+                                      playerA[l] >= 27
+                                    ) {
+                                      document.querySelector(
+                                        "#p" + (l + 1)
+                                      ).style.top = 78 + "%";
+                                      draw[l] = l + 1;
+                                      break;
+                                    }
+                                  }
+                                  gold = k + 5;
+                                  if (gold == 13) gold = 0;
+                                  for (let l = 0; l < 16; l++) {
+                                    if (
+                                      playerA[l] % 13 == gold &&
+                                      playerA[l] <= 39 &&
+                                      playerA[l] >= 27
+                                    ) {
+                                      document.querySelector(
+                                        "#p" + (l + 1)
+                                      ).style.top = 78 + "%";
+                                      draw[l] = l + 1;
+                                      break;
+                                    }
+                                  }
                                 }
-                                playerA.sort(function (a, b) {
-                                    return a - b;
-                                });
-                                show();
-                                break;
+                                if ((i = 1)) {
+                                  break;
+                                }
+                              }
+                              break;
+                            case 3: //黑桃
+                              now = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                              for (let k = 0; k < 16; k++) {
+                                if (playerA[k] >= 40) {
+                                  gold = playerA[k] % 13;
+                                  if (gold != 0) {
+                                    now[gold - 1] = 1;
+                                  } else {
+                                    now[12] = 1;
+                                  }
+                                }
+                              }
+                              for (let k = 0; k < 9; k++) {
+                                i = 0;
+                                if (
+                                  now[k] > 0 &&
+                                  now[k + 1] > 0 &&
+                                  now[k + 2] > 0 &&
+                                  now[k + 3] > 0 &&
+                                  now[k + 4] > 0
+                                ) {
+                                  i = 1;
+                                  gold = k + 1;
+                                  for (let l = 0; l < 16; l++) {
+                                    if (
+                                      playerA[l] % 13 == gold &&
+                                      playerA[l] >= 40
+                                    ) {
+                                      document.querySelector(
+                                        "#p" + (l + 1)
+                                      ).style.top = 78 + "%";
+                                      draw[l] = l + 1;
+                                      break;
+                                    }
+                                  }
+                                  gold = k + 2;
+                                  for (let l = 0; l < 16; l++) {
+                                    if (
+                                      playerA[l] % 13 == gold &&
+                                      playerA[l] >= 40
+                                    ) {
+                                      document.querySelector(
+                                        "#p" + (l + 1)
+                                      ).style.top = 78 + "%";
+                                      draw[l] = l + 1;
+                                      break;
+                                    }
+                                  }
+                                  gold = k + 3;
+                                  for (let l = 0; l < 16; l++) {
+                                    if (
+                                      playerA[l] % 13 == gold &&
+                                      playerA[l] >= 40
+                                    ) {
+                                      document.querySelector(
+                                        "#p" + (l + 1)
+                                      ).style.top = 78 + "%";
+                                      draw[l] = l + 1;
+                                      break;
+                                    }
+                                  }
+                                  gold = k + 4;
+                                  for (let l = 0; l < 16; l++) {
+                                    if (
+                                      playerA[l] % 13 == gold &&
+                                      playerA[l] >= 40
+                                    ) {
+                                      document.querySelector(
+                                        "#p" + (l + 1)
+                                      ).style.top = 78 + "%";
+                                      draw[l] = l + 1;
+                                      break;
+                                    }
+                                  }
+                                  gold = k + 5;
+                                  if (gold == 13) gold = 0;
+                                  for (let l = 0; l < 16; l++) {
+                                    if (
+                                      playerA[l] % 13 == gold &&
+                                      playerA[l] >= 40
+                                    ) {
+                                      document.querySelector(
+                                        "#p" + (l + 1)
+                                      ).style.top = 78 + "%";
+                                      draw[l] = l + 1;
+                                      break;
+                                    }
+                                  }
+                                }
+                                if (i == 1) {
+                                  break;
+                                }
+                              }
+                              break;
+                          }
                         }
-                    }
-                    else {//點選牌型按鈕的場合
-                        if (word[0] == 'c') {
-                            temp = parseInt(word[1]);
-                            switch (temp) {
-                                case 1://彩金   
-                                    for (let j = 0; j < 16; j++) {
-                                        draw[j] = -1;
-                                        document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
-                                    }
-                                    now = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];//唯一不需要的牌型按鈕
-                                    gold = poker[0] % 13;
-                                    for (let j = 0; j < 16; j++) {
-                                        if (playerA[j] % 13 == gold) {
-                                            document.querySelector("#p" + (j + 1)).style.top = 78 + "%";
-                                            draw[j] = j + 1;
-                                        }
-                                    }
-                                    break;
-                                case 2://五枚
-                                    if (now[0] == 2) {
-                                        test = 0;
-                                        for (let j = now[1] + 1; j < 16; j++) {
-                                            if (sys[j] == 5) {
-                                                test = 1;
-                                                for (let j = 0; j < 16; j++) {
-                                                    draw[j] = -1;
-                                                    document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
-                                                }
-                                                for (let k = 0; k < 16; k++) {
-                                                    if (playerA[k] % 13 == j) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78 + "%";
-                                                        draw[k] = k + 1;
-                                                    }
-                                                }
-                                                now[1] = j;
-                                                break;
-                                            }
-                                        }
-                                        if (test == 0) {
-                                            for (let j = 0; j < 16; j++) {
-                                                if (sys[j] == 5) {
-                                                    test = 1;
-                                                    for (let j = 0; j < 16; j++) {
-                                                        draw[j] = -1;
-                                                        document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
-                                                    }
-                                                    for (let k = 0; k < 16; k++) {
-                                                        if (playerA[k] % 13 == j) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 78 + "%";
-                                                            draw[k] = k + 1;
-                                                        }
-                                                    }
-                                                    now[1] = j;
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    else {
-                                        for (let j = 0; j < 16; j++) {
-                                            draw[j] = -1;
-                                            document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
-                                        }
-                                        now[0] = 2;
-                                        sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                                        for (let j = 0; j < 16; j++) {
-                                            sys[playerA[j] % 13] += 1;
-                                        }
-                                        for (let j = 0; j < 13; j++) {
-                                            if (sys[j] == 5) {
-                                                for (let k = 0; k < 16; k++) {
-                                                    if (playerA[k] % 13 == j) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78 + "%";
-                                                        draw[k] = k + 1;
-                                                    }
-                                                }
-                                                now[1] = j;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    break;
-                                case 3://同花順(未完成)
-                                    for (let j = 0; j < 16; j++) {
-                                        draw[j] = -1;
-                                        document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
-                                    }
-                                    now[0] = 6;
-                                    sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                                    for (let j = 0; j < 16; j++) {
-                                        if (playerA[j] < 14) {
-                                            sys[0]++;
-                                        }
-                                        else if (playerA[j] < 27) {
-                                            sys[1]++;
-                                        }
-                                        else if (playerA[j] < 40) {
-                                            sys[2]++;
-                                        }
-                                        else {
-                                            sys[3]++;
-                                        }
-                                    }    
-                                    for (let j = 0; j < 4; j++) {
-                                        test = 0;                                        
-                                        if (sys[j] > 4) {
-                                            console.log(j);
-                                            switch (j) {
-                                                case 0://梅花
-                                                    now = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                                                    for (let k = 0; k < 16; k++) {
-                                                        if (playerA[k] <= 13) {
-                                                            now[playerA[k] - 1] = 1;
-                                                        }
-                                                    }
-                                                    for (let k = 0; k < 9; k++) {
-                                                        i = 0;
-                                                        if (now[k] > 0 && now[k + 1] > 0 && now[k + 2] > 0 && now[k + 3] > 0 && now[k + 4] > 0) {
-                                                            i = 1;
-                                                            gold = k + 1;
-                                                            for (let l = 0; l < 16; l++) {
-                                                                if (playerA[l] % 13 == gold && playerA[l] <= 13) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 78 + "%";
-                                                                    draw[l] = l + 1;
-                                                                    break;
-                                                                }
-                                                            }
-                                                            gold = k + 2;
-                                                            for (let l = 0; l < 16; l++) {
-                                                                if (playerA[l] % 13 == gold && playerA[l] <= 13) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 78 + "%";
-                                                                    draw[l] = l + 1;
-                                                                    break;
-                                                                }
-                                                            }
-                                                            gold = k + 3;
-                                                            for (let l = 0; l < 16; l++) {
-                                                                if (playerA[l] % 13 == gold && playerA[l] <= 13) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 78 + "%";
-                                                                    draw[l] = l + 1;
-                                                                    break;
-                                                                }
-                                                            }
-                                                            gold = k + 4;
-                                                            for (let l = 0; l < 16; l++) {
-                                                                if (playerA[l] % 13 == gold && playerA[l] <= 13) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 78 + "%";
-                                                                    draw[l] = l + 1;
-                                                                    break;
-                                                                }
-                                                            }
-                                                            gold = k + 5;
-                                                            if (gold == 13) gold = 0;
-                                                            for (let l = 0; l < 16; l++) {
-                                                                if (playerA[l] % 13 == gold && playerA[l] <= 13) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 78 + "%";
-                                                                    draw[l] = l + 1;
-                                                                    break;
-                                                                }
-                                                            }
-                                                        }
-                                                        if (i == 1) {
-                                                            break;
-                                                        }
-                                                    }
-                                                    break;
-                                                case 1://磚塊
-                                                    now = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                                                    for (let k = 0; k < 16; k++) {
-                                                        if (playerA[k] <= 26 && playerA[k] >= 14) {
-                                                            gold = playerA[k] % 13;
-                                                            if (gold != 0) {
-                                                                now[gold - 1] = 1;
-                                                            }
-                                                            else {
-                                                                now[12] = 1;
-                                                            }
-                                                        }
-                                                    }
-                                                    for (let k = 0; k < 9; k++) {
-                                                        i = 0;
-                                                        if (now[k] > 0 && now[k + 1] > 0 && now[k + 2] > 0 && now[k + 3] > 0 && now[k + 4] > 0) {
-                                                            i = 1;
-                                                            gold = k + 1;
-                                                            for (let l = 0; l < 16; l++) {
-                                                                if (playerA[l] % 13 == gold && playerA[l] <= 26 && playerA[l] >= 14) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 78 + "%";
-                                                                    draw[l] = l + 1;
-                                                                    break;
-                                                                }
-                                                            }
-                                                            gold = k + 2;
-                                                            for (let l = 0; l < 16; l++) {
-                                                                if (playerA[l] % 13 == gold && playerA[l] <= 26 && playerA[l] >= 14) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 78 + "%";
-                                                                    draw[l] = l + 1;
-                                                                    break;
-                                                                }
-                                                            }
-                                                            gold = k + 3;
-                                                            for (let l = 0; l < 16; l++) {
-                                                                if (playerA[l] % 13 == gold && playerA[l] <= 26 && playerA[l] >= 14) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 78 + "%";
-                                                                    draw[l] = l + 1;
-                                                                    break;
-                                                                }
-                                                            }
-                                                            gold = k + 4;
-                                                            for (let l = 0; l < 16; l++) {
-                                                                if (playerA[l] % 13 == gold && playerA[l] <= 26 && playerA[l] >= 14) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
-                                                                    draw[l] = l + 1;
-                                                                    break;
-                                                                }
-                                                            }
-                                                            gold = k + 5;
-                                                            if (gold == 13) gold = 0;
-                                                            for (let l = 0; l < 16; l++) {
-                                                                if (playerA[l] % 13 == gold && playerA[l] <= 26 && playerA[l] >= 14) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
-                                                                    draw[l] = l + 1;
-                                                                    break;
-                                                                }
-                                                            }
-                                                        }  
-                                                        if (i == 1) {
-                                                            break;
-                                                        }
-                                                    }
-                                                    break;
-                                                case 2://愛心
-                                                    now = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                                                    for (let k = 0; k < 16; k++) {
-                                                        if (playerA[k] <= 39 && playerA[k] >= 27) {
-                                                            gold = playerA[k] % 13;
-                                                            if (gold != 0) {
-                                                                now[gold - 1] = 1;
-                                                            }
-                                                            else {
-                                                                now[12] = 1;
-                                                            }
-                                                        }
-                                                    }
-                                                    for (let k = 0; k < 9; k++) {
-                                                        i = 0;
-                                                        if (now[k] > 0 && now[k + 1] > 0 && now[k + 2] > 0 && now[k + 3] > 0 && now[k + 4] > 0) {
-                                                            i == 1;
-                                                            gold = k + 1;
-                                                            for (let l = 0; l < 16; l++) {
-                                                                if (playerA[l] % 13 == gold && playerA[l] <= 39 && playerA[l] >= 27) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
-                                                                    draw[l] = l + 1;
-                                                                    break;
-                                                                }
-                                                            }
-                                                            gold = k + 2;
-                                                            for (let l = 0; l < 16; l++) {
-                                                                if (playerA[l] % 13 == gold && playerA[l] <= 39 && playerA[l] >= 27) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
-                                                                    draw[l] = l + 1;
-                                                                    break;
-                                                                }
-                                                            }
-                                                            gold = k + 3;
-                                                            for (let l = 0; l < 16; l++) {
-                                                                if (playerA[l] % 13 == gold && playerA[l] <= 39 && playerA[l] >= 27) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
-                                                                    draw[l] = l + 1;
-                                                                    break;
-                                                                }
-                                                            }
-                                                            gold = k + 4;
-                                                            for (let l = 0; l < 16; l++) {
-                                                                if (playerA[l] % 13 == gold && playerA[l] <= 39 && playerA[l] >= 27) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
-                                                                    draw[l] = l + 1;
-                                                                    break;
-                                                                }
-                                                            }
-                                                            gold = k + 5;
-                                                            if (gold == 13) gold = 0;
-                                                            for (let l = 0; l < 16; l++) {
-                                                                if (playerA[l] % 13 == gold && playerA[l] <= 39 && playerA[l] >= 27) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
-                                                                    draw[l] = l + 1;
-                                                                    break;
-                                                                }
-                                                            }
-                                                        } 
-                                                        if (i = 1) {
-                                                            break;
-                                                        }
-                                                    }
-                                                    break;
-                                                case 3://黑桃
-                                                    now = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                                                    for (let k = 0; k < 16; k++) {
-                                                        if (playerA[k] >= 40) {
-                                                            gold = playerA[k] % 13;
-                                                            if (gold != 0) {
-                                                                now[gold - 1] = 1;
-                                                            }
-                                                            else {
-                                                                now[12] = 1;
-                                                            }
-                                                        }
-                                                    }
-                                                    for (let k = 0; k < 9; k++) {
-                                                        i = 0;
-                                                        if (now[k] > 0 && now[k + 1] > 0 && now[k + 2] > 0 && now[k + 3] > 0 && now[k + 4] > 0) {
-                                                            i = 1;
-                                                            gold = k + 1;
-                                                            for (let l = 0; l < 16; l++) {
-                                                                if (playerA[l] % 13 == gold && playerA[l] >= 40) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
-                                                                    draw[l] = l + 1;
-                                                                    break;
-                                                                }
-                                                            }
-                                                            gold = k + 2;
-                                                            for (let l = 0; l < 16; l++) {
-                                                                if (playerA[l] % 13 == gold && playerA[l] >= 40) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
-                                                                    draw[l] = l + 1;
-                                                                    break;
-                                                                }
-                                                            }
-                                                            gold = k + 3;
-                                                            for (let l = 0; l < 16; l++) {
-                                                                if (playerA[l] % 13 == gold && playerA[l] >= 40) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
-                                                                    draw[l] = l + 1;
-                                                                    break;
-                                                                }
-                                                            }
-                                                            gold = k + 4;
-                                                            for (let l = 0; l < 16; l++) {
-                                                                if (playerA[l] % 13 == gold && playerA[l] >= 40) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
-                                                                    draw[l] = l + 1;
-                                                                    break;
-                                                                }
-                                                            }
-                                                            gold = k + 5;
-                                                            if (gold == 13) gold = 0;
-                                                            for (let l = 0; l < 16; l++) {
-                                                                if (playerA[l] % 13 == gold && playerA[l] >= 40) {
-                                                                    document.querySelector("#p" + (l + 1)).style.top = 78  + "%";
-                                                                    draw[l] = l + 1;
-                                                                    break;
-                                                                }
-                                                            }
-                                                        } 
-                                                        if (i == 1) {
-                                                            break;
-                                                        }
-                                                    }
-                                                    break;
-                                            }
-                                        }
-                                        console.log(now);
-                                        if (test == 1) {
-                                            break;
-                                        }
-                                    }
-                                    now[0] = 3;
-                                    break;
-                                case 4://鐵支
-                                    if (now[0] == 4) {
-                                        test = 0;
-                                        for (let j = now[1] + 1; j < 16; j++) {
-                                            if (sys[j] == 4) {
-                                                test = 1;
-                                                for (let j = 0; j < 16; j++) {
-                                                    draw[j] = -1;
-                                                    document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
-                                                }
-                                                for (let k = 0; k < 16; k++) {
-                                                    if (playerA[k] % 13 == j) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                        draw[k] = k + 1;
-                                                    }
-                                                }
-                                                now[1] = j;
-                                                break;
-                                            }
-                                        }
-                                        if (test == 0) {
-                                            for (let j = 0; j < 16; j++) {
-                                                if (sys[j] == 4) {
-                                                    test = 1;
-                                                    for (let j = 0; j < 16; j++) {
-                                                        draw[j] = -1;
-                                                        document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
-                                                    }
-                                                    for (let k = 0; k < 16; k++) {
-                                                        if (playerA[k] % 13 == j) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                            draw[k] = k + 1;
-                                                        }
-                                                    }
-                                                    now[1] = j;
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    else {
-                                        for (let j = 0; j < 16; j++) {
-                                            draw[j] = -1;
-                                            document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
-                                        }
-                                        now[0] = 4;
-                                        sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                                        for (let j = 0; j < 16; j++) {
-                                            sys[playerA[j] % 13] += 1;
-                                        }
-                                        for (let j = 0; j < 13; j++) {
-                                            if (sys[j] == 4) {
-                                                for (let k = 0; k < 16; k++) {
-                                                    if (playerA[k] % 13 == j) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                        draw[k] = k + 1;
-                                                    }
-                                                }
-                                                now[1] = j;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    break;
-                                case 5://葫蘆
-                                    if (now[0] == 5) {
-                                        test = 0;
-                                        gold = 0;
-                                        for (let j = now[1] + 1; j < 16; j++) {
-                                            if (sys[j] == 3) {
-                                                test = 1;
-                                                for (let j = 0; j < 16; j++) {
-                                                    draw[j] = -1;
-                                                    document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
-                                                }
-                                                for (let k = 0; k < 16; k++) {
-                                                    if (playerA[k] % 13 == j) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                        draw[k] = k + 1;
-                                                    }
-                                                }
-                                                now[1] = j;
-                                                break;
-                                            }
-                                        }
-                                        for (let j = now[2] + 1; j < 16; j++) {
-                                            if (sys[j] == 2) {
-                                                gold = 1;
-                                                if (test == 0) {
-                                                    for (let j = 0; j < 16; j++) {
-                                                        draw[j] = -1;
-                                                        document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
-                                                    }
-                                                }
-                                                for (let k = 0; k < 16; k++) {
-                                                    if (playerA[k] % 13 == j) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                        draw[k] = k + 1;
-                                                    }
-                                                }
-                                                now[2] = j;
-                                                break;
-                                            }
-                                        }
-                                        if (test == 0 && gold == 0) {//00
-                                            for (let j = 0; j < 16; j++) {
-                                                if (sys[j] == 3) {
-                                                    test = 1;
-                                                    for (let j = 0; j < 16; j++) {
-                                                        draw[j] = -1;
-                                                        document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
-                                                    }
-                                                    for (let k = 0; k < 16; k++) {
-                                                        if (playerA[k] % 13 == j) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                            draw[k] = k + 1;
-                                                        }
-                                                    }
-                                                    now[1] = j;
-                                                    break;
-                                                }
-                                            }
-                                            for (let j = 0; j < 16; j++) {
-                                                if (sys[j] == 2) {
-                                                    test = 1;
-                                                    for (let k = 0; k < 16; k++) {
-                                                        if (playerA[k] % 13 == j) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                            draw[k] = k + 1;
-                                                        }
-                                                    }
-                                                    now[2] = j;
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                        else if (test == 0) {//01
-                                            for (let j = 0; j < 16; j++) {
-                                                if (sys[j] == 3) {
-                                                    for (let k = 0; k < 16; k++) {
-                                                        if (playerA[k] % 13 == j) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                            draw[k] = k + 1;
-                                                        }
-                                                    }
-                                                    now[1] = j;
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                        else if (gold == 0) {//10
-                                            for (let j = 0; j < 16; j++) {
-                                                if (sys[j] == 2) {
-                                                    for (let k = 0; k < 16; k++) {
-                                                        if (playerA[k] % 13 == j) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                            draw[k] = k + 1;
-                                                        }
-                                                    }
-                                                    now[2] = j;
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    else {
-                                        for (let j = 0; j < 16; j++) {
-                                            draw[j] = -1;
-                                            document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
-                                        }
-                                        now = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                                        now[0] = 5;
-                                        sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                                        for (let j = 0; j < 16; j++) {
-                                            sys[playerA[j] % 13] += 1;
-                                        }
-                                        for (let j = 0; j < 13; j++) {
-                                            if (sys[j] == 3) {
-                                                now[3]++;
-                                            }
-                                            if (sys[j] == 2) {
-                                                now[4]++;
-                                            }
-                                        }
-                                        if (now[3] > 0 && now[4] > 0) {
-                                            for (let j = 0; j < 13; j++) {
-                                                if (sys[j] == 3) {
-                                                    for (let k = 0; k < 16; k++) {
-                                                        if (playerA[k] % 13 == j) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                            draw[k] = k + 1;
-                                                        }
-                                                    }
-                                                    now[1] = j;
-                                                    break;
-                                                }
-                                            }
-                                            for (let j = 0; j < 13; j++) {
-                                                if (sys[j] == 2) {
-                                                    for (let k = 0; k < 16; k++) {
-                                                        if (playerA[k] % 13 == j) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                            draw[k] = k + 1;
-                                                        }
-                                                    }
-                                                    now[2] = j;
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                    }                                    
-                                    break;
-                                case 6://同花
-                                    if (now[0] == 6) {
-                                        test = 0;
-                                        for (let j = now[1] + 1; j < 4; j++) {
-                                            if (sys[j] >= 5) {
-                                                test = 1;
-                                                for (let k = 0; k < 16; k++) {
-                                                    draw[k] = -1;
-                                                    document.querySelector("#p" + (k + 1)).style.top = 82 + "%";
-                                                }
-                                                for (let k = 0; k < 16; k++) {
-                                                    if (j == 3 && playerA[k] > 39) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                        draw[k] = k + 1;
-                                                    }
-                                                    else if (playerA[k] < (14 + 13 * j) && playerA[k] > (13 * j)) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                        draw[k] = k + 1;
-                                                    }
-                                                }
-                                                now[1] = j;
-                                                break;
-                                            }
-                                        }
-                                        if (test == 0) {
-                                            for (let j = 0; j < 4; j++) {
-                                                if (sys[j] >= 5) {
-                                                    test = 1;
-                                                    for (let k = 0; k < 16; k++) {
-                                                        draw[k] = -1;
-                                                        document.querySelector("#p" + (k + 1)).style.top = 82 + "%";
-                                                    }
-                                                    for (let k = 0; k < 16; k++) {
-                                                        if (j == 3 && playerA[k] > 39) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                            draw[k] = k + 1;
-                                                        }
-                                                        else if (playerA[k] < (14 + 13 * j) && playerA[k] > (13 * j)) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                            draw[k] = k + 1;
-                                                        }
-                                                    }
-                                                    now[1] = j;
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    else {
-                                        for (let j = 0; j < 16; j++) {
-                                            draw[j] = -1;
-                                            document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
-                                        }
-                                        now[0] = 6;
-                                        sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                                        for (let j = 0; j < 16; j++) {
-                                            if (playerA[j] < 14) {
-                                                sys[0]++;
-                                            }
-                                            else if (playerA[j] < 27) {
-                                                sys[1]++;
-                                            }
-                                            else if (playerA[j] < 40) {
-                                                sys[2]++;
-                                            }
-                                            else {
-                                                sys[3]++;
-                                            }
-                                        }
-                                        for (let j = 0; j < 4; j++) {
-                                            if (sys[j] >= 5) {
-                                                for (let k = 0; k < 16; k++) {
-                                                    if (j == 3 && playerA[k] > 39) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                        draw[k] = k + 1;
-                                                    }
-                                                    else if (playerA[k] < (14 + 13 * j) && playerA[k] > (13 * j)) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                        draw[k] = k + 1;
-                                                    }
-                                                }
-                                                now[1] = j;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    break;
-                                case 7://順子
-                                    if (now[0] == 7) {
-                                        test = 0;
-                                        for (let j = now[1] + 1; j < 9; j++) {
-                                            if (sys[j] > 0 && sys[j + 1] > 0 && sys[j + 2] > 0 && sys[j + 3] > 0 && sys[j + 4] > 0) {
-                                                test = 1;
-                                                for (let j = 0; j < 16; j++) {
-                                                    draw[j] = -1;
-                                                    document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
-                                                }
-                                                gold = j + 1;
-                                                for (let k = 0; k < 16; k++) {
-                                                    if (playerA[k] % 13 == gold) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                        draw[k] = k + 1;
-                                                        break;
-                                                    }
-                                                }
-                                                gold = j + 2;
-                                                for (let k = 0; k < 16; k++) {
-                                                    if (playerA[k] % 13 == gold) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                        draw[k] = k + 1;
-                                                        break;
-                                                    }
-                                                }
-                                                gold = j + 3;
-                                                for (let k = 0; k < 16; k++) {
-                                                    if (playerA[k] % 13 == gold) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                        draw[k] = k + 1;
-                                                        break;
-                                                    }
-                                                }
-                                                gold = j + 4;
-                                                for (let k = 0; k < 16; k++) {
-                                                    if (playerA[k] % 13 == gold) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                        draw[k] = k + 1;
-                                                        break;
-                                                    }
-                                                }
-                                                gold = j + 5;
-                                                if (gold == 13) gold = 0;
-                                                for (let k = 0; k < 16; k++) {
-                                                    if (playerA[k] % 13 == gold) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                        draw[k] = k + 1;
-                                                        break;
-                                                    }
-                                                }
-                                                now[1] = j;
-                                                break;
-                                            }
-                                        }
-                                        if (test == 0) {
-                                            for (let j = 0; j < 16; j++) {
-                                                draw[j] = -1;
-                                                document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
-                                            }
-                                            for (let j = 0; j < 9; j++) {
-                                                if (sys[j] > 0 && sys[j + 1] > 0 && sys[j + 2] > 0 && sys[j + 3] > 0 && sys[j + 4] > 0) {
-                                                    gold = j + 1;
-                                                    for (let k = 0; k < 16; k++) {
-                                                        if (playerA[k] % 13 == gold) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                            draw[k] = k + 1;
-                                                            break;
-                                                        }
-                                                    }
-                                                    gold = j + 2;
-                                                    for (let k = 0; k < 16; k++) {
-                                                        if (playerA[k] % 13 == gold) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                            draw[k] = k + 1;
-                                                            break;
-                                                        }
-                                                    }
-                                                    gold = j + 3;
-                                                    for (let k = 0; k < 16; k++) {
-                                                        if (playerA[k] % 13 == gold) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                            draw[k] = k + 1;
-                                                            break;
-                                                        }
-                                                    }
-                                                    gold = j + 4;
-                                                    for (let k = 0; k < 16; k++) {
-                                                        if (playerA[k] % 13 == gold) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                            draw[k] = k + 1;
-                                                            break;
-                                                        }
-                                                    }
-                                                    gold = j + 5;
-                                                    if (gold == 13) gold = 0;
-                                                    for (let k = 0; k < 16; k++) {
-                                                        if (playerA[k] % 13 == gold) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                            draw[k] = k + 1;
-                                                            break;
-                                                        }
-                                                    }
-                                                    now[1] = j;
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    else {
-                                        for (let j = 0; j < 16; j++) {
-                                            draw[j] = -1;
-                                            document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
-                                        }
-                                        now[0] = 7;
-                                        sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                                        for (let j = 0; j < 16; j++) {
-                                            test = playerA[j] % 13;
-                                            if (test != 0) {
-                                                sys[test - 1] += 1;
-                                            }
-                                            else {
-                                                sys[12] += 1;
-                                            }
-                                        }
-                                        for (let j = 0; j < 9; j++) {
-                                            if (sys[j] > 0 && sys[j + 1] > 0 && sys[j + 2] > 0 && sys[j + 3] > 0 && sys[j + 4] > 0) {    
-                                                gold = j + 1;   
-                                                for (let k = 0; k < 16; k++) {
-                                                    if (playerA[k] % 13 == gold) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                        draw[k] = k + 1;
-                                                        break;
-                                                    }
-                                                }
-                                                gold = j + 2;
-                                                for (let k = 0; k < 16; k++) {
-                                                    if (playerA[k] % 13 == gold) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                        draw[k] = k + 1;
-                                                        break;
-                                                    }
-                                                }
-                                                gold = j + 3;
-                                                for (let k = 0; k < 16; k++) {
-                                                    if (playerA[k] % 13 == gold) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                        draw[k] = k + 1;
-                                                        break;
-                                                    }
-                                                }
-                                                gold = j + 4;
-                                                for (let k = 0; k < 16; k++) {
-                                                    if (playerA[k] % 13 == gold) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                        draw[k] = k + 1;
-                                                        break;
-                                                    }
-                                                }
-                                                gold = j + 5;
-                                                if (gold == 13) gold = 0;
-                                                for (let k = 0; k < 16; k++) {
-                                                    if (playerA[k] % 13 == gold) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                        draw[k] = k + 1;
-                                                        break;
-                                                    }
-                                                }
-                                                now[1] = j;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    break;
-                                case 8://三條
-                                    if (now[0] == 8) {
-                                        test = 0;
-                                        for (let j = now[1] + 1; j < 16; j++) {
-                                            if (sys[j] == 3) {
-                                                test = 1;
-                                                for (let j = 0; j < 16; j++) {
-                                                    draw[j] = -1;
-                                                    document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
-                                                }
-                                                for (let k = 0; k < 16; k++) {
-                                                    if (playerA[k] % 13 == j) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                        draw[k] = k + 1;
-                                                    }
-                                                }
-                                                now[1] = j;
-                                                break;
-                                            }
-                                        }
-                                        if (test == 0) {
-                                            for (let j = 0; j < 16; j++) {
-                                                if (sys[j] == 3) {
-                                                    test = 1;
-                                                    for (let j = 0; j < 16; j++) {
-                                                        draw[j] = -1;
-                                                        document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
-                                                    }
-                                                    for (let k = 0; k < 16; k++) {
-                                                        if (playerA[k] % 13 == j) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                            draw[k] = k + 1;
-                                                        }
-                                                    }
-                                                    now[1] = j;
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    else {
-                                        for (let j = 0; j < 16; j++) {
-                                            draw[j] = -1;
-                                            document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
-                                        }
-                                        now[0] = 8;
-                                        sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                                        for (let j = 0; j < 16; j++) {
-                                            sys[playerA[j] % 13] += 1;
-                                        }
-                                        for (let j = 0; j < 13; j++) {
-                                            if (sys[j] == 3) {
-                                                for (let k = 0; k < 16; k++) {
-                                                    if (playerA[k] % 13 == j) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                        draw[k] = k + 1;
-                                                    }
-                                                }
-                                                now[1] = j;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    break;
-                                case 9://對子
-                                    if (now[0] == 9) {
-                                        test = 0;
-                                        for (let j = now[1] + 1; j < 16; j++) {
-                                            if (sys[j] == 2) {
-                                                test = 1;
-                                                for (let j = 0; j < 16; j++) {
-                                                    draw[j] = -1;
-                                                    document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
-                                                }
-                                                for (let k = 0; k < 16; k++) {
-                                                    if (playerA[k] % 13 == j) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                        draw[k] = k + 1;
-                                                    }
-                                                }
-                                                now[1] = j;
-                                                break;
-                                            }
-                                        }
-                                        if (test == 0) {
-                                            for (let j = 0; j < 16; j++) {
-                                                if (sys[j] == 2) {
-                                                    test = 1;
-                                                    for (let j = 0; j < 16; j++) {
-                                                        draw[j] = -1;
-                                                        document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
-                                                    }
-                                                    for (let k = 0; k < 16; k++) {
-                                                        if (playerA[k] % 13 == j) {
-                                                            document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                            draw[k] = k + 1;
-                                                        }
-                                                    }
-                                                    now[1] = j;
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    else {
-                                        for (let j = 0; j < 16; j++) {
-                                            draw[j] = -1;
-                                            document.querySelector("#p" + (j + 1)).style.top = 82 + "%";
-                                        }
-                                        now[0] = 9;
-                                        sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                                        for (let j = 0; j < 16; j++) {
-                                            sys[playerA[j] % 13] += 1;
-                                        }
-                                        for (let j = 0; j < 13; j++) {
-                                            if (sys[j] == 2) {
-                                                for (let k = 0; k < 16; k++) {
-                                                    if (playerA[k] % 13 == j) {
-                                                        document.querySelector("#p" + (k + 1)).style.top = 78  + "%";
-                                                        draw[k] = k + 1;
-                                                    }
-                                                }
-                                                now[1] = j;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    break;
+                        console.log(now);
+                        if (test == 1) {
+                          break;
+                        }
+                      }
+                      now[0] = 3;
+                      break;
+                    case 4: //鐵支
+                      if (now[0] == 4) {
+                        test = 0;
+                        for (let j = now[1] + 1; j < 16; j++) {
+                          if (sys[j] == 4) {
+                            test = 1;
+                            for (let j = 0; j < 16; j++) {
+                              draw[j] = -1;
+                              document.querySelector("#p" + (j + 1)).style.top =
+                                82 + "%";
                             }
-                        }                                           
-                    }
-                }                    
-            }, false);
-        }
-        function put(a) {//方便放入按鈕的判斷
-            let qwer = 0;
-            for (let j = 0; j < 16; j++) {
-                if (draw[j] != -1) {
-                    qwer++;
+                            for (let k = 0; k < 16; k++) {
+                              if (playerA[k] % 13 == j) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                              }
+                            }
+                            now[1] = j;
+                            break;
+                          }
+                        }
+                        if (test == 0) {
+                          for (let j = 0; j < 16; j++) {
+                            if (sys[j] == 4) {
+                              test = 1;
+                              for (let j = 0; j < 16; j++) {
+                                draw[j] = -1;
+                                document.querySelector(
+                                  "#p" + (j + 1)
+                                ).style.top = 82 + "%";
+                              }
+                              for (let k = 0; k < 16; k++) {
+                                if (playerA[k] % 13 == j) {
+                                  document.querySelector(
+                                    "#p" + (k + 1)
+                                  ).style.top = 78 + "%";
+                                  draw[k] = k + 1;
+                                }
+                              }
+                              now[1] = j;
+                              break;
+                            }
+                          }
+                        }
+                      } else {
+                        for (let j = 0; j < 16; j++) {
+                          draw[j] = -1;
+                          document.querySelector("#p" + (j + 1)).style.top =
+                            82 + "%";
+                        }
+                        now[0] = 4;
+                        sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                        for (let j = 0; j < 16; j++) {
+                          sys[playerA[j] % 13] += 1;
+                        }
+                        for (let j = 0; j < 13; j++) {
+                          if (sys[j] == 4) {
+                            for (let k = 0; k < 16; k++) {
+                              if (playerA[k] % 13 == j) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                              }
+                            }
+                            now[1] = j;
+                            break;
+                          }
+                        }
+                      }
+                      break;
+                    case 5: //葫蘆
+                      if (now[0] == 5) {
+                        test = 0;
+                        gold = 0;
+                        for (let j = now[1] + 1; j < 16; j++) {
+                          if (sys[j] == 3) {
+                            test = 1;
+                            for (let j = 0; j < 16; j++) {
+                              draw[j] = -1;
+                              document.querySelector("#p" + (j + 1)).style.top =
+                                82 + "%";
+                            }
+                            for (let k = 0; k < 16; k++) {
+                              if (playerA[k] % 13 == j) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                              }
+                            }
+                            now[1] = j;
+                            break;
+                          }
+                        }
+                        for (let j = now[2] + 1; j < 16; j++) {
+                          if (sys[j] == 2) {
+                            gold = 1;
+                            if (test == 0) {
+                              for (let j = 0; j < 16; j++) {
+                                draw[j] = -1;
+                                document.querySelector(
+                                  "#p" + (j + 1)
+                                ).style.top = 82 + "%";
+                              }
+                            }
+                            for (let k = 0; k < 16; k++) {
+                              if (playerA[k] % 13 == j) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                              }
+                            }
+                            now[2] = j;
+                            break;
+                          }
+                        }
+                        if (test == 0 && gold == 0) {
+                          //00
+                          for (let j = 0; j < 16; j++) {
+                            if (sys[j] == 3) {
+                              test = 1;
+                              for (let j = 0; j < 16; j++) {
+                                draw[j] = -1;
+                                document.querySelector(
+                                  "#p" + (j + 1)
+                                ).style.top = 82 + "%";
+                              }
+                              for (let k = 0; k < 16; k++) {
+                                if (playerA[k] % 13 == j) {
+                                  document.querySelector(
+                                    "#p" + (k + 1)
+                                  ).style.top = 78 + "%";
+                                  draw[k] = k + 1;
+                                }
+                              }
+                              now[1] = j;
+                              break;
+                            }
+                          }
+                          for (let j = 0; j < 16; j++) {
+                            if (sys[j] == 2) {
+                              test = 1;
+                              for (let k = 0; k < 16; k++) {
+                                if (playerA[k] % 13 == j) {
+                                  document.querySelector(
+                                    "#p" + (k + 1)
+                                  ).style.top = 78 + "%";
+                                  draw[k] = k + 1;
+                                }
+                              }
+                              now[2] = j;
+                              break;
+                            }
+                          }
+                        } else if (test == 0) {
+                          //01
+                          for (let j = 0; j < 16; j++) {
+                            if (sys[j] == 3) {
+                              for (let k = 0; k < 16; k++) {
+                                if (playerA[k] % 13 == j) {
+                                  document.querySelector(
+                                    "#p" + (k + 1)
+                                  ).style.top = 78 + "%";
+                                  draw[k] = k + 1;
+                                }
+                              }
+                              now[1] = j;
+                              break;
+                            }
+                          }
+                        } else if (gold == 0) {
+                          //10
+                          for (let j = 0; j < 16; j++) {
+                            if (sys[j] == 2) {
+                              for (let k = 0; k < 16; k++) {
+                                if (playerA[k] % 13 == j) {
+                                  document.querySelector(
+                                    "#p" + (k + 1)
+                                  ).style.top = 78 + "%";
+                                  draw[k] = k + 1;
+                                }
+                              }
+                              now[2] = j;
+                              break;
+                            }
+                          }
+                        }
+                      } else {
+                        for (let j = 0; j < 16; j++) {
+                          draw[j] = -1;
+                          document.querySelector("#p" + (j + 1)).style.top =
+                            82 + "%";
+                        }
+                        now = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                        now[0] = 5;
+                        sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                        for (let j = 0; j < 16; j++) {
+                          sys[playerA[j] % 13] += 1;
+                        }
+                        for (let j = 0; j < 13; j++) {
+                          if (sys[j] == 3) {
+                            now[3]++;
+                          }
+                          if (sys[j] == 2) {
+                            now[4]++;
+                          }
+                        }
+                        if (now[3] > 0 && now[4] > 0) {
+                          for (let j = 0; j < 13; j++) {
+                            if (sys[j] == 3) {
+                              for (let k = 0; k < 16; k++) {
+                                if (playerA[k] % 13 == j) {
+                                  document.querySelector(
+                                    "#p" + (k + 1)
+                                  ).style.top = 78 + "%";
+                                  draw[k] = k + 1;
+                                }
+                              }
+                              now[1] = j;
+                              break;
+                            }
+                          }
+                          for (let j = 0; j < 13; j++) {
+                            if (sys[j] == 2) {
+                              for (let k = 0; k < 16; k++) {
+                                if (playerA[k] % 13 == j) {
+                                  document.querySelector(
+                                    "#p" + (k + 1)
+                                  ).style.top = 78 + "%";
+                                  draw[k] = k + 1;
+                                }
+                              }
+                              now[2] = j;
+                              break;
+                            }
+                          }
+                        }
+                      }
+                      break;
+                    case 6: //同花
+                      if (now[0] == 6) {
+                        test = 0;
+                        for (let j = now[1] + 1; j < 4; j++) {
+                          if (sys[j] >= 5) {
+                            test = 1;
+                            for (let k = 0; k < 16; k++) {
+                              draw[k] = -1;
+                              document.querySelector("#p" + (k + 1)).style.top =
+                                82 + "%";
+                            }
+                            for (let k = 0; k < 16; k++) {
+                              if (j == 3 && playerA[k] > 39) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                              } else if (
+                                playerA[k] < 14 + 13 * j &&
+                                playerA[k] > 13 * j
+                              ) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                              }
+                            }
+                            now[1] = j;
+                            break;
+                          }
+                        }
+                        if (test == 0) {
+                          for (let j = 0; j < 4; j++) {
+                            if (sys[j] >= 5) {
+                              test = 1;
+                              for (let k = 0; k < 16; k++) {
+                                draw[k] = -1;
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 82 + "%";
+                              }
+                              for (let k = 0; k < 16; k++) {
+                                if (j == 3 && playerA[k] > 39) {
+                                  document.querySelector(
+                                    "#p" + (k + 1)
+                                  ).style.top = 78 + "%";
+                                  draw[k] = k + 1;
+                                } else if (
+                                  playerA[k] < 14 + 13 * j &&
+                                  playerA[k] > 13 * j
+                                ) {
+                                  document.querySelector(
+                                    "#p" + (k + 1)
+                                  ).style.top = 78 + "%";
+                                  draw[k] = k + 1;
+                                }
+                              }
+                              now[1] = j;
+                              break;
+                            }
+                          }
+                        }
+                      } else {
+                        for (let j = 0; j < 16; j++) {
+                          draw[j] = -1;
+                          document.querySelector("#p" + (j + 1)).style.top =
+                            82 + "%";
+                        }
+                        now[0] = 6;
+                        sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                        for (let j = 0; j < 16; j++) {
+                          if (playerA[j] < 14) {
+                            sys[0]++;
+                          } else if (playerA[j] < 27) {
+                            sys[1]++;
+                          } else if (playerA[j] < 40) {
+                            sys[2]++;
+                          } else {
+                            sys[3]++;
+                          }
+                        }
+                        for (let j = 0; j < 4; j++) {
+                          if (sys[j] >= 5) {
+                            for (let k = 0; k < 16; k++) {
+                              if (j == 3 && playerA[k] > 39) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                              } else if (
+                                playerA[k] < 14 + 13 * j &&
+                                playerA[k] > 13 * j
+                              ) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                              }
+                            }
+                            now[1] = j;
+                            break;
+                          }
+                        }
+                      }
+                      break;
+                    case 7: //順子
+                      if (now[0] == 7) {
+                        test = 0;
+                        for (let j = now[1] + 1; j < 9; j++) {
+                          if (
+                            sys[j] > 0 &&
+                            sys[j + 1] > 0 &&
+                            sys[j + 2] > 0 &&
+                            sys[j + 3] > 0 &&
+                            sys[j + 4] > 0
+                          ) {
+                            test = 1;
+                            for (let j = 0; j < 16; j++) {
+                              draw[j] = -1;
+                              document.querySelector("#p" + (j + 1)).style.top =
+                                82 + "%";
+                            }
+                            gold = j + 1;
+                            for (let k = 0; k < 16; k++) {
+                              if (playerA[k] % 13 == gold) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                                break;
+                              }
+                            }
+                            gold = j + 2;
+                            for (let k = 0; k < 16; k++) {
+                              if (playerA[k] % 13 == gold) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                                break;
+                              }
+                            }
+                            gold = j + 3;
+                            for (let k = 0; k < 16; k++) {
+                              if (playerA[k] % 13 == gold) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                                break;
+                              }
+                            }
+                            gold = j + 4;
+                            for (let k = 0; k < 16; k++) {
+                              if (playerA[k] % 13 == gold) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                                break;
+                              }
+                            }
+                            gold = j + 5;
+                            if (gold == 13) gold = 0;
+                            for (let k = 0; k < 16; k++) {
+                              if (playerA[k] % 13 == gold) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                                break;
+                              }
+                            }
+                            now[1] = j;
+                            break;
+                          }
+                        }
+                        if (test == 0) {
+                          for (let j = 0; j < 16; j++) {
+                            draw[j] = -1;
+                            document.querySelector("#p" + (j + 1)).style.top =
+                              82 + "%";
+                          }
+                          for (let j = 0; j < 9; j++) {
+                            if (
+                              sys[j] > 0 &&
+                              sys[j + 1] > 0 &&
+                              sys[j + 2] > 0 &&
+                              sys[j + 3] > 0 &&
+                              sys[j + 4] > 0
+                            ) {
+                              gold = j + 1;
+                              for (let k = 0; k < 16; k++) {
+                                if (playerA[k] % 13 == gold) {
+                                  document.querySelector(
+                                    "#p" + (k + 1)
+                                  ).style.top = 78 + "%";
+                                  draw[k] = k + 1;
+                                  break;
+                                }
+                              }
+                              gold = j + 2;
+                              for (let k = 0; k < 16; k++) {
+                                if (playerA[k] % 13 == gold) {
+                                  document.querySelector(
+                                    "#p" + (k + 1)
+                                  ).style.top = 78 + "%";
+                                  draw[k] = k + 1;
+                                  break;
+                                }
+                              }
+                              gold = j + 3;
+                              for (let k = 0; k < 16; k++) {
+                                if (playerA[k] % 13 == gold) {
+                                  document.querySelector(
+                                    "#p" + (k + 1)
+                                  ).style.top = 78 + "%";
+                                  draw[k] = k + 1;
+                                  break;
+                                }
+                              }
+                              gold = j + 4;
+                              for (let k = 0; k < 16; k++) {
+                                if (playerA[k] % 13 == gold) {
+                                  document.querySelector(
+                                    "#p" + (k + 1)
+                                  ).style.top = 78 + "%";
+                                  draw[k] = k + 1;
+                                  break;
+                                }
+                              }
+                              gold = j + 5;
+                              if (gold == 13) gold = 0;
+                              for (let k = 0; k < 16; k++) {
+                                if (playerA[k] % 13 == gold) {
+                                  document.querySelector(
+                                    "#p" + (k + 1)
+                                  ).style.top = 78 + "%";
+                                  draw[k] = k + 1;
+                                  break;
+                                }
+                              }
+                              now[1] = j;
+                              break;
+                            }
+                          }
+                        }
+                      } else {
+                        for (let j = 0; j < 16; j++) {
+                          draw[j] = -1;
+                          document.querySelector("#p" + (j + 1)).style.top =
+                            82 + "%";
+                        }
+                        now[0] = 7;
+                        sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                        for (let j = 0; j < 16; j++) {
+                          test = playerA[j] % 13;
+                          if (test != 0) {
+                            sys[test - 1] += 1;
+                          } else {
+                            sys[12] += 1;
+                          }
+                        }
+                        for (let j = 0; j < 9; j++) {
+                          if (
+                            sys[j] > 0 &&
+                            sys[j + 1] > 0 &&
+                            sys[j + 2] > 0 &&
+                            sys[j + 3] > 0 &&
+                            sys[j + 4] > 0
+                          ) {
+                            gold = j + 1;
+                            for (let k = 0; k < 16; k++) {
+                              if (playerA[k] % 13 == gold) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                                break;
+                              }
+                            }
+                            gold = j + 2;
+                            for (let k = 0; k < 16; k++) {
+                              if (playerA[k] % 13 == gold) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                                break;
+                              }
+                            }
+                            gold = j + 3;
+                            for (let k = 0; k < 16; k++) {
+                              if (playerA[k] % 13 == gold) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                                break;
+                              }
+                            }
+                            gold = j + 4;
+                            for (let k = 0; k < 16; k++) {
+                              if (playerA[k] % 13 == gold) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                                break;
+                              }
+                            }
+                            gold = j + 5;
+                            if (gold == 13) gold = 0;
+                            for (let k = 0; k < 16; k++) {
+                              if (playerA[k] % 13 == gold) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                                break;
+                              }
+                            }
+                            now[1] = j;
+                            break;
+                          }
+                        }
+                      }
+                      break;
+                    case 8: //三條
+                      if (now[0] == 8) {
+                        test = 0;
+                        for (let j = now[1] + 1; j < 16; j++) {
+                          if (sys[j] == 3) {
+                            test = 1;
+                            for (let j = 0; j < 16; j++) {
+                              draw[j] = -1;
+                              document.querySelector("#p" + (j + 1)).style.top =
+                                82 + "%";
+                            }
+                            for (let k = 0; k < 16; k++) {
+                              if (playerA[k] % 13 == j) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                              }
+                            }
+                            now[1] = j;
+                            break;
+                          }
+                        }
+                        if (test == 0) {
+                          for (let j = 0; j < 16; j++) {
+                            if (sys[j] == 3) {
+                              test = 1;
+                              for (let j = 0; j < 16; j++) {
+                                draw[j] = -1;
+                                document.querySelector(
+                                  "#p" + (j + 1)
+                                ).style.top = 82 + "%";
+                              }
+                              for (let k = 0; k < 16; k++) {
+                                if (playerA[k] % 13 == j) {
+                                  document.querySelector(
+                                    "#p" + (k + 1)
+                                  ).style.top = 78 + "%";
+                                  draw[k] = k + 1;
+                                }
+                              }
+                              now[1] = j;
+                              break;
+                            }
+                          }
+                        }
+                      } else {
+                        for (let j = 0; j < 16; j++) {
+                          draw[j] = -1;
+                          document.querySelector("#p" + (j + 1)).style.top =
+                            82 + "%";
+                        }
+                        now[0] = 8;
+                        sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                        for (let j = 0; j < 16; j++) {
+                          sys[playerA[j] % 13] += 1;
+                        }
+                        for (let j = 0; j < 13; j++) {
+                          if (sys[j] == 3) {
+                            for (let k = 0; k < 16; k++) {
+                              if (playerA[k] % 13 == j) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                              }
+                            }
+                            now[1] = j;
+                            break;
+                          }
+                        }
+                      }
+                      break;
+                    case 9: //對子
+                      if (now[0] == 9) {
+                        test = 0;
+                        for (let j = now[1] + 1; j < 16; j++) {
+                          if (sys[j] == 2) {
+                            test = 1;
+                            for (let j = 0; j < 16; j++) {
+                              draw[j] = -1;
+                              document.querySelector("#p" + (j + 1)).style.top =
+                                82 + "%";
+                            }
+                            for (let k = 0; k < 16; k++) {
+                              if (playerA[k] % 13 == j) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                              }
+                            }
+                            now[1] = j;
+                            break;
+                          }
+                        }
+                        if (test == 0) {
+                          for (let j = 0; j < 16; j++) {
+                            if (sys[j] == 2) {
+                              test = 1;
+                              for (let j = 0; j < 16; j++) {
+                                draw[j] = -1;
+                                document.querySelector(
+                                  "#p" + (j + 1)
+                                ).style.top = 82 + "%";
+                              }
+                              for (let k = 0; k < 16; k++) {
+                                if (playerA[k] % 13 == j) {
+                                  document.querySelector(
+                                    "#p" + (k + 1)
+                                  ).style.top = 78 + "%";
+                                  draw[k] = k + 1;
+                                }
+                              }
+                              now[1] = j;
+                              break;
+                            }
+                          }
+                        }
+                      } else {
+                        for (let j = 0; j < 16; j++) {
+                          draw[j] = -1;
+                          document.querySelector("#p" + (j + 1)).style.top =
+                            82 + "%";
+                        }
+                        now[0] = 9;
+                        sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                        for (let j = 0; j < 16; j++) {
+                          sys[playerA[j] % 13] += 1;
+                        }
+                        for (let j = 0; j < 13; j++) {
+                          if (sys[j] == 2) {
+                            for (let k = 0; k < 16; k++) {
+                              if (playerA[k] % 13 == j) {
+                                document.querySelector(
+                                  "#p" + (k + 1)
+                                ).style.top = 78 + "%";
+                                draw[k] = k + 1;
+                              }
+                            }
+                            now[1] = j;
+                            break;
+                          }
+                        }
+                      }
+                      break;
+                  }
                 }
+              }
             }
-            if (qwer == a) {
-                return true;
-            }
-            else {
-                return false;
-            }
+          },
+          false
+        );
+      }
+      function put(a) {
+        //方便放入按鈕的判斷
+        let qwer = 0;
+        for (let j = 0; j < 16; j++) {
+          if (draw[j] != -1) {
+            qwer++;
+          }
         }
-        function easyswitch(t, array, index) {//用來處理重複出現的switch(其功能是展示牌所需要的)
-            let w = "";
-            switch (t) {
-                case -1:
-                    w = "imgs/b0.png";
-                    break;
-                case 0://c
-                    w = "imgs/c" + parseInt(array[index]) + ".png";
-                    break;
-                case 1://d
-                    if (parseInt(array[index]) - 13 != 0) {
-                        w = "imgs/d" + (parseInt(array[index]) - 13) + ".png";
-                    }
-                    else {
-                        w = "imgs/c" + 13 + ".png";
-                    }
-                    break;
-                case 2://h
-                    if (array[index] - 26 != 0) {
-                        w = "imgs/h" + (parseInt(array[index]) - 26) + ".png";
-                    }
-                    else {
-                        w = "imgs/d" + 13 + ".png";
-                    }
-                    break;
-                case 3://s
-                    if (parseInt(array[index]) - 39 != 0) {
-                        w = "imgs/s" + (parseInt(array[index]) - 39) + ".png";
-                    }
-                    else {
-                        w = "imgs/h" + 13 + ".png";
-                    }
-                    break;
-                case 4://s
-                    if (parseInt(array[index]) - 52 != 0) {
-                        w = "imgs/s" + (parseInt(array[index]) - 52) + ".png";
-                    }
-                    else {
-                        w = "imgs/s" + 13 + ".png";
-                    }
-                    break;
-                case 5://s
-                    w = "imgs/s" + 13 + ".png";
-                    break;
+        if (qwer == a) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      function easyswitch(t, array, index) {
+        //用來處理重複出現的switch(其功能是展示牌所需要的)
+        let w = "";
+        switch (t) {
+          case -1:
+            w = "imgs/b0.png";
+            break;
+          case 0: //c
+            w = "imgs/c" + parseInt(array[index]) + ".png";
+            break;
+          case 1: //d
+            if (parseInt(array[index]) - 13 != 0) {
+              w = "imgs/d" + (parseInt(array[index]) - 13) + ".png";
+            } else {
+              w = "imgs/c" + 13 + ".png";
             }
-            return w;
+            break;
+          case 2: //h
+            if (array[index] - 26 != 0) {
+              w = "imgs/h" + (parseInt(array[index]) - 26) + ".png";
+            } else {
+              w = "imgs/d" + 13 + ".png";
+            }
+            break;
+          case 3: //s
+            if (parseInt(array[index]) - 39 != 0) {
+              w = "imgs/s" + (parseInt(array[index]) - 39) + ".png";
+            } else {
+              w = "imgs/h" + 13 + ".png";
+            }
+            break;
+          case 4: //s
+            if (parseInt(array[index]) - 52 != 0) {
+              w = "imgs/s" + (parseInt(array[index]) - 52) + ".png";
+            } else {
+              w = "imgs/s" + 13 + ".png";
+            }
+            break;
+          case 5: //s
+            w = "imgs/s" + 13 + ".png";
+            break;
         }
-        function next() {
-            // 定義數據
-            gold = poker[0];
-            var dataToPass = {
-                key1: head,
-                key2: mid,
-                key3: tail,
-                key4: playerB,
-                key5: playerC,
-                key6: playerD,
-                key7: 1,
-                key8: gold
-            };
-            //將數據轉成字串
-            var queryString = Object.keys(dataToPass).map(key => key + '=' + encodeURIComponent(dataToPass[key])).join('&');
-            // 傳遞數據並開啟視窗
-            var newWindow = window.open('13支-比牌環節-01157108+01157103.html?' + queryString);
-            window.opener = null;
-            window.close();        
-        }
+        return w;
+      }
+      function next() {
+        // 定義數據
+        var dataToPass = {
+          key1: head,
+          key2: mid,
+          key3: tail,
+          key4: playerB,
+          key5: playerC,
+          key6: playerD,
+          key7: 1,
+        };
+
+        //將數據轉成字串
+        var queryString = Object.keys(dataToPass)
+          .map((key) => key + "=" + encodeURIComponent(dataToPass[key]))
+          .join("&");
+        // 傳遞數據並開啟視窗
+        var newWindow = window.open(
+          "13支-比牌環節-01157108+01157103.html?" + queryString
+        );
+        window.opener = null;
+        window.close();
+      }
     </script>
-</body>
+  </body>
 </html>
