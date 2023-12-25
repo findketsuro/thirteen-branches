@@ -6,4 +6,4 @@
 我把單人遊戲(AI)跟紀錄牌譜搞定
 
 # 報告連結
-https://www.canva.com/design/DAF34fLFfFA/aCkWRhXUrihF1kelZhuEsg/edit?utm_content=DAF34fLFfFA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+https://lin01157103-zhang01157108.my.canva.site/
