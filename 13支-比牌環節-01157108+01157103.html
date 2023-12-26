@@ -205,18 +205,12 @@
             for (let i = 0; i <= 15; i++) { p2[i] = parseInt(p2[i]) }
             for (let i = 0; i <= 15; i++) { p3[i] = parseInt(p3[i]) }
             for (let i = 0; i <= 15; i++) { p4[i] = parseInt(p4[i]) }
-            console.log("AI前:")
-            console.log(p2); console.log(p3); console.log(p4);
             AI(p2, B1, B2, B3, 1, trickB);
             AI(p3, C1, C2, C3, 2, trickC);
             AI(p4, D1, D2, D3, 3, trickD);
-            console.log("AI後:")
-            console.log(B1, B2, B3); console.log(C1, C2, C3); console.log(D1, D2, D3);
-            console.log(trickB, trickC, trickD);
         }
         function easyswitch(t, array, index) {
             //用來處理重複出現的switch(其功能是展示牌所需要的)
-            console.log(t, array, index);
             let w = "";
             switch (t) {
                 case -1:
@@ -247,7 +241,6 @@
                     }
                     break;
                 case 4: //s
-                    console.log("ABC", array[index]);
                     if (parseInt(array[index]) - 52 != 0) {
                         w = "imgs/s" + (parseInt(array[index]) - 52) + ".png";
                     } else {
@@ -1208,6 +1201,42 @@
             else if (trickD[2] == 12) { wordsD += "玩家D同花順(+3)"; test4 += 3; }
             else if (trickD[2] == 11) { wordsD += "玩家D彩金鐵支(+15)"; test4 += 15; }
             else if (trickD[2] == 13) { wordsD += "玩家D五枚(+15)"; test4 += 15; }
+            if (trickA[0] > trickB[0] && trickA[1] > trickB[1] && trickA[2] > trickB[2]) {
+                wordsA += "玩家A打槍玩家B"; test1 += 1; test2 -= 1;
+            }
+            if (trickA[0] > trickC[0] && trickA[1] > trickC[1] && trickA[2] > trickC[2]) {
+                wordsA += "玩家A打槍玩家C"; test1 += 1; test2 -= 1;
+            }
+            if (trickA[0] > trickD[0] && trickA[1] > trickD[1] && trickA[2] > trickD[2]) {
+                wordsA += "玩家A打槍玩家D"; test1 += 1; test2 -= 1;
+            }
+            if (trickB[0] > trickA[0] && trickB[1] > trickA[1] && trickB[2] > trickA[2]) {
+                wordsB += "玩家B打槍玩家A"; test2 += 1; test1 -= 1;
+            }
+            if (trickB[0] > trickC[0] && trickB[1] > trickC[1] && trickB[2] > trickC[2]) {
+                wordsB += "玩家B打槍玩家C"; test2 += 1; test3 -= 1;
+            }
+            if (trickB[0] > trickD[0] && trickB[1] > trickD[1] && trickB[2] > trickD[2]) {
+                wordsB += "玩家B打槍玩家D"; test2 += 1; test4 -= 1;
+            }
+            if (trickC[0] > trickB[0] && trickC[1] > trickB[1] && trickC[2] > trickB[2]) {
+                wordsC += "玩家C打槍玩家B"; test3 += 1; test2 -= 1;
+            }
+            if (trickC[0] > trickA[0] && trickC[1] > trickA[1] && trickC[2] > trickA[2]) {
+                wordsC += "玩家C打槍玩家A"; test3 += 1; test1 -= 1;
+            }
+            if (trickC[0] > trickD[0] && trickC[1] > trickD[1] && trickC[2] > trickD[2]) {
+                wordsC += "玩家C打槍玩家D"; test3 += 1; test4 -= 1;
+            }
+            if (trickD[0] > trickB[0] && trickD[1] > trickB[1] && trickD[2] > trickB[2]) {
+                wordsD += "玩家D打槍玩家B"; test4 += 1; test2 -= 1;
+            }
+            if (trickD[0] > trickC[0] && trickD[1] > trickC[1] && trickD[2] > trickC[2]) {
+                wordsD += "玩家D打槍玩家C"; test4 += 1; test3 -= 1;
+            }
+            if (trickD[0] > trickA[0] && trickD[1] > trickA[1] && trickD[2] > trickA[2]) {
+                wordsD += "玩家D打槍玩家A"; test4 += 1; test1 -= 1;
+            }
             if (homerunA == 9) {
                 wordsD += "玩家A全壘打"; test1 += 3; test2 -= 1; test3 -= 1; test4 -= 1;
             }
@@ -2003,7 +2032,6 @@
                     }
                 }
             }
-            console.log(bcd, AIarray);
             //鐵支10
             sys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
             index = 0;
