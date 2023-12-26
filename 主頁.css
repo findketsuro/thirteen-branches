@@ -67,17 +67,16 @@ body {
     left: 10px;
     bottom: 10px;
     padding: 10px;
-    color: white;
-    text-decoration: none;
     border-radius: 5px;
 }
 
 #canva {
     position: fixed;
     left: 10px;
-    bottom: 30px;
-    padding: 10px;
-    color: white;
-    text-decoration: none;
+    top: 10px;
+    padding: 10px;    
     border-radius: 5px;
+}
+.picture {
+    width: 10%;
 }
