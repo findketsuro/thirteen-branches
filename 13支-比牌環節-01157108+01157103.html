@@ -1309,7 +1309,6 @@
             }
             for (let j = 0; j < 13; j++) {
                 if (sys[j] == 3) {
-                    console.log(gold);
                     if (gold % 13 == A1[0] % 13) {
                         trickA[0] = 4;
                         break;
@@ -1417,13 +1416,20 @@
                         }
                     }
                     else {//順子判定
-                        for (let i = 0; i < 13; i++) {
+                        for (let i = 1; i < 10; i++) {
                             if (sys[i] == 1) {
-                                if (sys[i + 1] == 1 && sys[i + 2] == 1 && sys[i + 3] == 1 && sys[i + 4] == 1) {
+                                if(i == 9){
+                                    if ((sys[i + 1] == 1 && sys[i + 2] == 1 && sys[i + 3] == 1 && sys[0] == 1)) {
                                     trickA[1] = 5;
                                     index = 1;
+                                    break;
+                                }  
                                 }
-                                break;
+                                if ((sys[i + 1] == 1 && sys[i + 2] == 1 && sys[i + 3] == 1 && sys[i + 4] == 1)) {
+                                    trickA[1] = 5;
+                                    index = 1;
+                                    break;
+                                }                                                                
                             }
                         }
                     }
@@ -1522,13 +1528,21 @@
                         }
                     }
                     else {//順子判定
-                        for (let i = 0; i < 13; i++) {
+                        for (let i = 0; i < 10; i++) {
                             if (sys[i] == 1) {
+                                if(i==9){
+                                    if (sys[i + 1] == 1 && sys[i + 2] == 1 && sys[i + 3] == 1 && sys[0] == 1) {
+                                    trickA[2] = 5;
+                                    index = 1;
+                                    break;
+                                }
+                                }
                                 if (sys[i + 1] == 1 && sys[i + 2] == 1 && sys[i + 3] == 1 && sys[i + 4] == 1) {
                                     trickA[2] = 5;
                                     index = 1;
+                                    break;
                                 }
-                                break;
+                                
                             }
                         }
                     }
