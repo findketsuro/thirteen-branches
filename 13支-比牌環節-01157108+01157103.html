@@ -1275,7 +1275,14 @@
             document.querySelector("#loser").style.display = "initial";
             document.getElementById("ohmygoddesu").addEventListener("click", function () {               
                 if (now_for_compare == 3) {
-                    alert("end");
+                    temp=totalA;
+                    let qwer=[totalA,totalB,totalC,totalD];
+                    qwer.sort(function(a,b){return b-a;});
+                    for(let i=0;i<4;i++){
+                        if(qwer[i]==temp){
+                            alert("你是第"+(i+1)+"名");
+                        }
+                    }
                 }
             })
         }
