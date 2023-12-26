@@ -131,6 +131,13 @@
             top: 45%;
             left: 8%;
         }
+        #loser{
+            position: absolute;
+            display: none;
+            width: 9%;
+            top: 78%;
+            left: 88%;
+        }
     </style>
 </head>
 <body>
@@ -159,6 +166,7 @@
     <img src="imgs/B.png" class="players" id="B"/>
     <img src="imgs/C.png" class="players" id="C"/>
     <img src="imgs/D.png" class="players" id="D"/>
+    <img src="imgs/重新挑戰.png" id="loser" onclick="restart()">
     <div style="width:600px;height:425px;border:3px #000000 dashed;" id="ohmygoddesu">
         <p id="comA"></p>
         <p id="comB"></p>
@@ -185,6 +193,11 @@
         let totalA = 0, totalB = 0, totalC = 0, totalD = 0;
         let homerunA = 0, homerunB = 0, homerunC = 0, homerunD = 0;
         let temp = 0;
+        function restart(){
+            window.open("13支-單人遊戲-01157108+01157103.html");
+            window.opener = null;
+            window.close();
+        }
         function getdata() {
             queryString = queryString.substring(1);// 去除問號
             queryString.split("&").forEach(function (keyValue) {// 把資料放到data
@@ -1259,7 +1272,8 @@
             document.getElementById("comC").innerHTML = wordsC;
             document.getElementById("comD").innerHTML = wordsD;
             document.getElementById("ohmygoddesu").style.display = "initial";
-            document.getElementById("ohmygoddesu").addEventListener("click", function () {
+            document.querySelector("#loser").style.display = "initial";
+            document.getElementById("ohmygoddesu").addEventListener("click", function () {               
                 if (now_for_compare == 3) {
                     alert("end");
                 }
