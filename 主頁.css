@@ -72,3 +72,12 @@ body {
     border-radius: 5px;
 }
 
+#canva {
+    position: fixed;
+    left: 10px;
+    bottom: 30px;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
